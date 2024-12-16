@@ -1,0 +1,111 @@
+@import "variables";
+
+// Utilities
+
+// background
+.bg-main {
+  background-color: $main-color-green;
+}
+.bg-secondary {
+  background-color: $secondary-color-blue !important;
+}
+.bg-third {
+  background-color: $third-color;
+}
+
+// background opacity 25%
+.bg-opacity-25-main {
+  background-color: $main-opacity-25-color;
+}
+
+.bg-opacity-25-secondary {
+  background-color: $secondary-opacity-25-color;
+}
+
+.bg-opacity-25-third {
+  background-color: $third-opacity-25-color;
+}
+
+// background opacity 50%
+.bg-opacity-50-main {
+  background-color: $main-opacity-50-color;
+}
+
+.bg-opacity-50-secondary {
+  background-color: $secondary-opacity-50-color;
+}
+
+.bg-opacity-50-third {
+  background-color: $third-opacity-50-color;
+}
+
+// background opacity 75%
+.bg-opacity-75-main {
+  background-color: $main-opacity-75-color;
+}
+
+.bg-opacity-75-secondary {
+  background-color: $secondary-opacity-75-color;
+}
+
+.bg-opacity-75-third {
+  background-color: $third-opacity-75-color;
+}
+
+// text color
+.text-main {
+  color: $main-color-green;
+}
+.text-secondary {
+  color: $secondary-color-blue;
+}
+.text-third {
+  color: $third-color;
+}
+
+.social-links {
+  &__link {
+    // box model
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+}
+
+// border
+.border-main-color {
+  border-color: $main-color-green !important;
+}
+
+.border-secondary-color-blue {
+  border-color: $secondary-color-blue !important;
+}
+
+.border-third-color {
+  border-color: $third-color !important;
+}
+
+// blur background
+.blur-1 {
+  backdrop-filter: blur(1px);
+}
+
+// shadow
+.drop-shadow {
+  filter: drop-shadow(1px 1px 1px $main-color-green);
+}
+
+.image__45 {
+  width: 50px !important;
+  height: 50px !important;
+}
+
+// font size
+.fs-14 {
+  font-size: 14px !important;
+}
+
+// box model
+.min-h-100vh {
+  min-height: 100vh !important;
+}

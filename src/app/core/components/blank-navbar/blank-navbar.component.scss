@@ -1,0 +1,26 @@
+@import "variables";
+
+.navbar__banner {
+  ul {
+    // box model
+    border-right: solid 0.5px $third-color;
+    li {
+      // box model
+      border-left: solid 0.5px $third-color;
+      a {
+        // box model
+        display: block;
+        padding-inline: 15px;
+        padding-block: 10px;
+        // color
+        color: white;
+        text-decoration: none;
+        // other
+        transition: all 0.5s;
+        &:hover {
+          background-color: $third-opacity-75-color;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+@import "variables";
+
+// Buttons
+.btn-main {
+  background-color: $main-color-green;
+  color: #fff;
+}
+
+.btn-secondary {
+  background-color: $secondary-color-blue;
+  color: #fff;
+}
+
+.btn-third {
+  background-color: $third-color;
+  color: #fff;
+}
+
+.btn-main:hover {
+  background-color: $main-opacity-50-color;
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background-color: $secondary-opacity-50-color;
+  color: #fff;
+}
+
+.btn-third:hover {
+  background-color: $third-opacity-50-color;
+  color: #fff;
+}
+
+.btn-main:active {
+  background-color: $main-opacity-75-color;
+  color: #fff;
+}
+
+.btn-secondary:active {
+  background-color: $secondary-opacity-75-color;
+  color: #fff;
+}
+
+.btn-third:active {
+  background-color: $third-opacity-75-color;
+  color: #fff;
+}
+
+.carousel__Buttons::after {
+  content: "";
+  position: absolute;
+  background-color: $main-color-green;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  z-index: -1;
+  transition: 0.5s all;
+}
+
+.carousel__Buttons:hover::after {
+  width: 100%;
+}
