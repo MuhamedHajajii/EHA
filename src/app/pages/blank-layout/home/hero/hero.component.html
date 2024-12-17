@@ -1,3 +1,4 @@
+@if (carouselImagesArr) {
 <section class="min-h-100vh position-relative">
   <div class="container h-100 overflow-hidden">
     <div
@@ -27,11 +28,15 @@
         ></button>
       </div>
       <div class="carousel-inner h-100 w-100">
-        <div class="carousel-item h-100 w-100 active position-relative z-1">
+        @for (image of carouselImagesArr; track $index) {
+        <div
+          class="carousel-item h-100 w-100 position-relative z-1"
+          [ngClass]="{ active: image.isActive }"
+        >
           <img
-            src="./assets/rev/home-carousel/1.jpg"
+            [src]="image.url"
             class="z-n1 position-absolute w-100 object-fit-cover"
-            alt="..."
+            [alt]="image.alt"
           />
           <div class="container h-100">
             <div
@@ -57,54 +62,7 @@
             </div>
           </div>
         </div>
-        <div class="carousel-item h-100 w-100 position-relative z-1">
-          <img
-            src="./assets/rev/home-carousel/1.jpg"
-            class="z-n1 position-absolute h-100 w-100 object-fit-cover"
-            alt="..."
-          />
-          <div class="container h-100">
-            <div
-              class="d-flex justify-content-start align-items-center w-100 h-100"
-            >
-              <div class="col-md-6 carousel__content py-4 rounded-2">
-                <p>PASSION FOR CARING</p>
-                <h2>Genuine Commitment To Your Health</h2>
-                <p>
-                  It is a long established fact that a reader will be distracted
-                  b the readable content of page when looking at its layout.
-                </p>
-                <button class="btn btn-main">
-                  READ MORE <i class="ms-2 fa-solid fa-plus"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item h-100 w-100 position-relative z-1">
-          <img
-            src="./assets/rev/home-carousel/1.jpg"
-            class="z-n1 position-absolute h-100 w-100 object-fit-cover"
-            alt="..."
-          />
-          <div class="container h-100">
-            <div
-              class="d-flex justify-content-start align-items-center w-100 h-100"
-            >
-              <div class="col-md-6 carousel__content py-4 rounded-2">
-                <p>PASSION FOR CARING</p>
-                <h2>Genuine Commitment To Your Health</h2>
-                <p>
-                  It is a long established fact that a reader will be distracted
-                  b the readable content of page when looking at its layout.
-                </p>
-                <button class="btn btn-main">
-                  READ MORE <i class="ms-2 fa-solid fa-plus"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        }
       </div>
       <button
         class="d-none d-lg-block carousel-control-prev border border-2 rounded-1 bg-opacity-75-main"
@@ -127,3 +85,4 @@
     </div>
   </div>
 </section>
+}
