@@ -4,8 +4,17 @@
   </nav>
 </header>
 <main>
-  <app-home />
+  <router-outlet></router-outlet>
 </main>
 <footer>
   <app-footer />
 </footer>
+
+<!-- scroll to top -->
+<a
+  #scrollToTop
+  href="#"
+  class="scrollToTop btn m-4 btn-secondary d-flex justify-content-center align-items-center position-fixed w-45 bottom-0 end-0 z-3"
+>
+  <i class="fa-solid fa-arrow-up"></i>
+</a>

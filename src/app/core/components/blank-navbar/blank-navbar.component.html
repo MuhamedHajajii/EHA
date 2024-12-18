@@ -1,7 +1,8 @@
 <nav
-  class="navbar d-block navbar-expand-lg bg-body-tertiary fixed-top p-0 shadow-lg"
+  #navbar
+  class="navbar d-block navbar-expand-lg bg-body-tertiary p-0 shadow-lg fixed-top position-absolute"
 >
-  <div class="navbar__banner bg-secondary">
+  <div #navbarBanner class="navbar__banner bg-secondary">
     <div class="container">
       <div class="d-none d-lg-flex justify-content-between align-items-center">
         <ul
@@ -36,68 +37,149 @@
       </div>
     </div>
   </div>
-  <div class="container py-2">
-    <a class="navbar-brand" href="#">
-      <img
-        width="70px"
-        src="./assets/logo.png"
-        alt="الهيئة العامة للرعاية الصحية"
-      />
-    </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link fw-bold fs-14 active" aria-current="page" href="#"
-            >HOME <i class="fa-solid fa-chevron-down ms-1"></i
-          ></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link fw-bold fs-14" href="#"
-            >PAGES <i class="fa-solid fa-chevron-down ms-1"></i
-          ></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link fw-bold fs-14" href="#"
-            >SERVICES <i class="fa-solid fa-chevron-down ms-1"></i
-          ></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link fw-bold fs-14" href="#"
-            >PROJECTS <i class="fa-solid fa-chevron-down ms-1"></i
-          ></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link fw-bold fs-14" href="#"
-            >BLOG <i class="fa-solid fa-chevron-down ms-1"></i
-          ></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link fw-bold fs-14" href="#"
-            >CONTACT US <i class="fa-solid fa-chevron-down ms-1"></i
-          ></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link fw-bold fs-14 mx-3" href="#"
-            ><i class="fa-solid fa-magnifying-glass fs-5"></i
-          ></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link fw-bold fs-14 btn btn-main" href="#"
-            >APPOINTMENT <i class="fa-solid fa-plus"></i
-          ></a>
-        </li>
-      </ul>
+  <div class="navbar">
+    <div class="container position-relative py-2">
+      <a class="navbar-brand" href="#">
+        <img
+          width="70px"
+          class="d-sm-none"
+          src="./assets/app_logo.png"
+          alt="الهيئة العامة للرعاية الصحية"
+        />
+        <img
+          width="70px"
+          class="d-none d-sm-block d-xl-none"
+          src="./assets/logo.png"
+          alt="الهيئة العامة للرعاية الصحية"
+        />
+        <img
+          width="170px"
+          class="d-none d-xl-block"
+          src="./assets/HCAEn.png"
+          alt="الهيئة العامة للرعاية الصحية"
+        />
+      </a>
+      <div class="d-flex align-items-center gap-2">
+        <div
+          class="collapse navbar-collapse px-3 px-lg-0"
+          id="navbarSupportedContent"
+        >
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li
+              class="nav-item"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+            >
+              <a
+                class="nav-link fw-bold fs-14"
+                aria-current="page"
+                routerLinkActive="active"
+                routerLink="/"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >HOME
+              </a>
+            </li>
+            <li
+              class="nav-item"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+            >
+              <a
+                class="nav-link fw-bold fs-14"
+                routerLinkActive="active"
+                routerLink="/about"
+                >ABOUT
+              </a>
+            </li>
+            <li
+              class="nav-item"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+            >
+              <a
+                class="nav-link fw-bold fs-14"
+                routerLinkActive="active"
+                routerLink="/protocols"
+                >PROTOCOLS
+              </a>
+            </li>
+            <li
+              class="nav-item"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+            >
+              <a
+                class="nav-link fw-bold fs-14"
+                routerLinkActive="active"
+                routerLink="/news-letters"
+                >NEWS LETTERS
+              </a>
+            </li>
+            <li
+              class="nav-item"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+            >
+              <a
+                class="nav-link fw-bold fs-14"
+                routerLinkActive="active"
+                routerLink="/contact-us"
+                >CONTACT US
+              </a>
+            </li>
+            <li
+              class="nav-item"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+            >
+              <a
+                class="nav-link fw-bold fs-14"
+                routerLinkActive="active"
+                routerLink="/privacy-policy"
+                >PRIVACY POLICY
+              </a>
+            </li>
+            <li
+              class="nav-item"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+            >
+              <a
+                class="nav-link fw-bold fs-14"
+                routerLinkActive="active"
+                routerLink="/login"
+                >login</a
+              >
+            </li>
+          </ul>
+        </div>
+        <ul
+          class="list-unstyled d-flex justify-content-center align-items-center mb-0"
+        >
+          <li
+            class="nav-item d-flex justify-content-center align-items-center me-3"
+          >
+            <i class="fa-solid fa-headset fs-2 text-primary lh-0"></i>
+          </li>
+          <li class="nav-item">
+            <a class="h5 text-decoration-none fw-bold lh-0" href="#"
+              >+1800-001-658</a
+            >
+            <p class="m-0 lh-0 my-2 text-muted fs-6">Mon-Fri: 6AM - 10PM</p>
+          </li>
+        </ul>
+        <button
+          class="navbar-toggler btn-secondary p-2 rounded-1"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fa-solid fa-bars fs-1"></i>
+        </button>
+      </div>
     </div>
   </div>
 </nav>

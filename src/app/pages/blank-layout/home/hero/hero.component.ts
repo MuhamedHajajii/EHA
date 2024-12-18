@@ -17,18 +17,13 @@ interface ICarouselImagesArr {
 export class HeroComponent {
   carouselImagesArr: ICarouselImagesArr[] = [
     {
-      url: './assets/rev/home-carousel/1.jpg',
+      url: './assets/rev/1-6.jpg',
       alt: 'first doctor',
       isActive: true,
     },
     {
-      url: './assets/rev/home-carousel/2.jpg',
+      url: './assets/rev/2-6.jpg',
       alt: 'second doctor',
-      isActive: false,
-    },
-    {
-      url: './assets/rev/home-carousel/3.jpg',
-      alt: 'third doctor',
       isActive: false,
     },
   ];

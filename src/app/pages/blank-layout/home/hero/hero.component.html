@@ -4,30 +4,9 @@
     <div
       data-bs-ride="carousel"
       id="carousel__HeroSection"
+      data-bs-touch="false"
       class="h-100 w-100 carousel slide position-absolute top-0 start-0 z-1"
     >
-      <div class="carousel-indicators">
-        <button
-          type="button"
-          data-bs-target="#carousel__HeroSection"
-          data-bs-slide-to="0"
-          class="active"
-          aria-current="true"
-          aria-label="Slide 1"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carousel__HeroSection"
-          data-bs-slide-to="1"
-          aria-label="Slide 2"
-        ></button>
-        <button
-          type="button"
-          data-bs-target="#carousel__HeroSection"
-          data-bs-slide-to="2"
-          aria-label="Slide 3"
-        ></button>
-      </div>
       <div class="carousel-inner h-100 w-100">
         @for (image of carouselImagesArr; track $index) {
         <div
@@ -36,14 +15,14 @@
         >
           <img
             [src]="image.url"
-            class="z-n1 position-absolute w-100 object-fit-cover"
+            class="z-n1 position-absolute w-100 w-100 h-100 object-fit-cover"
             [alt]="image.alt"
           />
           <div class="container h-100">
             <div
-              class="d-flex text-center text-md-start justify-content-md-start justify-content-center align-items-center w-100 h-100"
+              class="d-flex text-center justify-content-center align-items-center w-100 h-100"
             >
-              <div class="col-md-6 carousel__content py-4 rounded-2">
+              <div class="col-md-6 carousel__content px-3 py-4 rounded-2">
                 <p>
                   <span
                     class="px-4 py-2 rounded-1 bg-opacity-25-secondary text-white"
@@ -56,9 +35,16 @@
                   It is a long established fact that a reader will be distracted
                   b the readable content of page when looking at its layout.
                 </p>
-                <button class="btn btn-main px-4">
-                  READ MORE <i class="ms-2 fa-solid fa-plus"></i>
-                </button>
+                <div class="d-flex justify-content-center gap-2">
+                  <button class="btn btn-main px-4 py-2">
+                    <span class="align-middle">PROTOCOLS</span>
+                    <i class="fa-solid fa-plus ms-2 fs-4 align-middle"></i>
+                  </button>
+                  <button class="btn btn-main px-4 py-2">
+                    <span class="align-middle">HISTORY</span>
+                    <i class="fa-solid fa-plus ms-2 fs-4 align-middle"></i>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -66,21 +52,21 @@
         }
       </div>
       <button
-        class="d-none d-lg-block carousel-control-prev border border-2 rounded-1 bg-opacity-75-main"
+        class="d-none d-lg-block carousel-control-prev rounded-1 bg-opacity-25-main"
         type="button"
         data-bs-target="#carousel__HeroSection"
         data-bs-slide="prev"
       >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <i class="fa-solid fa-chevron-left"></i>
         <span class="visually-hidden">Previous</span>
       </button>
       <button
-        class="d-none d-lg-block carousel-control-next border border-2 rounded-1 bg-opacity-75-main"
+        class="d-none d-lg-block carousel-control-next rounded-1 bg-opacity-25-main"
         type="button"
         data-bs-target="#carousel__HeroSection"
         data-bs-slide="next"
       >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <i class="fa-solid fa-chevron-right"></i>
         <span class="visually-hidden">Next</span>
       </button>
     </div>

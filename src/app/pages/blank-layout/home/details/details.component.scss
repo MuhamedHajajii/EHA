@@ -1,0 +1,9 @@
+.Details__Card {
+  .card__icon {
+    transition: 0.5s;
+    transform: translateX(0);
+  }
+  &:hover .card__icon {
+    transform: translateX(-15px);
+  }
+}

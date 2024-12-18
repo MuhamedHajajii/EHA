@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
+  /** path ==>> ''*/
   {
     path: '',
     loadComponent: () =>
@@ -8,23 +9,76 @@ export const routes: Routes = [
         (m) => m.BlankLayoutComponent
       ),
     children: [
+      /** path: ''*/
       {
         path: '',
+
         loadComponent: () =>
           import('../app/pages/blank-layout/home/home.component').then(
             (m) => m.HomeComponent
           ),
       },
+      /** path: about*/
+      {
+        path: 'about',
+        loadComponent: () =>
+          import('../app/pages/blank-layout/about/about.component').then(
+            (m) => m.AboutComponent
+          ),
+      },
+      /** path: news-letters*/
+      {
+        path: 'news-letters',
+        loadComponent: () =>
+          import(
+            '../app/pages/blank-layout/news-letters/news-letters.component'
+          ).then((m) => m.NewsLettersComponent),
+      },
+      /** path: privacy-policy*/
+      {
+        path: 'privacy-policy',
+        loadComponent: () =>
+          import(
+            '../app/pages/blank-layout/privacy-policy/privacy-policy.component'
+          ).then((m) => m.PrivacyPolicyComponent),
+      },
+      /** path: contact-us*/
+      {
+        path: 'contact-us',
+        loadComponent: () =>
+          import(
+            '../app/pages/blank-layout/contact-us/contact-us.component'
+          ).then((m) => m.ContactUsComponent),
+      },
     ],
   },
+  /** path: protocols*/
+  {
+    path: 'protocols',
+    loadComponent: () =>
+      import('../app/pages/protocol-layout/protocol-layout.component').then(
+        (m) => m.ProtocolLayoutComponent
+      ),
+    children: [
+      /** path ==>> /protocols-categories*/
+      {
+        path: 'protocols-categories',
+        loadComponent: () =>
+          import(
+            '../app/pages/protocol-layout/sub-protocols/sub-protocols.component'
+          ).then((m) => m.SubProtocolsComponent),
+      },
+    ],
+  },
+  /** path: login*/
   {
     path: 'login',
     loadComponent: () =>
       import('../app/auth/auth-layout/auth-layout.component').then(
         (m) => m.AuthLayoutComponent
       ),
-    children: [],
   },
+  /** path: ***/
   {
     path: '**',
     loadComponent: () =>

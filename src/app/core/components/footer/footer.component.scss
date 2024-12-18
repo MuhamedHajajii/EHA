@@ -1,0 +1,23 @@
+@import "variables";
+.social__icons {
+  ul {
+    li {
+      a {
+        // box model
+        border-radius: 5px;
+        display: block;
+        padding-inline: 15px;
+        padding-block: 10px;
+        // color
+        color: white;
+        text-decoration: none;
+        // other
+        transition: all 0.5s;
+        background-color: $third-opacity-25-color;
+        &:hover {
+          background-color: $third-opacity-75-color;
+        }
+      }
+    }
+  }
+}

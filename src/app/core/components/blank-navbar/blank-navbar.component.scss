@@ -24,3 +24,38 @@
     }
   }
 }
+
+.navbar.active {
+  position: fixed !important;
+  animation: NavBar__Animation 0.5s forwards;
+}
+
+@keyframes NavBar__Animation {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: $third-color;
+  }
+}
+
+.nav-link {
+  &.active {
+    color: $main-color-green-dark;
+  }
+  &:hover {
+    color: $main-color-green-dark;
+  }
+}

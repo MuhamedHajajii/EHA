@@ -1,0 +1,128 @@
+@font-face {
+    font-family: "flaticon";
+    src: url("flaticon7a30.ttf?5277f2a69b3476c87360e02ec56eb827") format("truetype"),
+    url("flaticon7a30.woff?5277f2a69b3476c87360e02ec56eb827") format("woff"),
+    url("flaticon7a30.woff2?5277f2a69b3476c87360e02ec56eb827") format("woff2"),
+    url("flaticon7a30.eot?5277f2a69b3476c87360e02ec56eb827#iefix") format("embedded-opentype"),
+    url("flaticon7a30.svg?5277f2a69b3476c87360e02ec56eb827#flaticon") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.flaticon-stethoscope:before {
+    content: "\f101";
+}
+.flaticon-medical-report:before {
+    content: "\f102";
+}
+.flaticon-medical-doctor:before {
+    content: "\f103";
+}
+.flaticon-doctor:before {
+    content: "\f104";
+}
+.flaticon-care:before {
+    content: "\f105";
+}
+.flaticon-examination:before {
+    content: "\f106";
+}
+.flaticon-syringe:before {
+    content: "\f107";
+}
+.flaticon-medicine:before {
+    content: "\f108";
+}
+.flaticon-medical-history:before {
+    content: "\f109";
+}
+.flaticon-doctor-1:before {
+    content: "\f10a";
+}
+.flaticon-medical-report-1:before {
+    content: "\f10b";
+}
+.flaticon-caduceus:before {
+    content: "\f10c";
+}
+.flaticon-medical-prescription:before {
+    content: "\f10d";
+}
+.flaticon-consulting:before {
+    content: "\f10e";
+}
+.flaticon-laboratory:before {
+    content: "\f10f";
+}
+.flaticon-injection:before {
+    content: "\f110";
+}
+.flaticon-medical:before {
+    content: "\f111";
+}
+.flaticon-heartbeat:before {
+    content: "\f112";
+}
+.flaticon-x-ray:before {
+    content: "\f113";
+}
+.flaticon-drugs:before {
+    content: "\f114";
+}
+.flaticon-first-aid-box:before {
+    content: "\f115";
+}
+.flaticon-mask:before {
+    content: "\f116";
+}
+.flaticon-medical-prescription-1:before {
+    content: "\f117";
+}
+.flaticon-ct-scan:before {
+    content: "\f118";
+}
+.flaticon-x-ray-1:before {
+    content: "\f119";
+}
+.flaticon-health-insurance:before {
+    content: "\f11a";
+}
+.flaticon-healthcare:before {
+    content: "\f11b";
+}
+.flaticon-healthcare-1:before {
+    content: "\f11c";
+}
+.flaticon-tooth:before {
+    content: "\f11d";
+}
+.flaticon-dentist-chair:before {
+    content: "\f11e";
+}
+.flaticon-cardiology:before {
+    content: "\f11f";
+}
+.flaticon-cardiology-1:before {
+    content: "\f120";
+}
+.flaticon-virus:before {
+    content: "\f121";
+}
+.flaticon-coronavirus:before {
+    content: "\f122";
+}
+.flaticon-mask-1:before {
+    content: "\f123";
+}
+.flaticon-disinfectant:before {
+    content: "\f124";
+}

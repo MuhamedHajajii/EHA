@@ -1,1 +1,42 @@
-<p>news-latest-banner works!</p>
+@if (allNewsLettersArr) {
+<section class="my-5">
+  <div class="container-lg container-fluid">
+    <header class="text-center mb-4">
+      <h2>
+        <span class="fs-6 p-2 rounded-1 bg-opacity-25-secondary text-white"
+          >Our Newsletter
+        </span>
+      </h2>
+      <h3 class="h1 fw-bold">See Our Latest Newsletter</h3>
+    </header>
+    <div>
+      <owl-carousel-o [options]="customOptions">
+        @for (news of allNewsLettersArr.newsletter; track $index) {
+        <ng-container>
+          <ng-template carouselSlide [id]="news.id.toString()">
+            <div>
+              <div class="card h-100 p-4 shadow-sm">
+                <figure>
+                  <img class="card-img-top" src="./assets/logo.png" alt="" />
+                </figure>
+                <div class="card-title">
+                  <h4>{{ news.newsletter_title }}</h4>
+                </div>
+                <div class="card-body">
+                  <p [innerHTML]="news.newsletter_text | stringTrim"></p>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ng-container>
+
+        }
+      </owl-carousel-o>
+    </div>
+    <div class="text-center my-3">
+      <button class="btn btn-main px-5 py-3">See All News</button>
+    </div>
+  </div>
+</section>
+
+}

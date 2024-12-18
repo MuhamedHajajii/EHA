@@ -1,0 +1,12 @@
+@import "variables";
+
+.PROCESS__SECTION {
+  background-color: $secondary-color-blue;
+  background-image: linear-gradient(
+      $secondary-opacity-75-color,
+      $secondary-opacity-75-color
+    ),
+    url("../../../../../assets/bg-1.png");
+  background-size: 60%;
+  background-position: center;
+}

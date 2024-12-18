@@ -1,0 +1,30 @@
+.scrollToTop {
+  animation: scrollToTop__Animation 1s forwards;
+}
+
+@keyframes scrollToTop__Animation {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
+main {
+  padding-top: 155px;
+}
+@media screen and (max-width: 992px) {
+  main {
+    padding-top: 120px;
+  }
+}

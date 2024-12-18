@@ -6,8 +6,14 @@
 .bg-main {
   background-color: $main-color-green;
 }
+.bg-main-dark {
+  background-color: $main-color-green-dark;
+}
 .bg-secondary {
   background-color: $secondary-color-blue !important;
+}
+.bg-secondary-light {
+  background-color: $secondary-color-light !important;
 }
 .bg-third {
   background-color: $third-color;
@@ -57,7 +63,7 @@
   color: $main-color-green;
 }
 .text-secondary {
-  color: $secondary-color-blue;
+  color: $secondary-color-blue !important;
 }
 .text-third {
   color: $third-color;
@@ -108,4 +114,44 @@
 // box model
 .min-h-100vh {
   min-height: 100vh !important;
+}
+
+.w-45 {
+  width: 45px !important ;
+  height: 45px !important ;
+  border-radius: 50% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.w-85 {
+  width: 85px !important ;
+  height: 85px !important ;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fs-55 {
+  font-size: 55px !important;
+}
+
+.lh-0 {
+  line-height: 0 !important;
+}
+
+.Green__UnderLine {
+  position: relative;
+  padding-bottom: 5px;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 100%;
+    width: 50%;
+    height: 4px;
+    background-color: $main-color-green;
+  }
 }
