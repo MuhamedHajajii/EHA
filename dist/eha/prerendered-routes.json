@@ -1,0 +1,12 @@
+{
+  "routes": [
+    "/",
+    "/about",
+    "/contact-us",
+    "/login",
+    "/news-letters",
+    "/privacy-policy",
+    "/protocols",
+    "/protocols/protocols-categories"
+  ]
+}
