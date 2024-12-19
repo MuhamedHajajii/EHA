@@ -1,0 +1,142 @@
+#privacy-policy {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 800px;
+  :host {
+    font-family: "Arial", sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f9f9f9;
+  }
+  /* General Styling */
+
+  /* Section Styling */
+
+  /* Container Styling */
+  .container-lg,
+  .container-fluid {
+    padding: 0 1rem;
+  }
+
+  /* Heading Styles */
+  h2 {
+    font-size: 1.25rem;
+    color: #222;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    font-size: 1rem;
+    color: #444;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Paragraphs */
+  p {
+    margin-bottom: 1rem;
+    color: #555;
+  }
+
+  /* Time Element */
+  time {
+    font-style: italic;
+    color: #666;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  /* Lists */
+  ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  ul li {
+    margin-bottom: 0.5rem;
+    color: #555;
+  }
+
+  /* Links */
+  a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  a:hover {
+    color: #0056b3;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    section {
+      padding: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.15rem;
+    }
+
+    h3 {
+      font-size: 0.95rem;
+    }
+
+    p,
+    ul li {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+header {
+  height: 50vh;
+  background-image: url("../../../../assets/rev/3-4.jpg");
+  background-position: top center;
+  background-size: cover;
+  transform: translateY(10px);
+  opacity: 0;
+  animation: Welcome__Animation 1s forwards;
+  h2 {
+    transform: translateX(-3000px);
+    opacity: 0;
+    animation: Welcome__Content__Animation 1s forwards;
+  }
+  nav {
+    transform: translateX(-3000px);
+    opacity: 0;
+    animation: Welcome__Content__Animation 1s 0.3s forwards;
+  }
+}
+
+@keyframes Welcome__Animation {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes Welcome__Content__Animation {
+  from {
+    transform: translateX(-3000px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  color: white;
+}

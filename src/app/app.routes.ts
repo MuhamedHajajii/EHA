@@ -65,8 +65,22 @@ export const routes: Routes = [
         path: 'protocols-categories',
         loadComponent: () =>
           import(
+            '../app/pages/protocol-layout/protocol-categories/protocol-categories.component'
+          ).then((m) => m.ProtocolCategoriesComponent),
+      },
+      {
+        path: 'sub-protocols-categories/:id',
+        loadComponent: () =>
+          import(
             '../app/pages/protocol-layout/sub-protocols/sub-protocols.component'
           ).then((m) => m.SubProtocolsComponent),
+      },
+      {
+        path: 'questions/:id',
+        loadComponent: () =>
+          import(
+            '../app/pages/protocol-layout/protocol-questions/protocol-questions.component'
+          ).then((m) => m.ProtocolQuestionsComponent),
       },
     ],
   },

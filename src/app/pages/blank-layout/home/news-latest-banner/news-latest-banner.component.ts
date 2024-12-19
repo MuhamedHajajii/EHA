@@ -3,11 +3,12 @@ import { NewsLetterDataService } from '../../../../core/services/home/news-lette
 import { INewsletterData } from '../../../../core/interfaces/news-letters/inewsletterdata';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { StringTrimPipe } from '../../../../core/pipes/string-trim.pipe';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-news-latest-banner',
   standalone: true,
-  imports: [CarouselModule, StringTrimPipe],
+  imports: [CarouselModule, StringTrimPipe, CommonModule],
   templateUrl: './news-latest-banner.component.html',
   styleUrl: './news-latest-banner.component.scss',
 })

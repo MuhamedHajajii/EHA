@@ -10,28 +10,40 @@
       <h3 class="h1 fw-bold">See Our Latest Newsletter</h3>
     </header>
     <div>
-      <owl-carousel-o [options]="customOptions">
-        @for (news of allNewsLettersArr.newsletter; track $index) {
-        <ng-container>
-          <ng-template carouselSlide [id]="news.id.toString()">
-            <div>
-              <div class="card h-100 p-4 shadow-sm">
-                <figure>
-                  <img class="card-img-top" src="./assets/logo.png" alt="" />
-                </figure>
-                <div class="card-title">
-                  <h4>{{ news.newsletter_title }}</h4>
-                </div>
-                <div class="card-body">
-                  <p [innerHTML]="news.newsletter_text | stringTrim"></p>
-                </div>
-              </div>
-            </div>
-          </ng-template>
-        </ng-container>
-
+      <div class="accordion" id="accordionExample">
+        @for (news of allNewsLettersArr.newsletter | slice: 0:4; track $index) {
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              attr.data-bs-target="#{{ news.id }}"
+              aria-expanded="true"
+              aria-controls="collapseOne"
+            >
+              <img
+                class="w-45 object-fit-contain"
+                src="./assets/logo.png"
+                role="presentation"
+              />
+              <span class="ms-4">{{ news.newsletter_title }}</span>
+            </button>
+          </h2>
+          <div
+            [id]="news.id"
+            [ngClass]="{ show: $index === 0 }"
+            class="accordion-collapse collapse"
+            data-bs-parent="#accordionExample"
+          >
+            <div
+              class="accordion-body"
+              [innerHTML]="news.newsletter_text | stringTrim"
+            ></div>
+          </div>
+        </div>
         }
-      </owl-carousel-o>
+      </div>
     </div>
     <div class="text-center my-3">
       <button class="btn btn-main px-5 py-3">See All News</button>

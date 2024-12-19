@@ -1,1 +1,111 @@
-
+<main>
+  <section>
+    <header class="text-white shadow">
+      <div class="bg-black bg-opacity-50 h-100">
+        <div
+          class="container-lg container-fluid d-flex justify-content-start align-items-center h-100"
+        >
+          <div>
+            <div>
+              <h2 class="text-uppercase fs-1">
+                LogIn <i class="fa-regular fa-paper-plane ms-3"></i>
+              </h2>
+            </div>
+            <div>
+              <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item" aria-current="page">
+                    <i class="fa-solid fa-house me-1"></i> Home
+                  </li>
+                  <li
+                    class="breadcrumb-item text-white text-opacity-50"
+                    aria-current="page"
+                  >
+                    LogIn
+                  </li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="container-lg container-fluid p-4 p-md-0 py-5 my-5">
+      <div class="row shadow my-5 rounded-1">
+        <div class="col-12 col-lg-8 p-2 p-md-5">
+          <form [formGroup]="userForm" (ngSubmit)="loginUser()" class="p-3">
+            <h3 class="mb-4">
+              <span class="border-4 border-bottom">Login</span>
+            </h3>
+            <div class="row g-3">
+              <!-- input form field: userEmail -->
+              <div class="col-12">
+                <div>
+                  <div class="d-flex justify-content-between">
+                    <label
+                      class="form-label fw-semibold text-dark text-opacity-75 mb-1"
+                      for="userEmail"
+                      >Email:<span class="text-danger">*</span></label
+                    >
+                    <small class="text-danger fst-italic d-none fw-bold"
+                      >required*</small
+                    >
+                    <small class="text-danger fst-italic d-none fw-bold"
+                      >not valid email*</small
+                    >
+                  </div>
+                  <input
+                    class="form-control"
+                    type="email"
+                    placeholder="name@example.com"
+                    name="userEmail"
+                    id="userEmail"
+                    autocomplete="email"
+                    formControlName="email"
+                  />
+                </div>
+              </div>
+              <!-- input form field: userPassword -->
+              <div class="col-12">
+                <div>
+                  <div class="d-flex justify-content-between">
+                    <label
+                      class="form-label fw-semibold text-dark text-opacity-75 mb-1"
+                      for="userPassword"
+                      >Password:<span class="text-danger">*</span></label
+                    >
+                    <small class="text-danger fst-italic d-none fw-bold"
+                      >required*</small
+                    >
+                    <small class="text-danger fst-italic d-none fw-bold"
+                      >not valid email*</small
+                    >
+                  </div>
+                  <input
+                    class="form-control"
+                    type="email"
+                    name="userPassword"
+                    id="userPassword"
+                    placeholder="***********"
+                    autocomplete="off"
+                    formControlName="password"
+                  />
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="text-center">
+                  <button class="btn btn-secondary px-5 py-2">LogIn</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-12 d-none d-lg-block col-lg-4 bg-secondary text-center">
+          <div class="h-100 d-flex flex-column justify-content-end">
+            <img src="./assets/skill-img.png" class="w-100" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

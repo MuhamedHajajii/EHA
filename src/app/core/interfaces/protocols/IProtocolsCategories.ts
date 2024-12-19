@@ -1,5 +1,14 @@
 export interface IProtocolsCategories {
-  subcategory: Subcategory;
+  category: Category;
+}
+
+export interface Category {
+  id: number;
+  title: string;
+  description: string;
+  created_at: string;
+  updated_at: string;
+  subcategories: Subcategory[];
 }
 
 export interface Subcategory {
@@ -11,17 +20,4 @@ export interface Subcategory {
   active_status: number;
   created_at: string;
   updated_at: string;
-  protocols: Protocol[];
-}
-
-export interface Protocol {
-  id: number;
-  title: string;
-  description: string;
-  sub_category_id: number;
-  active_status: number;
-  created_at: string;
-  updated_at: string;
-  bookmark: any[];
-  is_end: boolean;
 }
