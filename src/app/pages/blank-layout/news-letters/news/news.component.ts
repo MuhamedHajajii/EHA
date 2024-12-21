@@ -1,13 +1,12 @@
-import { Component } from '@angular/core';
-import { StringTrimPipe } from '../../../../core/pipes/string-trim.pipe';
 import { CommonModule, SlicePipe } from '@angular/common';
-import { NewsLetterDataService } from '../../../../core/services/home/news-letter-data.service';
+import { Component } from '@angular/core';
 import { INewsletterData } from '../../../../core/interfaces/news-letters/INewsLetterData';
+import { NewsLetterDataService } from '../../../../core/services/home/news-letter-data.service';
 
 @Component({
   selector: 'app-news',
   standalone: true,
-  imports: [StringTrimPipe, CommonModule, SlicePipe],
+  imports: [CommonModule, SlicePipe],
   templateUrl: './news.component.html',
   styleUrl: './news.component.scss',
 })
