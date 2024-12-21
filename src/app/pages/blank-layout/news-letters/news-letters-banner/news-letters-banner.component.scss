@@ -1,0 +1,11 @@
+@import "variables";
+
+.collapsing,
+.collapsed,
+.collapse {
+  transition: all 0.5s !important;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: $secondary-opacity-25-color;
+}
