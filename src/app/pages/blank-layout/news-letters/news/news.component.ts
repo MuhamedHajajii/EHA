@@ -1,16 +1,18 @@
 import { CommonModule, SlicePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { INewsletterData } from '../../../../core/interfaces/news-letters/INewsLetterData';
 import { NewsLetterDataService } from '../../../../core/services/home/news-letter-data.service';
+import { StringTrimPipe } from '../../../../core/pipes/string-trim.pipe';
 
 @Component({
   selector: 'app-news',
   standalone: true,
-  imports: [CommonModule, SlicePipe],
+  imports: [CommonModule, SlicePipe, StringTrimPipe],
   templateUrl: './news.component.html',
   styleUrl: './news.component.scss',
 })
 export class NewsComponent {
+  @Input() ImageSrc = '';
   allNewsLettersArr!: INewsletterData;
 
   constructor(private _NewsLetterDataService: NewsLetterDataService) {}
