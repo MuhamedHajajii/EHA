@@ -7,29 +7,8 @@ import { NewsLetterDataService } from '../../../../core/services/home/news-lette
 @Component({
   selector: 'app-news-letters-banner',
   standalone: true,
-  imports: [StringTrimPipe, CommonModule, SlicePipe],
+  imports: [],
   templateUrl: './news-letters-banner.component.html',
   styleUrl: './news-letters-banner.component.scss',
 })
-export class NewsLettersBannerComponent {
-  allNewsLettersArr!: INewsletterData;
-
-  constructor(private _NewsLetterDataService: NewsLetterDataService) {}
-
-  ngOnInit(): void {
-    this.getAllNewsLetters();
-  }
-
-  /** Handle get all news letters */
-  getAllNewsLetters() {
-    this._NewsLetterDataService.getNewsLetterData().subscribe({
-      next: (response) => {
-        console.log(response);
-        this.allNewsLettersArr = response;
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
-  }
-}
+export class NewsLettersBannerComponent {}
