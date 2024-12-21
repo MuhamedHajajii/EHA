@@ -4,7 +4,6 @@ import { DownloadAppBannerComponent } from './download-app-banner/download-app-b
 import { HeroComponent } from './hero/hero.component';
 import { HomeAboutUsComponent } from './home-about-us/home-about-us.component';
 import { HomeContactUsComponent } from './home-contact-us/home-contact-us.component';
-import { NewsComponent } from '../news-letters/news/news.component';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +14,6 @@ import { NewsComponent } from '../news-letters/news/news.component';
     HeroComponent,
     DownloadAppBannerComponent,
     HomeContactUsComponent,
-    NewsComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
