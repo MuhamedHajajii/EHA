@@ -10,7 +10,7 @@ import { NewsLetterDataService } from '../../../../core/services/home/news-lette
   standalone: true,
   imports: [StringTrimPipe, CommonModule, SlicePipe],
   templateUrl: './news-latest-banner.component.html',
-  styleUrl: './news-latest-banner.component.scss',
+  styleUrls: ['./news-latest-banner.component.scss'], // Corrected
 })
 export class NewsLatestBannerComponent implements OnInit {
   allNewsLettersArr!: INewsletterData;
