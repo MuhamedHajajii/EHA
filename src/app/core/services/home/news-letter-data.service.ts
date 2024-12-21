@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { INewsletterData } from '../../interfaces/news-letters/inewsletterdata';
+import { INewsletterData } from '../../interfaces/news-letters/INewsLetterData';
 
 @Injectable({
   providedIn: 'root',
