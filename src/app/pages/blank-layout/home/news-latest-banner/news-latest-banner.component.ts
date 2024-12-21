@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { NewsLetterDataService } from '../../../../core/services/home/news-letter-data.service';
-import { INewsletterData } from '../../../../core/interfaces/news-letters/inewsletterdata';
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
-import { StringTrimPipe } from '../../../../core/pipes/string-trim.pipe';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+
+import { StringTrimPipe } from '../../../../core/pipes/string-trim.pipe';
+import { NewsLetterDataService } from '../../../../core/services/home/news-letter-data.service';
+import { INewsletterData } from '../../../../core/interfaces/news-letters/inewsletterData';
 
 @Component({
   selector: 'app-news-latest-banner',
