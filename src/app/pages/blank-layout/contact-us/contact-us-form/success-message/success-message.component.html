@@ -1,0 +1,23 @@
+<section>
+  <div
+    class="container text-center h-100 d-flex justify-content-center align-items-center"
+  >
+    <div class="row justify-content-center my-5">
+      <div class="col-8 shadow p-4 success-card">
+        <img class="w-50" src="./assets/logo.png" role="presentation" />
+        @if (userName.length > 0) {
+        <h2 class="my-4">
+          Thanks
+          <span class="text-main text-capitalize">{{ userName }}</span> for
+          contacting us
+        </h2>
+        }
+        <p class="my-4 text-success">Form Submitted Successfully!</p>
+        <p class="text-muted">Please check your email for further details</p>
+        <button class="btn btn-main btn-lg px-5 py-3 fs-5" routerLink="/">
+          Back Home
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

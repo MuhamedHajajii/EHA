@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, Inject, inject, PLATFORM_ID } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -11,10 +12,12 @@ import {
   PhoneNumberFormat,
   SearchCountryField,
 } from 'ngx-intl-tel-input';
+import { ContactUsService } from '../../../../core/services/contact-us/contact-us.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-contact-us-form',
   standalone: true,
-  imports: [NgxIntlTelInputModule, ReactiveFormsModule],
+  imports: [NgxIntlTelInputModule, ReactiveFormsModule, CommonModule],
   templateUrl: './contact-us-form.component.html',
   styleUrl: './contact-us-form.component.scss',
 })
@@ -24,10 +27,44 @@ export class ContactUsFormComponent {
   startValidation: boolean = false;
   PhoneNumberFormat = PhoneNumberFormat;
 
+  constructor(
+    private _ContactUsService: ContactUsService,
+    private _Router: Router,
+    @Inject(PLATFORM_ID) private _PLATFORM_ID: object
+  ) {}
+
   messagesForm: FormGroup = new FormGroup({
-    userName: new FormControl('', [Validators.required]),
-    userEmail: new FormControl('', [Validators.required]),
-    userPhone: new FormControl('', [Validators.required]),
-    userMessage: new FormControl('', [Validators.required]),
+    name: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^[a-zA-Z\s]+$/),
+      Validators.minLength(3),
+    ]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    phone: new FormControl('', [Validators.required]),
+    message: new FormControl('', [Validators.required]),
   });
+
+  onSubmit(): void {
+    this.startValidation = true;
+    const USER_DATA = this.messagesForm.value;
+    if (this.messagesForm.valid) {
+      console.log('Form Submitted:', USER_DATA);
+      this._ContactUsService.submitUserContactForm(USER_DATA).subscribe({
+        next: (response) => {
+          console.log(response);
+          this._Router.navigate(['/contact-us-success']);
+          if (isPlatformBrowser(this._PLATFORM_ID)) {
+            localStorage.setItem('userName', response.contactForm.name);
+          }
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+      this.messagesForm.reset();
+      this.startValidation = false;
+    } else {
+      console.log('Form is invalid.');
+    }
+  }
 }

@@ -8,10 +8,10 @@ export interface Category {
   description: string;
   created_at: string;
   updated_at: string;
-  subcategories: Subcategory[];
+  subcategories: ISubcategory[];
 }
 
-export interface Subcategory {
+export interface ISubcategory {
   id: number;
   title: string;
   description: string;

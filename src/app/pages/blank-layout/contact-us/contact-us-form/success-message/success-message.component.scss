@@ -1,0 +1,15 @@
+.success-card {
+  animation: success__Animation 1s forwards;
+  transform: scale(0.5);
+  opacity: 0;
+}
+@keyframes success__Animation {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

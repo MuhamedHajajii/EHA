@@ -29,159 +29,46 @@
       </div>
     </div>
   </header>
-  <div class="container-lg container-fluid"></div>
   <div class="container-lg container-fluid">
-    <section class="py-5 my-5">
+    <section class="my-5">
+      <div class="row g-0">
+        <div class="col-12 p-0 w-100">
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="inputSearch"
+              type="search"
+              class="form-control"
+              id="floatingInput"
+              placeholder="search protocols..."
+            />
+            <label for="floatingInput">Search Protocols</label>
+          </div>
+        </div>
+      </div>
       @if (protocolsCategories) {
       <!-- Display All Categories -->
       <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4">
-        @for (protocol of protocolsCategories.category.subcategories ; track
-        $index) {
+        <div>
+          @for (protocol of protocolsCategories.category.subcategories |
+          searchProtocols :inputSearch; track $index) {
 
-        <div
-          [routerLink]="['/protocols/sub-protocols-categories', protocol.id]"
-          class="text-center bg-light p-5 Protocol__Card position-relative"
-          [ngClass]="{
-            'border-bottom': $index < 4,
-            'border-end': $index !== 3 && $index !== 7
-          }"
-        >
-          <img
-            class="w-85 mx-auto mb-3"
-            src="./assets/app_logo.png"
-            [alt]="protocol.title"
-          />
-          <p class="fs-6 text-secondary fw-bold">{{ protocol.title }}</p>
+          <div
+            [routerLink]="['/protocols/sub-protocols-categories', protocol.id]"
+            class="text-center bg-light p-5 Protocol__Card position-relative"
+            [ngClass]="{
+              'border-bottom': $index < 4,
+              'border-end': $index !== 3 && $index !== 7
+            }"
+          >
+            <img
+              class="w-85 mx-auto mb-3"
+              src="./assets/app_logo.png"
+              [alt]="protocol.title"
+            />
+            <p class="fs-6 text-secondary fw-bold">{{ protocol.title }}</p>
+          </div>
+          }
         </div>
-        } @for (protocol of protocolsCategories.category.subcategories ; track
-        $index) {
-
-        <div
-          [routerLink]="['/protocols/sub-protocols-categories', protocol.id]"
-          class="text-center bg-light p-5 Protocol__Card"
-          [ngClass]="{
-            'border-bottom': $index < 4,
-            'border-end': $index !== 3 && $index !== 7
-          }"
-        >
-          <img
-            class="w-85 mx-auto mb-3"
-            src="./assets/app_logo.png"
-            [alt]="protocol.title"
-          />
-          <p class="fs-6 text-secondary fw-bold">
-            {{ protocol.title }} Hello Worlddddddddddddddddddd
-          </p>
-        </div>
-        } @for (protocol of protocolsCategories.category.subcategories ; track
-        $index) {
-
-        <div
-          [routerLink]="['/protocols/sub-protocols-categories', protocol.id]"
-          class="text-center bg-light p-5 Protocol__Card"
-          [ngClass]="{
-            'border-bottom': $index < 4,
-            'border-end': $index !== 3 && $index !== 7
-          }"
-        >
-          <img
-            class="w-85 mx-auto mb-3"
-            src="./assets/app_logo.png"
-            [alt]="protocol.title"
-          />
-          <p class="fs-6 text-secondary fw-bold">{{ protocol.title }}</p>
-        </div>
-        } @for (protocol of protocolsCategories.category.subcategories ; track
-        $index) {
-
-        <div
-          [routerLink]="['/protocols/sub-protocols-categories', protocol.id]"
-          class="text-center bg-light p-5 Protocol__Card"
-          [ngClass]="{
-            'border-bottom': $index < 4,
-            'border-end': $index !== 3 && $index !== 7
-          }"
-        >
-          <img
-            class="w-85 mx-auto mb-3"
-            src="./assets/app_logo.png"
-            [alt]="protocol.title"
-          />
-          <p class="fs-6 text-secondary fw-bold">{{ protocol.title }}</p>
-        </div>
-        } @for (protocol of protocolsCategories.category.subcategories ; track
-        $index) {
-
-        <div
-          [routerLink]="['/protocols/sub-protocols-categories', protocol.id]"
-          class="text-center bg-light p-5 Protocol__Card"
-          [ngClass]="{
-            'border-bottom': $index < 4,
-            'border-end': $index !== 3 && $index !== 7
-          }"
-        >
-          <img
-            class="w-85 mx-auto mb-3"
-            src="./assets/app_logo.png"
-            [alt]="protocol.title"
-          />
-          <p class="fs-6 text-secondary fw-bold">{{ protocol.title }}</p>
-        </div>
-        } @for (protocol of protocolsCategories.category.subcategories ; track
-        $index) {
-
-        <div
-          [routerLink]="['/protocols/sub-protocols-categories', protocol.id]"
-          class="text-center bg-light p-5 Protocol__Card"
-          [ngClass]="{
-            'border-bottom': $index < 4,
-            'border-end': $index !== 3 && $index !== 7
-          }"
-        >
-          <img
-            class="w-85 mx-auto mb-3"
-            src="./assets/app_logo.png"
-            [alt]="protocol.title"
-          />
-          <p class="fs-6 text-secondary fw-bold">{{ protocol.title }}</p>
-        </div>
-        } @for (protocol of protocolsCategories.category.subcategories ; track
-        $index) {
-
-        <div
-          [routerLink]="['/protocols/sub-protocols-categories', protocol.id]"
-          class="text-center bg-light p-5 Protocol__Card"
-          [ngClass]="{
-            'border-bottom': $index < 4,
-            'border-end': $index !== 3 && $index !== 7
-          }"
-        >
-          <img
-            class="w-85 mx-auto mb-3"
-            src="./assets/app_logo.png"
-            [alt]="protocol.title"
-          />
-          <p class="fs-6 text-secondary fw-bold">{{ protocol.title }}</p>
-        </div>
-        } @for (protocol of protocolsCategories.category.subcategories ; track
-        $index) {
-
-        <div
-          [routerLink]="['/protocols/sub-protocols-categories', protocol.id]"
-          class="text-center bg-light p-5 Protocol__Card"
-          [ngClass]="{
-            'border-bottom': $index < 4,
-            'border-end': $index !== 3 && $index !== 7
-          }"
-        >
-          <img
-            class="w-85 mx-auto mb-3"
-            src="./assets/app_logo.png"
-            [alt]="protocol.title"
-          />
-          <p class="fs-6 text-secondary fw-bold">{{ protocol.title }}</p>
-        </div>
-        }
       </div>
       }
     </section>

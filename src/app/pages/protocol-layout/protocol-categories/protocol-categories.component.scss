@@ -47,7 +47,7 @@
 }
 
 main {
-  padding-top: 155px;
+  padding-top: 100px;
 }
 @media screen and (max-width: 992px) {
   main {
@@ -74,5 +74,20 @@ main {
     p {
       text-decoration: underline;
     }
+  }
+}
+.Protocol__Card {
+  transform: translateY(10px);
+  opacity: 0;
+  animation: Protocol__Card__Animation 0.5s forwards;
+}
+@keyframes Protocol__Card__Animation {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

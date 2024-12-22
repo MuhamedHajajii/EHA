@@ -1,13 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&amp;family=Quicksand:wght@300;400;500;600;700&amp;display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&display=swap");
 
 $body-fonts: "Montserrat", sans-serif;
 $title-fonts: "Quicksand", sans-serif;
 
 body {
-  font-family: var($body-fonts);
+  font-family: $body-fonts;
   font-size: 1rem;
   font-style: normal;
   font-weight: normal;
   line-height: 2;
   overflow-x: hidden;
+}
+
+.title__fonts {
+  font-family: $title-fonts;
 }

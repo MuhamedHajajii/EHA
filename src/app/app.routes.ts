@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { isLoginGuard } from './core/gards/is-login.guard';
 
 export const routes: Routes = [
   /** path ==>> ''*/
@@ -50,6 +51,13 @@ export const routes: Routes = [
             '../app/pages/blank-layout/contact-us/contact-us.component'
           ).then((m) => m.ContactUsComponent),
       },
+      {
+        path: 'contact-us-success',
+        loadComponent: () =>
+          import(
+            '../app/pages/blank-layout/contact-us/contact-us-form/success-message/success-message.component'
+          ).then((m) => m.SuccessMessageComponent),
+      },
     ],
   },
   /** path: protocols*/
@@ -59,6 +67,7 @@ export const routes: Routes = [
       import('../app/pages/protocol-layout/protocol-layout.component').then(
         (m) => m.ProtocolLayoutComponent
       ),
+    canActivate: [isLoginGuard],
     children: [
       /** path ==>> /protocols-categories*/
       {

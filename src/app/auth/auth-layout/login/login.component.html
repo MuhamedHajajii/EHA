@@ -55,6 +55,9 @@
                     >
                   </div>
                   <input
+                    [ngClass]="{
+                      'is-invalid': userForm.invalid && errorMessage.length > 0
+                    }"
                     class="form-control"
                     type="email"
                     placeholder="name@example.com"
@@ -74,14 +77,11 @@
                       for="userPassword"
                       >Password:<span class="text-danger">*</span></label
                     >
-                    <small class="text-danger fst-italic d-none fw-bold"
-                      >required*</small
-                    >
-                    <small class="text-danger fst-italic d-none fw-bold"
-                      >not valid email*</small
-                    >
                   </div>
                   <input
+                    [ngClass]="{
+                      'is-invalid': userForm.invalid && errorMessage.length > 0
+                    }"
                     class="form-control"
                     type="email"
                     name="userPassword"
@@ -95,6 +95,13 @@
               <div class="col-12">
                 <div class="text-center">
                   <button class="btn btn-secondary px-5 py-2">LogIn</button>
+                  @if (userForm.invalid && errorMessage.length > 0 ) {
+                  <p class="py-3 text-center">
+                    <small class="text-danger fw-bold fst-italic">{{
+                      errorMessage
+                    }}</small>
+                  </p>
+                  }
                 </div>
               </div>
             </div>

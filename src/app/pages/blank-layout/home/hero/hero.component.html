@@ -22,7 +22,7 @@
             <div
               class="d-flex text-center justify-content-center align-items-center w-100 h-100"
             >
-              <div class="col-md-6 carousel__content px-3 py-4 rounded-2">
+              <div class="col-md-8 carousel__content px-3 py-4 rounded-2">
                 <p>
                   <span
                     class="px-4 py-2 rounded-1 bg-opacity-25-secondary text-white"
@@ -30,17 +30,24 @@
                     PASSION FOR CARING</span
                   >
                 </p>
-                <h2 class="h1 fw-bold">Genuine Commitment To Your Health</h2>
-                <p class="text-muted">
+                <h2 class="display-3 fw-bold text-white">
+                  Genuine Commitment To Your Health
+                </h2>
+                <p class="text-white texxt-opacity-75">
                   It is a long established fact that a reader will be distracted
                   b the readable content of page when looking at its layout.
                 </p>
                 <div class="d-flex justify-content-center gap-2">
-                  <button class="btn btn-secondary px-4 py-2">
+                  <button
+                    routerLink="/protocols"
+                    class="btn btn-main main__buttons px-4 py-3 rounded-1"
+                  >
                     <span class="align-middle">PROTOCOLS</span>
                     <i class="fa-solid fa-plus ms-2 fs-4 align-middle"></i>
                   </button>
-                  <button class="btn btn-secondary px-4 py-2">
+                  <button
+                    class="btn btn-main main__buttons px-4 py-3 rounded-1"
+                  >
                     <span class="align-middle">HISTORY</span>
                     <i class="fa-solid fa-plus ms-2 fs-4 align-middle"></i>
                   </button>
@@ -52,7 +59,7 @@
         }
       </div>
       <button
-        class="d-none d-lg-block carousel-control-prev rounded-1 bg-opacity-25-main"
+        class="d-none d-lg-block carousel__control carousel-control-prev rounded-1 bg-opacity-25-main"
         type="button"
         data-bs-target="#carousel__HeroSection"
         data-bs-slide="prev"
@@ -61,7 +68,7 @@
         <span class="visually-hidden">Previous</span>
       </button>
       <button
-        class="d-none d-lg-block carousel-control-next rounded-1 bg-opacity-25-main"
+        class="d-none d-lg-block carousel__control carousel-control-next rounded-1 bg-opacity-25-main"
         type="button"
         data-bs-target="#carousel__HeroSection"
         data-bs-slide="next"

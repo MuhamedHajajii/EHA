@@ -9,10 +9,12 @@
           class="mb-0 list-unstyled d-flex justify-content-center align-items-center"
         >
           <li>
-            <a href=""><i class="fa-solid fa-phone me-2"></i> +1800-001-658</a>
+            <a class="title__fonts" href="tel:+1800001658"
+              ><i class="fa-solid fa-phone me-2"></i> +1800-001-658</a
+            >
           </li>
           <li>
-            <a href="">
+            <a class="title__fonts" href="mailto:info@peacefulthemes.com">
               <i class="fa-solid fa-envelope me-2"></i
               >info&commat;peacefulthemes.com
             </a>
@@ -66,12 +68,12 @@
         >
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li
-              class="nav-item"
+              class="nav-item mx-2"
               data-bs-toggle="collapse"
               data-bs-target="#navbarSupportedContent"
             >
               <a
-                class="nav-link fw-bold fs-14"
+                class="nav-link title__fonts fw-bold fs-14"
                 aria-current="page"
                 routerLinkActive="active"
                 routerLink="/"
@@ -80,94 +82,108 @@
               </a>
             </li>
             <li
-              class="nav-item"
+              class="nav-item mx-2"
               data-bs-toggle="collapse"
               data-bs-target="#navbarSupportedContent"
             >
               <a
-                class="nav-link fw-bold fs-14"
+                class="nav-link title__fonts fw-bold fs-14"
                 routerLinkActive="active"
                 routerLink="/about"
                 >ABOUT
               </a>
             </li>
             <li
-              class="nav-item"
+              class="nav-item mx-2"
               data-bs-toggle="collapse"
               data-bs-target="#navbarSupportedContent"
             >
               <a
-                class="nav-link fw-bold fs-14"
+                class="nav-link title__fonts fw-bold fs-14"
                 routerLinkActive="active"
                 routerLink="/protocols/protocols-categories"
                 >PROTOCOLS
               </a>
             </li>
             <li
-              class="nav-item"
+              class="nav-item mx-2"
               data-bs-toggle="collapse"
               data-bs-target="#navbarSupportedContent"
             >
               <a
-                class="nav-link fw-bold fs-14"
+                class="nav-link title__fonts fw-bold fs-14"
                 routerLinkActive="active"
                 routerLink="/news-letters"
                 >NEWSLETTERS
               </a>
             </li>
             <li
-              class="nav-item"
+              class="nav-item mx-2"
               data-bs-toggle="collapse"
               data-bs-target="#navbarSupportedContent"
             >
               <a
-                class="nav-link fw-bold fs-14"
+                class="nav-link title__fonts fw-bold fs-14"
                 routerLinkActive="active"
                 routerLink="/contact-us"
                 >CONTACT US
               </a>
             </li>
             <li
-              class="nav-item"
+              [ngClass]="{ 'd-none': isLogIn }"
+              class="nav-item mx-2"
               data-bs-toggle="collapse"
               data-bs-target="#navbarSupportedContent"
             >
               <a
-                class="nav-link fw-bold fs-14"
-                routerLinkActive="active"
-                routerLink="/privacy-policy"
-                >PRIVACY POLICY
-              </a>
-            </li>
-            <li
-              class="nav-item"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-            >
-              <a
-                class="nav-link fw-bold fs-14"
+                class="nav-link title__fonts fw-bold fs-14"
                 routerLinkActive="active"
                 routerLink="/login"
                 >LOGIN</a
               >
             </li>
+            <li
+              [ngClass]="{ 'd-none': !isLogIn }"
+              class="nav-item mx-2"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+            >
+              <a
+                (click)="logOut()"
+                class="nav-link title__fonts fw-bold fs-14"
+                routerLinkActive="active"
+                routerLink="/login"
+                >LOGOUT</a
+              >
+            </li>
+            @if (userName.length > 0) {
+            <li
+              class="nav-item mx-2"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+            >
+              <span class="nav-link title__fonts fw-bold fs-14 text-capitalize"
+                >{{ userName }}...</span
+              >
+            </li>
+            }
           </ul>
         </div>
-        <ul
+        <!-- <ul
           class="list-unstyled d-flex justify-content-center align-items-center mb-0"
         >
           <li
-            class="nav-item d-flex justify-content-center align-items-center me-3"
+            class="nav-item mx-2 d-flex justify-content-center align-items-center me-3"
           >
             <i class="fa-solid fa-headset fs-2 text-primary lh-0"></i>
           </li>
-          <li class="nav-item">
+          <li class="nav-item mx-2">
             <a class="h5 text-decoration-none fw-bold lh-0" href="#"
               >+1800-001-658</a
             >
             <p class="m-0 lh-0 my-2 text-muted fs-6">Mon-Fri: 6AM - 10PM</p>
           </li>
-        </ul>
+        </ul> -->
         <button
           class="navbar-toggler btn-secondary p-2 rounded-1"
           type="button"

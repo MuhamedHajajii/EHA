@@ -9,35 +9,74 @@
       <span class="Green__UnderLine">Get in touch with us</span>
     </h4>
   </div>
-  <form [formGroup]="messagesForm">
+  <form [formGroup]="messagesForm" (ngSubmit)="onSubmit()">
     <div class="row g-4">
       <!-- input field: userName  -->
       <div class="col-md-12">
         <div>
+          <div class="text-end">
+            @if (messagesForm.get('name')?.getError("required") &&
+            startValidation) {
+            <small class="text-danger fst-italic">Required*</small>
+            } @if (messagesForm.get('name')?.getError("pattern") &&
+            startValidation) {
+            <small class="text-danger fst-italic"
+              >Name Must Include only characters*</small
+            >
+            } @if (messagesForm.get('name')?.getError("minlength") &&
+            startValidation) {
+            <small class="text-danger fst-italic"
+              >Name min length 3 characters*</small
+            >
+            }
+          </div>
           <div class="form-floating mb-3">
             <input
+              [ngClass]="{
+                'is-invalid':
+                  startValidation &&
+                  (messagesForm.get('name')?.getError('required') ||
+                    messagesForm.get('name')?.getError('pattern'))
+              }"
               type="text"
               class="form-control"
-              id="userName"
+              id="name"
               placeholder="user"
+              formControlName="name"
             />
-            <label for="userName"
-              >Your Name:<span class="text-danger">*</span></label
-            >
+            <label for="name">
+              <span>Your Name:<span class="text-danger">*</span></span>
+            </label>
           </div>
         </div>
       </div>
       <!-- input field: userEmail  -->
       <div class="col-md-12">
         <div>
+          <div class="text-end">
+            @if (messagesForm.get('email')?.getError("required") &&
+            startValidation) {
+            <small class="text-danger fst-italic">Required*</small>
+            } @if (messagesForm.get('email')?.getError("email") &&
+            startValidation) {
+            <small class="text-danger fst-italic">Email not Valid*</small>
+            }
+          </div>
           <div class="form-floating mb-3">
             <input
+              [ngClass]="{
+                'is-invalid':
+                  startValidation &&
+                  (messagesForm.get('email')?.getError('required') ||
+                    messagesForm.get('email')?.getError('email'))
+              }"
               type="email"
               class="form-control"
-              id="userEmail"
+              id="email"
+              formControlName="email"
               placeholder="name@example.com"
             />
-            <label for="userEmail"
+            <label for="email"
               >Your Email:<span class="text-danger">*</span></label
             >
           </div>
@@ -46,8 +85,23 @@
       <!-- input field: userPhone  -->
       <div class="col-md-12">
         <div>
+          <div class="text-end">
+            @if (messagesForm.get('phone')?.getError("required") &&
+            startValidation) {
+            <small class="text-danger fst-italic">Required*</small>
+            } @if (messagesForm.get('phone')?.errors && startValidation &&
+            phone.value?.length || 0 > 0) {
+            <small class="text-danger fst-italic">Phone is Not Valid*</small>
+            }
+          </div>
+          <!-- 'form-control py-3'" -->
           <ngx-intl-tel-input
-            [cssClass]="'form-control py-3'"
+            #phone
+            [cssClass]="
+              startValidation && messagesForm.get('phone')?.errors
+                ? 'form-control py-3 is-invalid'
+                : 'form-control py-3'
+            "
             [preferredCountries]="[CountryISO.Egypt]"
             [enableAutoCountrySelect]="false"
             [enablePlaceholder]="true"
@@ -60,28 +114,40 @@
             [selectedCountryISO]="CountryISO.Egypt"
             [maxLength]="15"
             [phoneValidation]="true"
-            name="userPhone"
-            formControlName="userPhone"
+            name="phone"
+            formControlName="phone"
           ></ngx-intl-tel-input>
         </div>
       </div>
       <!-- input field: userMessage  -->
       <div class="col-md-12">
         <div>
+          <div class="text-end">
+            @if (messagesForm.get('message')?.getError("required") &&
+            startValidation) {
+            <small class="text-danger fst-italic">Required*</small>
+            }
+          </div>
           <div class="form-floating">
             <textarea
+              [ngClass]="{
+                'is-invalid':
+                  startValidation &&
+                  messagesForm.get('message')?.getError('required')
+              }"
               style="height: 250px"
               class="form-control"
               placeholder="Leave a comment here"
-              id="userMessage"
+              id="message"
+              formControlName="message"
             ></textarea>
-            <label for="userMessage">Your Message:</label>
+            <label for="message">Your Message:</label>
           </div>
         </div>
       </div>
       <!-- submit button  -->
       <div class="col-md-12 text-center">
-        <button type="button" class="btn-secondary btn px-5 py-3 fs-5">
+        <button class="btn-secondary btn px-5 py-3 fs-5">
           Send Message <i class="fa-regular fa-paper-plane ms-3"></i>
         </button>
       </div>

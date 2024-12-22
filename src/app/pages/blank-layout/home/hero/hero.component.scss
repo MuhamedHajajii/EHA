@@ -25,11 +25,11 @@
 //     }
 //   }
 // }
-.carousel__content {
-  backdrop-filter: blur(5px);
-  background-color: rgba(255, 255, 255, 0.5);
-  text-shadow: 0.2px 0.2px 1px black;
-}
+// .carousel__content {
+//   backdrop-filter: blur(5px);
+//   background-color: rgba(255, 255, 255, 0.5);
+//   text-shadow: 0.2px 0.2px 1px black;
+// }
 
 .carousel__content {
   P:first-child,
@@ -66,4 +66,25 @@
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+.carousel__control {
+  opacity: 0;
+}
+
+.carousel:hover .carousel__control {
+  animation: carousel__control__animation 1s 0.5s forwards;
+}
+
+@keyframes carousel__control__animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.main__buttons {
+  width: 200px;
 }

@@ -11,10 +11,10 @@ export interface Subcategory {
   active_status: number;
   created_at: string;
   updated_at: string;
-  protocols: Protocol[];
+  protocols: IProtocol[];
 }
 
-export interface Protocol {
+export interface IProtocol {
   id: number;
   title: string;
   description: string;

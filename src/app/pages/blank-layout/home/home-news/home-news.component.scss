@@ -1,0 +1,29 @@
+@import "variables";
+
+@media screen and (min-width: 992px) {
+  .ABOUT__US {
+    overflow: hidden;
+    z-index: 1;
+    &::after {
+      content: "";
+      position: absolute;
+      left: 55%;
+      top: 0;
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      background-color: $secondary-color-blue;
+      z-index: -1;
+    }
+  }
+}
+
+.counter__bg__text {
+  opacity: 0.03;
+  font-size: 62px;
+  line-height: 70px;
+}
+
+::ng-deep .iti {
+  width: 100%;
+}
