@@ -19,7 +19,7 @@
                 class="breadcrumb-item text-white text-opacity-50"
                 aria-current="page"
               >
-                About
+                Contact Us
               </li>
             </ol>
           </nav>
@@ -31,40 +31,36 @@
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
       <div data-aos="zoom-out-right">
         <div
-          class="rounded-1 h-100 bg-secondary-light p-5 text-center text-white"
+          class="h-100 shadow-sm bg-contact-F4F6F9 p-5 text-center text-white"
         >
-          <i
-            class="fa-solid bg-third w-85 mx-auto fa-location-dot fs-55 rounded-1"
-          ></i>
-          <h5 class="my-3 h1">Our Location</h5>
-          <p class="text-white text-opacity-50">
+          <i class="fa-solid bg-main mx-auto fa-location-dot contact__Icon"></i>
+          <h5 class="text-dark h4 mt-4 fw-bold">Our Location</h5>
+          <p class="text-paragraph-color text-opacity-50">
             The Queen's Walk, Bishop's, London SE1 7PB, United Kingdom.
           </p>
         </div>
       </div>
       <div data-aos="zoom-out-right">
-        <div class="rounded-1 h-100 bg-secondary p-5 text-center text-white">
-          <i
-            class="fa-solid fa-phone bg-third w-85 mx-auto fs-55 rounded-1"
-          ></i>
-          <h5 class="my-3 h1">Our Contact</h5>
-          <p class="text-white text-opacity-50">+ (567) 1234-567-8900</p>
-          <p class="text-white text-opacity-50">+ (567) 1234-567-8901</p>
+        <div
+          class="h-100 shadow-sm bg-contact-F4F6F9 p-5 text-center text-white"
+        >
+          <i class="fa-solid bg-main fa-phone mx-auto contact__Icon"></i>
+          <h5 class="text-dark h4 mt-4 fw-bold">Our Contact</h5>
+          <p class="text-paragraph-color mb-1">+ (567) 1234-567-8900</p>
+          <p class="text-paragraph-color mb-1">+ (567) 1234-567-8901</p>
         </div>
       </div>
       <div data-aos="zoom-out-right">
         <div
-          class="rounded-1 h-100 bg-secondary-light p-5 text-center text-white"
+          class="h-100 shadow-sm bg-contact-F4F6F9 p-5 text-center text-white"
         >
-          <i
-            class="fa-solid fa-envelope bg-third w-85 mx-auto fs-55 rounded-1"
-          ></i>
+          <i class="fa-solid fa-envelope bg-main mx-auto contact__Icon"></i>
 
-          <h5 class="my-3 h1">Mail Us</h5>
-          <p class="text-white text-opacity-50">
+          <h5 class="text-dark h4 mt-4 fw-bold">Mail Us</h5>
+          <p class="text-paragraph-color mb-1">
             info&commat;peacefulthemes.com
           </p>
-          <p class="text-white text-opacity-50">
+          <p class="text-paragraph-color mb-1">
             info&commat;peacefulthemes.com
           </p>
         </div>
@@ -73,8 +69,17 @@
   </div>
   <div
     data-aos="fade-up"
-    class="container-lg container-fluid mt-5 shadow p-3 p-lg-5 rounded-1s form__container"
+    class="container-lg container-fluid mt-5 shadow form__container"
   >
-    <app-contact-us-form />
+    <div class="row">
+      <div class="col-6 ps-0">
+        <app-contact-us-form-ui></app-contact-us-form-ui>
+      </div>
+      <div class="col-6 p-3 p-lg-5">
+        <div>
+          <app-contact-us-form />
+        </div>
+      </div>
+    </div>
   </div>
 </section>

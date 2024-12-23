@@ -1,3 +1,4 @@
+@import "variables";
 ::ng-deep .iti {
   width: 100%;
 }
@@ -46,4 +47,16 @@
 
 .breadcrumb-item + .breadcrumb-item::before {
   color: white;
+}
+
+.contact__Icon {
+  width: 80px;
+  line-height: 80px;
+  text-align: center;
+  font-size: 35px;
+  color: white;
+  display: inline-block;
+  border-radius: 3px;
+  height: 80px;
+  background: $main-color-green;
 }

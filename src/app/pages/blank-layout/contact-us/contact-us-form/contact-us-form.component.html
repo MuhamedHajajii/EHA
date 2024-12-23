@@ -1,23 +1,19 @@
 <div>
-  <div class="text-center mb-5">
+  <div class="text-start mb-5">
     <h3>
-      <span class="fs-6 p-2 rounded-1 bg-opacity-25-secondary text-white"
-        >Contact Us
-      </span>
+      <span class="fs-6 text-paragraph-color">Contact Us </span>
     </h3>
-    <h4 class="my-4 fs-1">
-      <span class="Green__UnderLine">Get in touch with us</span>
-    </h4>
+    <h4 class="my-1 fw-bold title__fonts__normal">Get in touch with us</h4>
   </div>
   <form [formGroup]="messagesForm" (ngSubmit)="onSubmit()">
-    <div class="row g-4">
+    <div class="row g-3">
       <!-- input field: userName  -->
       <div class="col-md-12">
         <div>
           <div class="text-end">
             @if (messagesForm.get('name')?.getError("required") &&
             startValidation) {
-            <small class="text-danger fst-italic">Required*</small>
+            <small class="text-danger fst-italic">Please fill the field*</small>
             } @if (messagesForm.get('name')?.getError("pattern") &&
             startValidation) {
             <small class="text-danger fst-italic"
@@ -30,7 +26,7 @@
             >
             }
           </div>
-          <div class="form-floating mb-3">
+          <div class="form-floating">
             <input
               [ngClass]="{
                 'is-invalid':
@@ -41,7 +37,7 @@
               type="text"
               class="form-control"
               id="name"
-              placeholder="user"
+              placeholder="Enter Your Name"
               formControlName="name"
             />
             <label for="name">
@@ -56,13 +52,13 @@
           <div class="text-end">
             @if (messagesForm.get('email')?.getError("required") &&
             startValidation) {
-            <small class="text-danger fst-italic">Required*</small>
+            <small class="text-danger fst-italic">Please fill the field*</small>
             } @if (messagesForm.get('email')?.getError("email") &&
             startValidation) {
             <small class="text-danger fst-italic">Email not Valid*</small>
             }
           </div>
-          <div class="form-floating mb-3">
+          <div class="form-floating">
             <input
               [ngClass]="{
                 'is-invalid':
@@ -74,7 +70,7 @@
               class="form-control"
               id="email"
               formControlName="email"
-              placeholder="name@example.com"
+              placeholder="Enter Your Email"
             />
             <label for="email"
               >Your Email:<span class="text-danger">*</span></label
@@ -88,7 +84,7 @@
           <div class="text-end">
             @if (messagesForm.get('phone')?.getError("required") &&
             startValidation) {
-            <small class="text-danger fst-italic">Required*</small>
+            <small class="text-danger fst-italic">Please fill the field*</small>
             } @if (messagesForm.get('phone')?.errors && startValidation &&
             phone.value?.length || 0 > 0) {
             <small class="text-danger fst-italic">Phone is Not Valid*</small>
@@ -99,8 +95,8 @@
             #phone
             [cssClass]="
               startValidation && messagesForm.get('phone')?.errors
-                ? 'form-control py-3 is-invalid'
-                : 'form-control py-3'
+                ? 'form-control h-100 py-3 is-invalid'
+                : 'form-control h-100 py-3'
             "
             [preferredCountries]="[CountryISO.Egypt]"
             [enableAutoCountrySelect]="false"
@@ -125,7 +121,7 @@
           <div class="text-end">
             @if (messagesForm.get('message')?.getError("required") &&
             startValidation) {
-            <small class="text-danger fst-italic">Required*</small>
+            <small class="text-danger fst-italic">Please fill the field*</small>
             }
           </div>
           <div class="form-floating">
@@ -135,20 +131,22 @@
                   startValidation &&
                   messagesForm.get('message')?.getError('required')
               }"
-              style="height: 250px"
+              style="height: 150px"
               class="form-control"
               placeholder="Leave a comment here"
               id="message"
               formControlName="message"
             ></textarea>
-            <label for="message">Your Message:</label>
+            <label for="message">Write Your Message:</label>
           </div>
         </div>
       </div>
       <!-- submit button  -->
-      <div class="col-md-12 text-center">
-        <button class="btn-secondary btn px-5 py-3 fs-5">
-          Send Message <i class="fa-regular fa-paper-plane ms-3"></i>
+      <div class="col-md-12">
+        <button
+          class="btn-main btn px-4 title__fonts fw-bold rounded-1 py-3 text-uppercase fs-14"
+        >
+          Send Message
         </button>
       </div>
     </div>
