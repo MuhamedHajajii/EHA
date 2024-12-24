@@ -14,4 +14,8 @@ body {
 
 .title__fonts {
   font-family: $title-fonts;
+  letter-spacing: 0.04em;
+}
+.title__fonts__normal {
+  font-family: $title-fonts;
 }

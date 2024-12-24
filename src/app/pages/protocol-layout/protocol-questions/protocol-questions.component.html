@@ -3,13 +3,17 @@
     <div class="col-8">
       <div class="p-4">
         <app-questions-flow-charts
-          (actionTriggered)="handleAction($event)"
+          #componentA
+          (actionTriggeredB)="handleActionB($event)"
         ></app-questions-flow-charts>
       </div>
     </div>
     <div class="col-4">
       <div class="p-3">
-        <app-questions-radio-buttons #componentB></app-questions-radio-buttons>
+        <app-questions-radio-buttons
+          (actionTriggeredA)="handleActionA($event)"
+          #componentB
+        ></app-questions-radio-buttons>
       </div>
     </div>
   </div>

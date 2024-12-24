@@ -1,7 +1,15 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { NgxSpinnerComponent } from 'ngx-spinner';
+import {
+  Event,
+  NavigationCancel,
+  NavigationEnd,
+  NavigationError,
+  NavigationStart,
+  Router,
+  RouterOutlet,
+} from '@angular/router';
+import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +20,25 @@ import { NgxSpinnerComponent } from 'ngx-spinner';
 })
 export class AppComponent {
   constructor(
+    private _NgxSpinnerService: NgxSpinnerService,
+    private _Router: Router,
     @Inject(DOCUMENT) private document: Document,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
+  ) {
+    this._Router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationStart) {
+        this._NgxSpinnerService.show();
+      } else if (
+        event instanceof NavigationEnd ||
+        event instanceof NavigationCancel ||
+        event instanceof NavigationError
+      ) {
+        setTimeout(() => {
+          this._NgxSpinnerService.hide();
+        }, 1000);
+      }
+    });
+  }
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
       if (this.document.readyState !== 'loading') {

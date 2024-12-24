@@ -18,7 +18,12 @@
 .bg-third {
   background-color: $third-color;
 }
-
+.bg-fff {
+  background-color: #fff !important;
+}
+.bg-contact-F4F6F9 {
+  background-color: $inputs-background;
+}
 // background opacity 25%
 .bg-opacity-25-main {
   background-color: $main-opacity-25-color;
@@ -159,7 +164,29 @@
 .w-150 {
   width: 150px !important;
 }
+.fs-56 {
+  font-size: 55px !important;
+}
 
 .cr-pointer {
   cursor: pointer;
+}
+
+.text-paragraph-color {
+  color: #666666;
+}
+
+.main-shadow {
+  box-shadow: 0px 0px 30px 0px rgb(21 21 21 / 11%);
+}
+
+.fs-50 {
+  font-size: 50px;
+}
+
+.top-10 {
+  top: 10%;
+}
+.bottom-10 {
+  bottom: 10%;
 }

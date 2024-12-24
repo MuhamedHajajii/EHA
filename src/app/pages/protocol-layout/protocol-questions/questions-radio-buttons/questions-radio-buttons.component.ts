@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
   IChoice,
@@ -16,9 +16,10 @@ import { SpecificProtocolService } from '../../../../core/services/protocols/spe
   styleUrl: './questions-radio-buttons.component.scss',
 })
 export class QuestionsRadioButtonsComponent {
+  @Output() actionTriggeredA = new EventEmitter<any>();
+
   specificProtocol!: ISpecificProtocol;
   currentQuestionArr: IQuestion[] = [];
-
   protocolId!: string;
 
   constructor(
@@ -47,7 +48,9 @@ export class QuestionsRadioButtonsComponent {
       .subscribe({
         next: (response) => {
           this.specificProtocol = response;
-          console.log(response);
+          this._CurrentQuestionsService.updateQuestions(
+            response.protocol.questions
+          );
           this.displayFirstQuestion();
         },
         error: (error) => {
@@ -65,26 +68,28 @@ export class QuestionsRadioButtonsComponent {
 
   /** Handle Display Next Question */
   onDisplayNextQuestionChange(Choices: number): void {
-    console.log(Choices, 'choices parameter');
     const nextQuestion = this.specificProtocol.protocol.questions.find(
       (q) => q.id === Choices
     );
 
     if (nextQuestion) {
       this.currentQuestionArr.push(nextQuestion);
-      console.log(this.currentQuestionArr, 'inner Display');
     }
     this._CurrentQuestionsService.updateData(this.currentQuestionArr);
   }
 
   /** Check if The Answer From Previous Questions */
   onCheckPreviousQuestionCheck(Question: IQuestion): void {
-    console.log(this.currentQuestionArr);
     const INDEX = this.currentQuestionArr.indexOf(Question);
     if (INDEX !== -1) {
       this.currentQuestionArr.splice(INDEX + 1);
-      console.log(this.currentQuestionArr);
       this._CurrentQuestionsService.updateData(this.currentQuestionArr);
     }
+  }
+  updateChart(ChoicesId: any, next_question_id: any) {
+    this._CurrentQuestionsService.updateData(this.currentQuestionArr);
+    this.actionTriggeredA.emit({
+      id: `${ChoicesId}-${next_question_id}`,
+    });
   }
 }

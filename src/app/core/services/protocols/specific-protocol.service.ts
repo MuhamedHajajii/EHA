@@ -12,7 +12,7 @@ export class SpecificProtocolService {
 
   getSpecificProtocol(id: string): Observable<ISpecificProtocol> {
     return <Observable<ISpecificProtocol>>(
-      this._HttpClient.get(`${WEB_SITE_BASE_URL}getSpecificProtocol/${id}`)
+      this._HttpClient.get(`${WEB_SITE_BASE_URL}getProtocol/${id}`)
     );
   }
 }

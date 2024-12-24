@@ -9,6 +9,7 @@ import {
 import { CookieService } from 'ngx-cookie-service';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -23,15 +24,13 @@ export class LoginComponent {
     private _LoginService: LoginService,
     @Inject(PLATFORM_ID) private _PLATFORM_ID: object,
     private _CookieService: CookieService,
-    private _Router: Router
+    private _Router: Router,
+    private _ToastrService: ToastrService
   ) {}
 
   userForm: FormGroup = new FormGroup({
-    email: new FormControl('yousrakhaleds05@gmail.com', [
-      Validators.required,
-      Validators.email,
-    ]),
-    password: new FormControl('123456789s', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required]),
   });
 
   ngOnInit(): void {
@@ -48,6 +47,7 @@ export class LoginComponent {
             this.errorMessage = '';
             this._CookieService.set('token', response.access_token);
             localStorage.setItem('userName', response.user.name);
+            this._ToastrService.success('Login Successfully');
             localStorage.setItem('userId', response.user.id.toString());
             this._Router.navigate(['/']);
           } else {
@@ -66,6 +66,7 @@ export class LoginComponent {
   isLoggedIn() {
     if (isPlatformBrowser(this._PLATFORM_ID)) {
       if (this._CookieService.check('token')) {
+        this._ToastrService.show('you are logged in');
         this._Router.navigate(['/']);
       }
     }

@@ -3,10 +3,11 @@
 .navbar__banner {
   ul {
     // box model
-    border-right: solid 0.5px $third-color;
+
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
     li {
       // box model
-      border-left: solid 0.5px $third-color;
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
       a {
         // box model
         display: block;
@@ -47,15 +48,39 @@
     top: 100%;
     left: 0;
     width: 100%;
-    background-color: $third-color;
+    background-color: $main-color-green-dark;
+    a {
+      color: white;
+    }
   }
 }
 
 .nav-link {
+  color: #18100f;
   &.active {
-    color: $main-color-green;
+    color: $main-color-green !important;
   }
   &:hover {
-    color: $main-color-green;
+    color: $main-color-green !important;
+  }
+}
+
+.user__name {
+  .user__name__dropdown {
+    display: none;
+  }
+  min-width: 210px;
+  a {
+    transition: 0s all;
+  }
+  li:hover {
+    background-color: $main-color-green;
+    a.nav-link {
+      color: white !important;
+      transition: 0s all;
+    }
+  }
+  &:hover .user__name__dropdown {
+    display: block;
   }
 }

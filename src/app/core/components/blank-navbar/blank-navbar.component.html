@@ -2,19 +2,28 @@
   #navbar
   class="navbar d-block navbar-expand-lg bg-body-tertiary p-0 shadow-lg fixed-top position-absolute"
 >
-  <div #navbarBanner class="navbar__banner bg-secondary">
+  <div #navbarBanner class="navbar__banner bg-secondary py-0">
     <div class="container">
-      <div class="d-none d-lg-flex justify-content-between align-items-center">
+      <div
+        class="d-none py-0 d-lg-flex justify-content-between align-items-center"
+      >
         <ul
-          class="mb-0 list-unstyled d-flex justify-content-center align-items-center"
+          class="mb-0 list-unstyled d-flex justify-content-center align-items-center py-0"
         >
           <li>
-            <a class="title__fonts" href="tel:+1800001658"
+            <a
+              style="font-size: 14px"
+              class="title__fonts fw-bold"
+              href="tel:+1800001658"
               ><i class="fa-solid fa-phone me-2"></i> +1800-001-658</a
             >
           </li>
           <li>
-            <a class="title__fonts" href="mailto:info@peacefulthemes.com">
+            <a
+              style="font-size: 14px"
+              class="title__fonts fw-bold"
+              href="mailto:info@peacefulthemes.com"
+            >
               <i class="fa-solid fa-envelope me-2"></i
               >info&commat;peacefulthemes.com
             </a>
@@ -24,23 +33,31 @@
           class="mb-0 list-unstyled d-flex justify-content-center align-items-center"
         >
           <li>
-            <a href=""><i class="fa-fw fa-brands fa-facebook-f"></i></a>
+            <a style="font-size: 14px" href=""
+              ><i class="fa-fw fa-brands fa-facebook-f"></i
+            ></a>
           </li>
           <li>
-            <a href=""><i class="fa-brands fa-google-plus-g"></i></a>
+            <a style="font-size: 14px" href=""
+              ><i class="fa-brands fa-google-plus-g"></i
+            ></a>
           </li>
           <li>
-            <a href=""><i class="fa-fw fa-brands fa-instagram"></i></a>
+            <a style="font-size: 14px" href=""
+              ><i class="fa-fw fa-brands fa-instagram"></i
+            ></a>
           </li>
           <li>
-            <a href=""><i class="fa-fw fa-brands fa-pinterest"></i></a>
+            <a style="font-size: 14px" href=""
+              ><i class="fa-fw fa-brands fa-pinterest"></i
+            ></a>
           </li>
         </ul>
       </div>
     </div>
   </div>
   <div class="navbar">
-    <div class="container position-relative py-2">
+    <div class="container position-relative py-1">
       <a class="navbar-brand" href="#">
         <img
           width="70px"
@@ -68,7 +85,7 @@
         >
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li
-              class="nav-item mx-2"
+              class="nav-item mx-2 py-3"
               data-bs-toggle="collapse"
               data-bs-target="#navbarSupportedContent"
             >
@@ -82,7 +99,7 @@
               </a>
             </li>
             <li
-              class="nav-item mx-2"
+              class="nav-item mx-2 py-3"
               data-bs-toggle="collapse"
               data-bs-target="#navbarSupportedContent"
             >
@@ -94,7 +111,7 @@
               </a>
             </li>
             <li
-              class="nav-item mx-2"
+              class="nav-item mx-2 py-3"
               data-bs-toggle="collapse"
               data-bs-target="#navbarSupportedContent"
             >
@@ -106,7 +123,7 @@
               </a>
             </li>
             <li
-              class="nav-item mx-2"
+              class="nav-item mx-2 py-3"
               data-bs-toggle="collapse"
               data-bs-target="#navbarSupportedContent"
             >
@@ -118,7 +135,7 @@
               </a>
             </li>
             <li
-              class="nav-item mx-2"
+              class="nav-item mx-2 py-3"
               data-bs-toggle="collapse"
               data-bs-target="#navbarSupportedContent"
             >
@@ -131,7 +148,7 @@
             </li>
             <li
               [ngClass]="{ 'd-none': isLogIn }"
-              class="nav-item mx-2"
+              class="nav-item mx-2 py-3"
               data-bs-toggle="collapse"
               data-bs-target="#navbarSupportedContent"
             >
@@ -142,29 +159,41 @@
                 >LOGIN</a
               >
             </li>
-            <li
-              [ngClass]="{ 'd-none': !isLogIn }"
-              class="nav-item mx-2"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-            >
-              <a
-                (click)="logOut()"
-                class="nav-link title__fonts fw-bold fs-14"
-                routerLinkActive="active"
-                routerLink="/login"
-                >LOGOUT</a
-              >
-            </li>
             @if (userName.length > 0) {
             <li
-              class="nav-item mx-2"
+              class="position-relative nav-item mx-2 user__name py-3"
               data-bs-toggle="collapse"
               data-bs-target="#navbarSupportedContent"
             >
-              <span class="nav-link title__fonts fw-bold fs-14 text-capitalize"
+              <span class="nav-link title__fonts fw-bold fs-14 text-uppercase"
                 >{{ userName }}...</span
               >
+              <div
+                class="pt-3 user__name__dropdown position-absolute top-100 start-0 w-100"
+              >
+                <ul class="list-unstyled bg-body-tertiary p-0">
+                  <li class="nav-item w-100 px-1">
+                    <a
+                      class="text-uppercase nav-link title__fonts fw-bold fs-14 w-100 px-2 py-3 d-flex justify-content-between align-items-center"
+                      routerLink="/settings"
+                      >Settings <i class="fa-solid fa-chevron-right"></i
+                    ></a>
+                  </li>
+                  <li
+                    [ngClass]="{ 'd-none': !isLogIn }"
+                    class="nav-item w-100 px-1"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                  >
+                    <a
+                      (click)="logOut()"
+                      class="nav-link title__fonts fw-bold fs-14 w-100 px-2 py-3"
+                      routerLink="/login"
+                      >LOGOUT</a
+                    >
+                  </li>
+                </ul>
+              </div>
             </li>
             }
           </ul>

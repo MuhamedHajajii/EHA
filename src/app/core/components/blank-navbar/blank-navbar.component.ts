@@ -65,6 +65,7 @@ export class BlankNavbarComponent {
   logOut() {
     if (isPlatformBrowser(this._PLATFORM_ID)) {
       this._CookieService.delete('token');
+      this._CookieService.deleteAll();
       localStorage.removeItem('userName');
       this._Router.navigate(['/login']);
     }

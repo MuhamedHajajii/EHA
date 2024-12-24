@@ -1,0 +1,198 @@
+<section>
+  <header class="text-white shadow">
+    <div class="bg-black bg-opacity-50 h-100">
+      <div
+        class="container-lg container-fluid d-flex justify-content-start align-items-center h-100"
+      >
+        <div>
+          <div>
+            <h2 class="text-uppercase fs-1">
+              Change Account Settings
+              <i class="fa-regular fa-paper-plane ms-3"></i>
+            </h2>
+          </div>
+          <div>
+            <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item" aria-current="page">
+                  <i class="fa-solid fa-house me-1"></i> Home
+                </li>
+                <li
+                  class="breadcrumb-item text-white text-opacity-50"
+                  aria-current="page"
+                >
+                  Account Settings
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <div class="container-lg container-fluid p-4 p-md-0 py-5 my-5">
+      <div class="row shadow my-5 rounded-1">
+        <div class="col-12 col-lg-8 p-2 p-md-5">
+          <form [formGroup]="userForm" (ngSubmit)="loginUser()" class="p-3">
+            <h3 class="mb-4">
+              <span class="border-4 border-bottom">Account</span>
+            </h3>
+            <div class="row g-3">
+              <!-- input form field: userName -->
+              <div>
+                <div class="form-floating">
+                  <input
+                    [ngClass]="{
+                      'is-invalid':
+                        startValidation &&
+                        (userForm.get('name')?.getError('required') ||
+                          userForm.get('name')?.getError('pattern'))
+                    }"
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    placeholder="Enter Your Name"
+                    formControlName="name"
+                  />
+                  <label for="name">
+                    <span>Your Name:<span class="text-danger">*</span></span>
+                  </label>
+                </div>
+              </div>
+              <!-- input form field: userEmail -->
+              <div class="col-12">
+                <div>
+                  <div class="d-flex justify-content-between">
+                    <small class="text-danger fst-italic d-none fw-bold"
+                      >required*</small
+                    >
+                    <small class="text-danger fst-italic d-none fw-bold"
+                      >not valid email*</small
+                    >
+                  </div>
+                  <input
+                    [ngClass]="{
+                      'is-invalid': userForm.invalid && errorMessage.length > 0
+                    }"
+                    class="form-control"
+                    type="email"
+                    placeholder="name@example.com"
+                    name="userEmail"
+                    id="userEmail"
+                    autocomplete="email"
+                    formControlName="email"
+                  />
+                </div>
+              </div>
+              <!-- input field: userPhone  -->
+              <div class="col-12">
+                <div>
+                  <div class="text-end">
+                    @if (userForm.get('phone')?.getError("required") &&
+                    startValidation) {
+                    <small class="text-danger fst-italic"
+                      >Please fill the field*</small
+                    >
+                    } @if (userForm.get('phone')?.errors && startValidation &&
+                    phone.value?.length || 0 > 0) {
+                    <small class="text-danger fst-italic"
+                      >Phone is Not Valid*</small
+                    >
+                    }
+                  </div>
+                  <ngx-intl-tel-input
+                    #phone
+                    [cssClass]="
+                      startValidation && userForm.get('phone')?.errors
+                        ? 'form-control h-100 py-3 is-invalid'
+                        : 'form-control h-100 py-3'
+                    "
+                    [preferredCountries]="[CountryISO.Egypt]"
+                    [enableAutoCountrySelect]="false"
+                    [enablePlaceholder]="true"
+                    [searchCountryFlag]="true"
+                    [searchCountryField]="[
+                      SearchCountryField.Iso2,
+                      SearchCountryField.Name
+                    ]"
+                    [selectFirstCountry]="false"
+                    [selectedCountryISO]="CountryISO.Egypt"
+                    [maxLength]="15"
+                    [phoneValidation]="true"
+                    name="phone"
+                    formControlName="phone"
+                  ></ngx-intl-tel-input>
+                </div>
+              </div>
+              <!-- input form field: userPassword -->
+              <div class="col-12">
+                <div>
+                  <div class="d-flex justify-content-between">
+                    <label
+                      class="form-label fw-semibold text-dark text-opacity-75 mb-1"
+                      for="userPassword"
+                      >Password:<span class="text-danger">*</span></label
+                    >
+                  </div>
+                  <input
+                    [ngClass]="{
+                      'is-invalid': userForm.invalid && errorMessage.length > 0
+                    }"
+                    class="form-control"
+                    type="email"
+                    name="userPassword"
+                    id="userPassword"
+                    placeholder="***********"
+                    autocomplete="off"
+                    formControlName="password"
+                  />
+                </div>
+              </div>
+              <!-- input field: userAddress  -->
+              <div class="col-md-12">
+                <div>
+                  <div class="text-end">
+                    @if (userForm.get('message')?.getError("required") &&
+                    startValidation) {
+                    <small class="text-danger fst-italic"
+                      >Please fill the field*</small
+                    >
+                    }
+                  </div>
+                  <div class="form-floating">
+                    <input
+                      [ngClass]="{
+                        'is-invalid':
+                          startValidation &&
+                          userForm.get('message')?.getError('required')
+                      }"
+                      class="form-control"
+                      placeholder="Leave a comment here"
+                      id="message"
+                      formControlName="message"
+                    />
+                    <label for="message">Address:</label>
+                  </div>
+                </div>
+              </div>
+              <!-- submit button  -->
+              <div class="col-md-12">
+                <button
+                  class="btn-main btn px-4 title__fonts fw-bold rounded-1 py-3 px-5 text-uppercase fs-14"
+                >
+                  Update
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-12 d-none d-lg-block col-lg-4 bg-secondary text-center">
+          <div class="h-100 d-flex flex-column justify-content-end">
+            <img src="./assets/skill-img.png" class="w-100" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

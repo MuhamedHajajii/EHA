@@ -1,6 +1,6 @@
 @if (aboutUsData) {
-<section class="py-5">
-  <div class="container-fluid container-lg">
+<section class="py-5 bg-light pb-5">
+  <div class="container-fluid container-lg mb-5">
     <div class="row g-3 g-lg-0">
       <div class="col-md-4" data-aos="fade-up">
         <div class="p-md-4 col-10 mx-auto col-md-12">
@@ -30,10 +30,10 @@
             class="text-dark text-opacity-75"
           ></p>
         </div>
-      </div>
-      <div class="text-end">
-        <div class="mt-4">
-          <app-readmore-btn [routing]="'/about'" />
+        <div class="text-start">
+          <div class="mt-4">
+            <app-readmore-btn [routing]="'/about'" />
+          </div>
         </div>
       </div>
     </div>

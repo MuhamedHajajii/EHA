@@ -2,8 +2,62 @@
   #navbar
   class="navbar d-block navbar-expand-lg bg-body-tertiary p-0 shadow-lg fixed-top position-absolute"
 >
+  <div #navbarBanner class="navbar__banner bg-secondary py-0 d-none">
+    <div class="container">
+      <div
+        class="d-none py-0 d-lg-flex justify-content-between align-items-center"
+      >
+        <ul
+          class="mb-0 list-unstyled d-flex justify-content-center align-items-center py-0"
+        >
+          <li>
+            <a
+              style="font-size: 14px"
+              class="title__fonts fw-bold"
+              href="tel:+1800001658"
+              ><i class="fa-solid fa-phone me-2"></i> +1800-001-658</a
+            >
+          </li>
+          <li>
+            <a
+              style="font-size: 14px"
+              class="title__fonts fw-bold"
+              href="mailto:info@peacefulthemes.com"
+            >
+              <i class="fa-solid fa-envelope me-2"></i
+              >info&commat;peacefulthemes.com
+            </a>
+          </li>
+        </ul>
+        <ul
+          class="mb-0 list-unstyled d-flex justify-content-center align-items-center"
+        >
+          <li>
+            <a style="font-size: 14px" href=""
+              ><i class="fa-fw fa-brands fa-facebook-f"></i
+            ></a>
+          </li>
+          <li>
+            <a style="font-size: 14px" href=""
+              ><i class="fa-brands fa-google-plus-g"></i
+            ></a>
+          </li>
+          <li>
+            <a style="font-size: 14px" href=""
+              ><i class="fa-fw fa-brands fa-instagram"></i
+            ></a>
+          </li>
+          <li>
+            <a style="font-size: 14px" href=""
+              ><i class="fa-fw fa-brands fa-pinterest"></i
+            ></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
   <div class="navbar">
-    <div class="container position-relative py-2">
+    <div class="container position-relative py-1">
       <a class="navbar-brand" href="#">
         <img
           width="70px"
@@ -25,15 +79,18 @@
         />
       </a>
       <div class="d-flex align-items-center gap-2">
-        <div class="collapse navbar-collapse px-3 px-lg-0" id="navbarProtocols">
+        <div
+          class="collapse navbar-collapse px-3 px-lg-0"
+          id="navbarSupportedContent"
+        >
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li
-              class="nav-item"
+              class="nav-item mx-2 py-3"
               data-bs-toggle="collapse"
-              data-bs-target="#navbarProtocols"
+              data-bs-target="#navbarSupportedContent"
             >
               <a
-                class="nav-link fw-bold fs-14"
+                class="nav-link title__fonts fw-bold fs-14"
                 aria-current="page"
                 routerLinkActive="active"
                 routerLink="/"
@@ -42,85 +99,127 @@
               </a>
             </li>
             <li
-              class="nav-item"
+              class="nav-item mx-2 py-3"
               data-bs-toggle="collapse"
-              data-bs-target="#navbarProtocols"
+              data-bs-target="#navbarSupportedContent"
             >
               <a
-                class="nav-link fw-bold fs-14"
+                class="nav-link title__fonts fw-bold fs-14"
                 routerLinkActive="active"
                 routerLink="/about"
                 >ABOUT
               </a>
             </li>
             <li
-              class="nav-item"
+              class="nav-item mx-2 py-3"
               data-bs-toggle="collapse"
-              data-bs-target="#navbarProtocols"
+              data-bs-target="#navbarSupportedContent"
             >
               <a
-                class="nav-link fw-bold fs-14"
+                class="nav-link title__fonts fw-bold fs-14"
                 routerLinkActive="active"
                 routerLink="/protocols/protocols-categories"
                 >PROTOCOLS
               </a>
             </li>
             <li
-              class="nav-item"
+              class="nav-item mx-2 py-3"
               data-bs-toggle="collapse"
-              data-bs-target="#navbarProtocols"
+              data-bs-target="#navbarSupportedContent"
             >
               <a
-                class="nav-link fw-bold fs-14"
+                class="nav-link title__fonts fw-bold fs-14"
                 routerLinkActive="active"
                 routerLink="/news-letters"
                 >NEWSLETTERS
               </a>
             </li>
             <li
-              class="nav-item"
+              class="nav-item mx-2 py-3"
               data-bs-toggle="collapse"
-              data-bs-target="#navbarProtocols"
+              data-bs-target="#navbarSupportedContent"
             >
               <a
-                class="nav-link fw-bold fs-14"
+                class="nav-link title__fonts fw-bold fs-14"
                 routerLinkActive="active"
                 routerLink="/contact-us"
                 >CONTACT US
               </a>
             </li>
             <li
-              class="nav-item"
+              [ngClass]="{ 'd-none': isLogIn }"
+              class="nav-item mx-2 py-3"
               data-bs-toggle="collapse"
-              data-bs-target="#navbarProtocols"
+              data-bs-target="#navbarSupportedContent"
             >
               <a
-                class="nav-link fw-bold fs-14"
-                routerLinkActive="active"
-                routerLink="/privacy-policy"
-                >PRIVACY POLICY
-              </a>
-            </li>
-            <li
-              class="nav-item"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarProtocols"
-            >
-              <a
-                class="nav-link fw-bold fs-14"
+                class="nav-link title__fonts fw-bold fs-14"
                 routerLinkActive="active"
                 routerLink="/login"
                 >LOGIN</a
               >
             </li>
+            @if (userName.length > 0) {
+            <li
+              class="position-relative nav-item mx-2 user__name py-3"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+            >
+              <span class="nav-link title__fonts fw-bold fs-14 text-uppercase"
+                >{{ userName }}...</span
+              >
+              <div
+                class="pt-3 user__name__dropdown position-absolute top-100 start-0 w-100"
+              >
+                <ul class="list-unstyled bg-body-tertiary p-0">
+                  <li class="nav-item w-100 px-1">
+                    <a
+                      class="text-uppercase nav-link title__fonts fw-bold fs-14 w-100 px-2 py-3 d-flex justify-content-between align-items-center"
+                      routerLink="/settings"
+                      >Settings <i class="fa-solid fa-chevron-right"></i
+                    ></a>
+                  </li>
+                  <li
+                    [ngClass]="{ 'd-none': !isLogIn }"
+                    class="nav-item w-100 px-1"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                  >
+                    <a
+                      (click)="logOut()"
+                      class="nav-link title__fonts fw-bold fs-14 w-100 px-2 py-3"
+                      routerLinkActive="active"
+                      routerLink="/login"
+                      >LOGOUT</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </li>
+            }
           </ul>
         </div>
+        <!-- <ul
+          class="list-unstyled d-flex justify-content-center align-items-center mb-0"
+        >
+          <li
+            class="nav-item mx-2 d-flex justify-content-center align-items-center me-3"
+          >
+            <i class="fa-solid fa-headset fs-2 text-primary lh-0"></i>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="h5 text-decoration-none fw-bold lh-0" href="#"
+              >+1800-001-658</a
+            >
+            <p class="m-0 lh-0 my-2 text-muted fs-6">Mon-Fri: 6AM - 10PM</p>
+          </li>
+        </ul> -->
         <button
           class="navbar-toggler btn-secondary p-2 rounded-1"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarProtocols"
-          aria-controls="navbarProtocols"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >

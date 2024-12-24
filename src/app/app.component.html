@@ -1,20 +1,20 @@
-<router-outlet />
-
 <ngx-spinner
   bdColor="white"
-  size="medium"
+  size="default"
   color="var(--secondary-color-green)"
-  type="ball-spin-clockwise"
+  type="ball-beat"
+  [disableAnimation]="true"
   [fullScreen]="true"
-  ><p class="mt-5 h1 text-main-poppins" style="color: white">
-    <span class="d-block mt-5 pt-5 d-block mx-auto text-center">
-      <img
-        width="250"
-        class="object-fit-contain bg-white"
-        src="../assets/app_logo.png"
-        alt="spinnger loading logo momento"
-      />
-    </span>
-    Summit ...
-  </p></ngx-spinner
 >
+  <span class="d-block d-block mx-auto text-center">
+    <img
+      width="150"
+      class="object-fit-contain bg-white"
+      src="../assets/app_logo.png"
+      alt="Spinner loading logo EHA"
+    /> </span
+></ngx-spinner>
+
+@defer {
+<router-outlet />
+}

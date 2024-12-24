@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { isLoginGuard } from './core/gards/is-login.guard';
+import { loaderResolverResolver } from './core/resolver/loader-resolver.resolver';
 
 export const routes: Routes = [
   /** path ==>> ''*/
@@ -9,6 +10,9 @@ export const routes: Routes = [
       import('../app/pages/blank-layout/blank-layout.component').then(
         (m) => m.BlankLayoutComponent
       ),
+    resolve: {
+      loader: loaderResolverResolver,
+    },
     children: [
       /** path: ''*/
       {
@@ -58,6 +62,13 @@ export const routes: Routes = [
             '../app/pages/blank-layout/contact-us/contact-us-form/success-message/success-message.component'
           ).then((m) => m.SuccessMessageComponent),
       },
+      {
+        path: 'settings',
+        loadComponent: () =>
+          import(
+            '../app/auth/auth-layout/account-setting/account-setting.component'
+          ).then((m) => m.AccountSettingComponent),
+      },
     ],
   },
   /** path: protocols*/
@@ -84,6 +95,13 @@ export const routes: Routes = [
             '../app/pages/protocol-layout/sub-protocols/sub-protocols.component'
           ).then((m) => m.SubProtocolsComponent),
       },
+      // {
+      //   path: 'questions/:id',
+      //   loadComponent: () =>
+      //     import(
+      //       '../app/pages/protocol-layout/protocol-questions-page/protocol-questions-page.component'
+      //     ).then((m) => m.ProtocolQuestionsPageComponent),
+      // },
       {
         path: 'questions/:id',
         loadComponent: () =>
@@ -101,6 +119,7 @@ export const routes: Routes = [
         (m) => m.AuthLayoutComponent
       ),
   },
+
   /** path: ***/
   {
     path: '**',

@@ -19,6 +19,12 @@
                 onDisplayNextQuestionChange(Choices.next_question_id)
               "
             />
+            <!-- updateChart(
+              $index !== 0
+                ? Choices.id
+                : Choices.id + '-' + Choices.next_question_id,
+              Choices.next_question_id
+            ) -->
             <label class="form-check-label" [for]="Choices.id">{{
               Choices.text
             }}</label>

@@ -12,8 +12,12 @@ import { IQuestion } from '../../../core/interfaces/protocols/ISpecificProtocol'
 })
 export class ProtocolQuestionsComponent {
   @ViewChild('componentB') componentB!: QuestionsRadioButtonsComponent;
-  handleAction(e: any): void {
+  @ViewChild('componentA') componentA!: QuestionsFlowChartsComponent;
+  handleActionB(e: any): void {
     this.componentB.onCheckPreviousQuestionCheck(e.Question);
     this.componentB.onDisplayNextQuestionChange(e.Choice);
+  }
+  handleActionA(e: any): void {
+    this.componentA.onNodeClick(e);
   }
 }

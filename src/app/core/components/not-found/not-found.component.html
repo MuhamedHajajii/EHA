@@ -1,1 +1,41 @@
-<p>not-found works!</p>
+<app-blank-navbar></app-blank-navbar>
+<section id="Not_found my-5">
+  <header class="text-white shadow">
+    <div
+      class="container-lg container-fluid d-flex justify-content-start align-items-center h-100"
+    >
+      <div>
+        <div>
+          <h2 class="text-uppercase fs-1">404 Error</h2>
+        </div>
+        <div>
+          <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item" aria-current="page">
+                <i class="fa-solid fa-house me-1"></i> Home
+              </li>
+              <li
+                class="breadcrumb-item text-white text-opacity-50"
+                aria-current="page"
+              >
+                Not Found
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="text-center">
+    <p class="display-1 text-secondary">404</p>
+    <p>404 Error</p>
+    <p>Oops! This Page is Not Found.</p>
+    <button
+      routerLink="/"
+      class="btn btn-main py-4 px-5 title__fonts fs-14 rounded-1"
+    >
+      Back To Home
+    </button>
+  </div>
+</section>
+<app-footer></app-footer>

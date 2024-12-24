@@ -1,0 +1,16 @@
+<div class="container-fluid ProtoCol__Container">
+  <div class="row">
+    <div class="col-8">
+      <div class="p-4">
+        <app-protocol-questions-flow-charts
+          (actionTriggered)="handleAction($event)"
+        />
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="p-3">
+        <app-protocol-questions-flow-radios #componentB />
+      </div>
+    </div>
+  </div>
+</div>

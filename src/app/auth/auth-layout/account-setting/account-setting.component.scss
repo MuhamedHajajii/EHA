@@ -1,0 +1,48 @@
+header {
+  height: 50vh;
+  background-image: url("../../../../assets/rev/2-61-1.jpg");
+  background-position: top center;
+  background-size: cover;
+  transform: translateY(10px);
+  opacity: 0;
+  animation: Welcome__Animation 1s forwards;
+  h2 {
+    transform: translateX(-3000px);
+    opacity: 0;
+    animation: Welcome__Content__Animation 1s forwards;
+  }
+  nav {
+    transform: translateX(-3000px);
+    opacity: 0;
+    animation: Welcome__Content__Animation 1s 0.3s forwards;
+  }
+}
+
+@keyframes Welcome__Animation {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes Welcome__Content__Animation {
+  from {
+    transform: translateX(-3000px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  color: white;
+}
+
+::ng-deep .iti {
+  width: 100%;
+}

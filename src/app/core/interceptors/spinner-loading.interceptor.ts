@@ -8,7 +8,9 @@ export const spinnerLoadingInterceptor: HttpInterceptorFn = (req, next) => {
   spinner.show();
   return next(req).pipe(
     finalize(() => {
-      spinner.hide();
+      setTimeout(() => {
+        spinner.hide();
+      }, 1000);
     })
   );
 };

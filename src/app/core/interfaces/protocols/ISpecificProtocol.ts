@@ -16,7 +16,7 @@ export interface Protocol {
 export interface IQuestion {
   id: number;
   title: string;
-  description?: string;
+  description: string;
   text: string;
   type: any;
   is_end: any;
@@ -24,6 +24,7 @@ export interface IQuestion {
   created_at: string;
   updated_at: string;
   choices: IChoice[];
+  charts: IChart[];
 }
 
 export interface IChoice {
@@ -32,6 +33,21 @@ export interface IChoice {
   text: string;
   next_question_id: number;
   protocol_scope_id: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface IChart {
+  id: number;
+  title: string;
+  protocol_scope_id: number;
+  protocol_scope_name: string;
+  sub_category_id: number;
+  sub_category_name: string;
+  question_id: number;
+  question_title: string;
+  choice_id: any;
+  choice_title: any;
   created_at: string;
   updated_at: string;
 }

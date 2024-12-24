@@ -1,0 +1,8 @@
+::ng-deep .owl-carousel .owl-stage,
+::ng-deep .owl-carousel .owl-item {
+  align-items: stretch;
+  display: flex;
+  .card {
+    height: 100%;
+  }
+}

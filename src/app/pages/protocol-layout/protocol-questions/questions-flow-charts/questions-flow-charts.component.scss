@@ -1,3 +1,5 @@
+@import "variables";
+
 .chart-container {
   width: 100%;
   max-height: 80vh;
@@ -84,4 +86,18 @@
   stroke: red !important; /* Highlight the path */
   stroke-width: 4px !important; /* Increased stroke width */
   transition: stroke 0.3s ease;
+}
+
+// ::ng-deep .nodes-wrapper .node:first-child,
+// ::ng-deep .links-wrapper :first-child,
+::ng-deep .node-button-g {
+  display: none;
+}
+
+::ng-deep .form-check-input:checked {
+  background-color: $main-color-green !important;
+  box-shadow: none;
+}
+::ng-deep .form-check-input {
+  border-radius: 50% !important;
 }
