@@ -16,6 +16,7 @@ import {
   PhoneNumberFormat,
   SearchCountryField,
 } from 'ngx-intl-tel-input';
+import { IUser } from '../interfaces.ts/ILogedUser';
 @Component({
   selector: 'app-account-setting',
   standalone: true,
@@ -29,6 +30,7 @@ export class AccountSettingComponent {
   CountryISO = CountryISO;
   startValidation: boolean = false;
   PhoneNumberFormat = PhoneNumberFormat;
+  userDetails!: IUser;
   constructor(
     private _LoginService: LoginService,
     @Inject(PLATFORM_ID) private _PLATFORM_ID: object,
@@ -38,46 +40,54 @@ export class AccountSettingComponent {
   ) {}
 
   userForm: FormGroup = new FormGroup({
-    name: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^[a-zA-Z\s]+$/),
-      Validators.minLength(3),
-    ]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
+    name: new FormControl(''),
+    email: new FormControl(''),
+    address: new FormControl('', [Validators.required]),
+    user_id: new FormControl('', [Validators.required]),
+    user_full_work_address: new FormControl('', [Validators.required]),
   });
 
   ngOnInit(): void {
-    this.isLoggedIn();
+    if (isPlatformBrowser(this._PLATFORM_ID)) {
+      let Details = localStorage.getItem('userDetails');
+      if (Details) {
+        console.log(JSON.parse(Details));
+        this.userDetails = JSON.parse(Details) as IUser;
+      }
+    }
+    this.userForm.get('name');
   }
 
-  loginUser(): void {
-    this._LoginService.loginUser(this.userForm.value).subscribe({
-      next: (response) => {
-        if (isPlatformBrowser(this._PLATFORM_ID)) {
-          console.log(response, 'from Error Outer');
-          if (response.user) {
-            console.log(response, 'from Error Success');
-            this.errorMessage = '';
-            this._CookieService.set('token', response.access_token);
-            localStorage.setItem('userName', response.user.name);
-            this._ToastrService.success('Login Successfully');
-            localStorage.setItem('userId', response.user.id.toString());
-            this._Router.navigate(['/']);
-          } else {
-            console.log(response, 'from Error Message');
-            this.userForm.setErrors({ invalidLogin: true });
-            console.log(this.userForm.valid);
-            this.errorMessage = 'Invalid email or password';
-          }
-        }
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+  updateUser(): void {
+    this.userForm.value;
   }
+
+  // loginUser(): void {
+  //   this._LoginService.loginUser(this.userForm.value).subscribe({
+  //     next: (response) => {
+  //       if (isPlatformBrowser(this._PLATFORM_ID)) {
+  //         console.log(response, 'from Error Outer');
+  //         if (response.user) {
+  //           console.log(response, 'from Error Success');
+  //           this.errorMessage = '';
+  //           this._CookieService.set('token', response.access_token);
+  //           // localStorage.setItem('userName', response.user.name);
+  //           this._ToastrService.success('Login Successfully');
+  //           localStorage.setItem('userId', response.user.id.toString());
+  //           this._Router.navigate(['/']);
+  //         } else {
+  //           console.log(response, 'from Error Message');
+  //           this.userForm.setErrors({ invalidLogin: true });
+  //           console.log(this.userForm.valid);
+  //           this.errorMessage = 'Invalid email or password';
+  //         }
+  //       }
+  //     },
+  //     error: (error) => {
+  //       console.log(error);
+  //     },
+  //   });
+  // }
   isLoggedIn() {
     if (isPlatformBrowser(this._PLATFORM_ID)) {
       if (!this._CookieService.check('token')) {

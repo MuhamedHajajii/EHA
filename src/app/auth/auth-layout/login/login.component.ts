@@ -42,11 +42,12 @@ export class LoginComponent {
       next: (response) => {
         if (isPlatformBrowser(this._PLATFORM_ID)) {
           console.log(response, 'from Error Outer');
-          if (response.user) {
+          if (!response.error) {
             console.log(response, 'from Error Success');
             this.errorMessage = '';
             this._CookieService.set('token', response.access_token);
             localStorage.setItem('userName', response.user.name);
+            localStorage.setItem('userDetails', JSON.stringify(response.user));
             this._ToastrService.success('Login Successfully');
             localStorage.setItem('userId', response.user.id.toString());
             this._Router.navigate(['/']);
@@ -63,6 +64,11 @@ export class LoginComponent {
       },
     });
   }
+
+  ngOnDestroy(): void {
+    this.userForm.reset();
+  }
+
   isLoggedIn() {
     if (isPlatformBrowser(this._PLATFORM_ID)) {
       if (this._CookieService.check('token')) {

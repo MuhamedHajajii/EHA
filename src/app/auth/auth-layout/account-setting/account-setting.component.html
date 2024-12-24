@@ -34,7 +34,7 @@
     <div class="container-lg container-fluid p-4 p-md-0 py-5 my-5">
       <div class="row shadow my-5 rounded-1">
         <div class="col-12 col-lg-8 p-2 p-md-5">
-          <form [formGroup]="userForm" (ngSubmit)="loginUser()" class="p-3">
+          <form [formGroup]="userForm" (ngSubmit)="updateUser()" class="p-3">
             <h3 class="mb-4">
               <span class="border-4 border-bottom">Account</span>
             </h3>
@@ -63,26 +63,19 @@
               <!-- input form field: userEmail -->
               <div class="col-12">
                 <div>
-                  <div class="d-flex justify-content-between">
-                    <small class="text-danger fst-italic d-none fw-bold"
-                      >required*</small
-                    >
-                    <small class="text-danger fst-italic d-none fw-bold"
-                      >not valid email*</small
+                  <div class="form-floating">
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email"
+                      formControlName="email"
+                      placeholder="Enter Your Email"
+                      formControlName="email"
+                    />
+                    <label for="email"
+                      >Your Email:<span class="text-danger">*</span></label
                     >
                   </div>
-                  <input
-                    [ngClass]="{
-                      'is-invalid': userForm.invalid && errorMessage.length > 0
-                    }"
-                    class="form-control"
-                    type="email"
-                    placeholder="name@example.com"
-                    name="userEmail"
-                    id="userEmail"
-                    autocomplete="email"
-                    formControlName="email"
-                  />
                 </div>
               </div>
               <!-- input field: userPhone  -->
@@ -121,32 +114,7 @@
                     [maxLength]="15"
                     [phoneValidation]="true"
                     name="phone"
-                    formControlName="phone"
                   ></ngx-intl-tel-input>
-                </div>
-              </div>
-              <!-- input form field: userPassword -->
-              <div class="col-12">
-                <div>
-                  <div class="d-flex justify-content-between">
-                    <label
-                      class="form-label fw-semibold text-dark text-opacity-75 mb-1"
-                      for="userPassword"
-                      >Password:<span class="text-danger">*</span></label
-                    >
-                  </div>
-                  <input
-                    [ngClass]="{
-                      'is-invalid': userForm.invalid && errorMessage.length > 0
-                    }"
-                    class="form-control"
-                    type="email"
-                    name="userPassword"
-                    id="userPassword"
-                    placeholder="***********"
-                    autocomplete="off"
-                    formControlName="password"
-                  />
                 </div>
               </div>
               <!-- input field: userAddress  -->
@@ -170,7 +138,6 @@
                       class="form-control"
                       placeholder="Leave a comment here"
                       id="message"
-                      formControlName="message"
                     />
                     <label for="message">Address:</label>
                   </div>

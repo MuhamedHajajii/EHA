@@ -3,10 +3,11 @@ export interface ILogeInUser {
   token_type: string;
   expires_in: number;
   message: string;
-  user: User;
+  user: IUser;
+  error?: string;
 }
 
-export interface User {
+export interface IUser {
   id: number;
   manager_id: any;
   name: string;

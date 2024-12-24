@@ -5,7 +5,7 @@
   max-height: 80vh;
   overflow-y: scroll;
   overflow: hidden;
-  border: 1px solid #ccc;
+  // border: 1px solid #ccc;
 }
 
 ::ng-deep .custom-node {
@@ -29,6 +29,10 @@
   font-size: 14px;
   border-bottom: 1px solid #ddd;
   padding-bottom: 10px;
+  fill: #e8f5fc;
+  stroke: #409bd2;
+  stroke-width: 2px;
+  cursor: pointer;
 }
 
 ::ng-deep .custom-node .node-subtitle {
@@ -90,14 +94,14 @@
 
 // ::ng-deep .nodes-wrapper .node:first-child,
 // ::ng-deep .links-wrapper :first-child,
-// ::ng-deep .node-button-g {
-//   display: none;
-// }
+::ng-deep .node-button-g {
+  display: none;
+}
 
-// ::ng-deep .form-check-input:checked {
-//   background-color: $main-color-green !important;
-//   box-shadow: none;
-// }
+::ng-deep .form-check-input:checked {
+  background-color: $main-color-green !important;
+  box-shadow: none;
+}
 ::ng-deep .form-check-input {
   border-radius: 50% !important;
 }

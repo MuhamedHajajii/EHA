@@ -1,15 +1,15 @@
 <div class="container-fluid ProtoCol__Container">
   <div class="row">
-    <div class="col-8">
-      <div class="p-4">
+    <div class="p-4 pe-0 col-8">
+      <div class="p-2 bg-white h-100">
         <app-questions-flow-charts
           #componentA
           (actionTriggeredB)="handleActionB($event)"
         ></app-questions-flow-charts>
       </div>
     </div>
-    <div class="col-4">
-      <div class="p-3">
+    <div class="p-4 ps-2 col-4">
+      <div class="p-2 bg-white h-100">
         <app-questions-radio-buttons
           (actionTriggeredA)="handleActionA($event)"
           #componentB

@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Output,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
   IChoice,
@@ -17,7 +25,7 @@ import { SpecificProtocolService } from '../../../../core/services/protocols/spe
 })
 export class QuestionsRadioButtonsComponent {
   @Output() actionTriggeredA = new EventEmitter<any>();
-
+  @ViewChild('Questions__Description') Questions__Description!: ElementRef;
   specificProtocol!: ISpecificProtocol;
   currentQuestionArr: IQuestion[] = [];
   protocolId!: string;
@@ -25,7 +33,8 @@ export class QuestionsRadioButtonsComponent {
   constructor(
     private _ActivatedRoute: ActivatedRoute,
     private _SpecificProtocolService: SpecificProtocolService,
-    private _CurrentQuestionsService: CurrentQuestionsService
+    private _CurrentQuestionsService: CurrentQuestionsService,
+    private cdr: ChangeDetectorRef
   ) {}
   ngOnInit(): void {
     this.handleGetCurrentCategoryId();

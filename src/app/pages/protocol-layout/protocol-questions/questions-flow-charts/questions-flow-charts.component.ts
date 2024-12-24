@@ -42,7 +42,6 @@ export class QuestionsFlowChartsComponent {
   clickedChoiceId!: string;
   AllQuestions!: IQuestion[];
   History: Set<string> = new Set();
-  private addedNodesMap: Map<string, string[]> = new Map();
   constructor(private _CurrentQuestionsService: CurrentQuestionsService) {}
 
   ngOnInit(): void {
@@ -54,7 +53,9 @@ export class QuestionsFlowChartsComponent {
     this._CurrentQuestionsService.currentData.subscribe((data) => {
       this.currentQuestionArr = data;
       if (this.currentQuestionArr.length > 0) {
-        this.renderChart();
+        setTimeout(() => {
+          this.renderChart();
+        }, 300);
       }
     });
   }
@@ -69,13 +70,15 @@ export class QuestionsFlowChartsComponent {
       isNewNode: false, // Root is not a new node
     });
     this.currentQuestionArr[0].choices.forEach((CHOICE) => {
+      let newNodeId = `${CHOICE.id}-${CHOICE.next_question_id}`;
       this.data.push({
-        id: `${CHOICE.id}-${CHOICE.next_question_id}`,
+        id: newNodeId,
         name: CHOICE.text,
         parentId: 'root',
         collapsed: false,
         isNewNode: false, // Root is not a new node
       });
+      this.History.add(newNodeId);
     });
   }
 
@@ -90,16 +93,17 @@ export class QuestionsFlowChartsComponent {
     this.chart
       .container(this.chartContainer.nativeElement)
       .data(this.data)
-      .nodeWidth((node: any) => 300) // Ensure enough width for long text
-      .nodeHeight((node: any) => 120) // Set fixed node height
+      .nodeWidth((node: any) => 250) // Ensure enough width for long text
+      .nodeHeight((node: any) => 150) // Set fixed node height
       .childrenMargin((node: any) => 20) // Space between parent and children
       .siblingsMargin((node: any) => 20) // Space between sibling nodes
       .nodeContent((d: any) => this.getCustomNodeHTML(d))
       .nodeButtonY((node: any) => 10)
       .onNodeClick((d: any) => this.onNodeClick(d))
+      .linkYOffset(10)
       .compact(false)
-      .expandAll()
       .layout('top')
+
       .render();
   }
 
@@ -118,7 +122,7 @@ export class QuestionsFlowChartsComponent {
   }
   getCustomNodeHTML(d: any): string {
     return `
-      <div class="custom-node w-auto h-auto bg-main text-white" style="word-wrap: break-word;">
+      <div class="custom-node h-100 d-flex justify-content-center align-items-center w-auto bg-main text-white" style="word-wrap: break-word;">
         <div>
           <label class="node-header">${d.data.name}</label>
         </div>
@@ -126,9 +130,8 @@ export class QuestionsFlowChartsComponent {
     `;
   }
   appendChildNode(ClickedNodeID: any): void {
+    this.History = new Set();
     this.currentChoiceId = ClickedNodeID.id.split('-')[1];
-    console.log(ClickedNodeID.id);
-
     const currentQuestion = this.AllQuestions.find(
       (Question) => Question.id.toString() == ClickedNodeID.id.split('-')[1]
     );
@@ -146,8 +149,8 @@ export class QuestionsFlowChartsComponent {
         const newChoiceId = `${ClickedNodeID.id}-${
           ClickedNodeID.id.split('-')[1]
         }`;
-        this.History.add(newChoiceId);
 
+        this.History.add(newChoiceId);
         // Update chart for the main node
         this.updateChart(
           newChoiceId,
@@ -162,7 +165,6 @@ export class QuestionsFlowChartsComponent {
             currentQuestion.id.toString().split('-')[0]
           }-${Choice.next_question_id}`;
           this.History.add(childChoiceId);
-
           this.updateChart(childChoiceId, Choice.text, newChoiceId, false);
         });
       } else {
@@ -196,10 +198,18 @@ export class QuestionsFlowChartsComponent {
         isNewNode: true,
       })
       .render();
-
     if (setCentered) {
       this.chart.setCentered(nodeId);
     }
+    this.History.add(nodeId);
+    this.History.forEach((old) => {
+      console.log(old, 'Old');
+
+      console.log(!this.History.has(old), 'New');
+      if (!this.History.has(old)) {
+        this.chart.removeNode(+old);
+      }
+    });
   }
 
   onClickPrint() {

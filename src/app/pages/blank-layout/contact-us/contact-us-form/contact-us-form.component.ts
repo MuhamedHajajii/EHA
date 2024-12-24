@@ -52,10 +52,11 @@ export class ContactUsFormComponent {
       this._ContactUsService.submitUserContactForm(USER_DATA).subscribe({
         next: (response) => {
           console.log(response);
+          this.messagesForm.reset();
+          // if (isPlatformBrowser(this._PLATFORM_ID)) {
+          //   localStorage.setItem('userName', response.contactForm.name);
+          // }
           this._Router.navigate(['/contact-us-success']);
-          if (isPlatformBrowser(this._PLATFORM_ID)) {
-            localStorage.setItem('userName', response.contactForm.name);
-          }
         },
         error: (error) => {
           console.log(error);

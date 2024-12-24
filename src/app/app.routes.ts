@@ -39,6 +39,20 @@ export const routes: Routes = [
             '../app/pages/blank-layout/news-letters/news-letters.component'
           ).then((m) => m.NewsLettersComponent),
       },
+      {
+        path: 'news-letters/:id',
+        loadComponent: () =>
+          import(
+            '../app/pages/blank-layout/news-letters/news-letters.component'
+          ).then((m) => m.NewsLettersComponent),
+      },
+      {
+        path: 'latest/:id',
+        loadComponent: () =>
+          import(
+            '../app/pages/blank-layout/news-letters/present-news/present-news.component'
+          ).then((m) => m.PresentNewsComponent),
+      },
       /** path: privacy-policy*/
       {
         path: 'privacy-policy',
@@ -95,20 +109,20 @@ export const routes: Routes = [
             '../app/pages/protocol-layout/sub-protocols/sub-protocols.component'
           ).then((m) => m.SubProtocolsComponent),
       },
-      // {
-      //   path: 'questions/:id',
-      //   loadComponent: () =>
-      //     import(
-      //       '../app/pages/protocol-layout/protocol-questions-page/protocol-questions-page.component'
-      //     ).then((m) => m.ProtocolQuestionsPageComponent),
-      // },
       {
         path: 'questions/:id',
         loadComponent: () =>
           import(
-            '../app/pages/protocol-layout/protocol-questions/protocol-questions.component'
-          ).then((m) => m.ProtocolQuestionsComponent),
+            '../app/pages/protocol-layout/protocol-questions-page/protocol-questions-page.component'
+          ).then((m) => m.ProtocolQuestionsPageComponent),
       },
+      // {
+      //   path: 'questions/:id',
+      //   loadComponent: () =>
+      //     import(
+      //       '../app/pages/protocol-layout/protocol-questions/protocol-questions.component'
+      //     ).then((m) => m.ProtocolQuestionsComponent),
+      // },
     ],
   },
   /** path: login*/

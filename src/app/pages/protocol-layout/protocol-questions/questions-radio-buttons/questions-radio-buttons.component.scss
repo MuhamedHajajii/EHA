@@ -2,10 +2,16 @@
   overflow-y: hidden;
 }
 #Questions__Container {
-  max-height: 80vh;
+  height: 80vh;
+  resize: horizontal;
   overflow-y: auto;
 }
-
+.card-body {
+  background-color: #e8f5fc;
+  border: 2px solid #409bd2;
+  padding: 16px;
+  position: relative;
+}
 #Questions__Container::-webkit-scrollbar-thumb {
   background-color: #000;
   box-shadow: 0px 0px 10px 0px #eeeeee8c inset;
