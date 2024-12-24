@@ -1,27 +1,21 @@
-import { CommonModule, SlicePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
-import { INewsletterData } from '../../../../core/interfaces/news-letters/INewsLetterData';
-import { NewsLetterDataService } from '../../../../core/services/home/news-letter-data.service';
+
 import { RouterLink } from '@angular/router';
 import { StringTrimPipe } from '../../../../core/pipes/string-trim.pipe';
+import { NewsLetterDataService } from '../../../../core/services/home/news-letter-data.service';
 
 @Component({
   selector: 'app-news',
   standalone: true,
-  imports: [
-    CommonModule,
-    StringTrimPipe,
-    SlicePipe,
-    CarouselModule,
-    RouterLink,
-  ],
+  imports: [CommonModule, StringTrimPipe, CarouselModule, RouterLink],
   templateUrl: './news.component.html',
   styleUrl: './news.component.scss',
 })
 export class NewsComponent {
   @Input() ImageSrc = '';
-  allNewsLettersArr!: INewsletterData;
+  allNewsLettersArr!: any;
 
   constructor(private _NewsLetterDataService: NewsLetterDataService) {}
 
