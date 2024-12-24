@@ -47,7 +47,7 @@
                 <div class="text-start my-3 p-3">
                   <a
                     class="text-main text-decoration-none position-relative z-3"
-                    routerLink="/news-letters"
+                    [routerLink]="[RoutingSrc, news.id]"
                   >
                     <span class="align-middle fw-semibold">READ MRE</span>
                     <i class="fa-solid fa-plus ms-2 align-middle"></i>

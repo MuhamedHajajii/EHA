@@ -1,0 +1,57 @@
+@if (currentNewsLetter) {
+<section class="my-5 py-5">
+  <div class="container-lg container-fluid">
+    <header class="text-center mb-4">
+      <h2></h2>
+      <h3 class="h1 fw-bold text-start">
+        {{ currentNewsLetter.newsletter_title }}
+      </h3>
+    </header>
+    <div>
+      <div>
+        <div
+          class="text-dark border-0 card bg-contact-F4F6F9 rounded-1 d-flex flex-column justify-content-between"
+        >
+          <div>
+            <figure class="position-relative z-0">
+              <img
+                class="card-img-top"
+                src="./assets/blog/1.jpg"
+                role="presentation"
+                [alt]="currentNewsLetter.newsletter_title"
+                [title]="currentNewsLetter.newsletter_title"
+              />
+              <figcaption class="card-img-overlay d-flex align-items-end">
+                <time>
+                  <span
+                    class="bg-main px-2 py-1 m-2 rounded-1 text-white title__fonts fw-bold fs-14"
+                    >{{
+                      currentNewsLetter.created_at | date : "MMMM dd, YYYY"
+                    }}</span
+                  >
+                </time>
+              </figcaption>
+            </figure>
+            <div class="card-body">
+              <p class="border-bottom p-3 fw-bold h6">
+                {{ currentNewsLetter.newsletter_title }}
+              </p>
+              <p [innerHTML]="currentNewsLetter.newsletter_text"></p>
+            </div>
+          </div>
+        </div>
+        <div class="text-start my-3 p-3">
+          <a
+            class="text-main text-decoration-none position-relative z-3"
+            routerLink="/RoutingSrc"
+          >
+            <span class="align-middle fw-semibold">Back to Our Newsletter</span>
+            <i class="fa-solid fa-plus ms-2 align-middle"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+}

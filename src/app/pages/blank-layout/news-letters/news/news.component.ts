@@ -14,7 +14,7 @@ import { NewsLetterDataService } from '../../../../core/services/home/news-lette
   styleUrl: './news.component.scss',
 })
 export class NewsComponent {
-  @Input() ImageSrc = '';
+  @Input() RoutingSrc = '';
   allNewsLettersArr!: any;
 
   constructor(private _NewsLetterDataService: NewsLetterDataService) {}
