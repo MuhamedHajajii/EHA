@@ -87,6 +87,12 @@ export class ProtocolQuestionsFlowRadiosComponent {
           this._CurrentQuestionsService.updateQuestions(
             response.protocol.questions
           );
+          if (isPlatformBrowser(this._PLATFORM_ID)) {
+            localStorage.setItem(
+              'sub_category_id',
+              response.protocol.sub_category_id.toString()
+            );
+          }
         },
         error: (error) => {
           console.log(error);
@@ -185,5 +191,6 @@ export class ProtocolQuestionsFlowRadiosComponent {
         block: 'nearest',
       });
     }, 0);
+    // console.log(document.getElementById('Questions__Description')?.lastChild);
   }
 }

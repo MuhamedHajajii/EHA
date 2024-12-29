@@ -154,6 +154,7 @@ export class ProtocolQuestionsFlowChartsComponent {
 
     if (currentQuestion && currentQuestion.choices) {
       document.getElementById('copy')?.classList.add('d-none');
+      document.getElementById('responsive_copy')?.classList.add('d-none');
       if (currentQuestion.choices.length > 0) {
         let currentParent = currentQuestion.charts[0].id.toString();
         this.updateChart(
@@ -185,6 +186,7 @@ export class ProtocolQuestionsFlowChartsComponent {
           );
         });
         document.getElementById('copy')?.classList.remove('d-none');
+        document.getElementById('responsive_copy')?.classList.remove('d-none');
       }
     }
     this.chart.expandAll();

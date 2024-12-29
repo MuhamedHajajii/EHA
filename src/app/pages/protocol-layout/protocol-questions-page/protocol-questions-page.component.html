@@ -46,6 +46,12 @@
               >
                 <i class="pi pi-copy"></i> copy Assessment
               </button>
+              <button
+                (click)="showRelatedProtocols()"
+                class="btn btn-main m-2 rounded-0"
+              >
+                Related Content
+              </button>
             </div>
           </div>
         </div>
@@ -82,10 +88,16 @@
           <button
             #copying
             (click)="copy()"
-            id="copy"
+            id="responsive_copy"
             class="btn btn-main m-2 rounded-0 d-none"
           >
             <i class="pi pi-copy"></i> copy Assessment
+          </button>
+          <button
+            (click)="showRelatedProtocols()"
+            class="btn btn-main m-2 rounded-0"
+          >
+            Related Content
           </button>
         </div>
       </div>
