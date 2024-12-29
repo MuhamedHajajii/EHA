@@ -1,11 +1,12 @@
-import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Component, Inject, inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
   CountryISO,
   NgxIntlTelInputModule,
@@ -13,7 +14,6 @@ import {
   SearchCountryField,
 } from 'ngx-intl-tel-input';
 import { ContactUsService } from '../../../../core/services/contact-us/contact-us.service';
-import { Router } from '@angular/router';
 @Component({
   selector: 'app-contact-us-form',
   standalone: true,
@@ -53,9 +53,7 @@ export class ContactUsFormComponent {
         next: (response) => {
           console.log(response);
           this.messagesForm.reset();
-          // if (isPlatformBrowser(this._PLATFORM_ID)) {
-          //   localStorage.setItem('userName', response.contactForm.name);
-          // }
+
           this._Router.navigate(['/contact-us-success']);
         },
         error: (error) => {

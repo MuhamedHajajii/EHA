@@ -30,6 +30,11 @@ export class AuthNavbarComponent {
   ) {}
 
   ngOnInit(): void {
+    if (isPlatformBrowser(this._PLATFORM_ID)) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('userName');
+      localStorage.clear();
+    }
     console.log(this.isLoggedIn());
   }
 
@@ -50,7 +55,7 @@ export class AuthNavbarComponent {
   /** Check if user is logged in */
   isLoggedIn() {
     if (isPlatformBrowser(this._PLATFORM_ID)) {
-      if (this._CookieService.check('token')) {
+      if (localStorage.getItem('token')) {
         this.userName = (localStorage.getItem('userName') || '')
           .split('')
           .slice(0, 10)
@@ -64,9 +69,9 @@ export class AuthNavbarComponent {
 
   logOut() {
     if (isPlatformBrowser(this._PLATFORM_ID)) {
-      this._CookieService.delete('token');
-      this._CookieService.deleteAll();
+      localStorage.removeItem('token');
       localStorage.removeItem('userName');
+      localStorage.clear();
       this._Router.navigate(['/login']);
     }
   }

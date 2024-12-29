@@ -9,7 +9,7 @@ import { ISubcategory } from './../interfaces/protocols/IProtocolsCategories';
 export class SearchProtocolsPipe implements PipeTransform {
   transform(transactions: ISubcategory[], inputText: string): ISubcategory[] {
     return transactions.filter((protocol) =>
-      protocol.title.includes(inputText)
+      protocol.title.toLocaleLowerCase().includes(inputText.toLocaleLowerCase())
     );
   }
 }

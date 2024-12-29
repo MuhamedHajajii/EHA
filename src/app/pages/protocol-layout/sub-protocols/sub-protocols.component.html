@@ -1,4 +1,4 @@
-<main id="PROTOCOLS">
+<main class="protocol" id="PROTOCOLS">
   <header class="text-white shadow">
     <div class="bg-black bg-opacity-50 h-100">
       <div
@@ -16,11 +16,12 @@
                 <li class="breadcrumb-item" aria-current="page">
                   <i class="fa-solid fa-house me-1"></i> Home
                 </li>
+                <li class="breadcrumb-item" aria-current="page">Protocols</li>
                 <li
                   class="breadcrumb-item text-white text-opacity-50"
                   aria-current="page"
                 >
-                  Protocols
+                  {{ currentProtocolName }}
                 </li>
               </ol>
             </nav>
@@ -32,7 +33,7 @@
   <div class="container-lg container-fluid">
     <section class="py-5 my-5">
       <div class="row g-0">
-        <div class="col-12 p-0 w-100">
+        <div class="col-12 shadow w-100 mb-4 bg-secondary p-5">
           <div class="form-floating mb-3">
             <input
               [(ngModel)]="inputSearch"
@@ -45,15 +46,28 @@
           </div>
         </div>
       </div>
+
       @if (subCategories) {
       <!-- Display All Categories -->
-      <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4">
-        @for (protocol of subCategories.subcategory.protocols
-        |searchSupProtocols:inputSearch ; track $index) {
-
+      <div
+        class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 min-h-50vh align-items-start"
+      >
+        @if((subCategories.subcategory.protocols | searchSupProtocols
+        :inputSearch).length == 0) {
         <div
-          [routerLink]="['/protocols/questions', protocol.id]"
-          class="text-center bg-light p-5 Protocol__Card position-relative"
+          class="card border-0 bg-light shadow-sm position-relative card__animation"
+        >
+          <div class="card-title p-3 pb-0 fs-4">
+            <p class="fw-semibold">No Protocols Found</p>
+          </div>
+        </div>
+        } @for (protocol of subCategories.subcategory.protocols
+        |searchSupProtocols:inputSearch|slice:first:next ; track $index) {
+
+        <!-- [routerLink]="['/protocols/questions', protocol.id]" -->
+        <div
+          (click)="getSpecificId(protocol.id); visible = true"
+          class="text-center bg-light p-5 Protocol__Card position-relative card__animation"
           [ngClass]="{
             'border-bottom': $index < 4,
             'border-end': $index !== 3 && $index !== 7
@@ -65,10 +79,113 @@
             [alt]="protocol.title"
           />
           <p class="fs-6 text-secondary fw-bold">{{ protocol.title }}</p>
+          <button
+            (click)="removeBookmark(protocol.bookmark[0].id, $event)"
+            pTooltip="remove book mark"
+            tooltipPosition="top"
+            [ngClass]="{ 'd-none': !protocol.is_end }"
+            class="w-45 position-absolute top-0 start-0 m-3 btn text-secondary"
+          >
+            <i class="fa-solid fa-bookmark fs-4"></i>
+          </button>
+
+          <button
+            (click)="addBookmark(protocol.id, $event)"
+            pTooltip="add book mark"
+            tooltipPosition="top"
+            [ngClass]="{ 'd-none': protocol.is_end }"
+            class="w-45 position-absolute top-0 start-0 m-3 btn text-secondary"
+          >
+            <i class="fa-regular fa-bookmark fs-4"></i>
+          </button>
         </div>
         }
+      </div>
+      <div class="flex justify-content-center">
+        <p-paginator
+          (onPageChange)="onPageChange($event)"
+          [first]="first"
+          [rows]="rows"
+          [totalRecords]="subCategories.subcategory.protocols.length"
+          [rowsPerPageOptions]="[8, 16, 32]"
+        />
+      </div>
+      }@else {
+      <div
+        class="card border-0 bg-light shadow-sm position-relative card__animation"
+      >
+        <div class="card-title p-3 pb-0 fs-4">
+          <p class="fw-semibold">No Protocols Found</p>
+        </div>
       </div>
       }
     </section>
   </div>
 </main>
+
+<div class="card flex justify-content-center">
+  <p-dialog
+    [draggable]="false"
+    header="Enter Patient Details"
+    [modal]="true"
+    [(visible)]="visible"
+    [style]="{ width: '25rem' }"
+  >
+    <form [formGroup]="userDetailsForm">
+      <div class="flex align-items-center gap-3 mb-3">
+        <div
+          class="d-flex justify-content-between align-items-center flex-column flex-md-row"
+        >
+          <label for="patient_name" class="font-semibold w-6rem"
+            >User Name</label
+          >
+          @if ( (userDetailsForm.get('patient_name')?.getError('required') &&
+          userDetailsForm.get('patient_name')?.touched)) {
+          <small class="text-danger">required</small>
+          } @if ( (userDetailsForm.get('patient_name')?.getError('minlength') &&
+          userDetailsForm.get('patient_name')?.touched)) {
+          <small class="text-danger">min-length 5 characters</small>
+          }
+        </div>
+        <input
+          pInputText
+          id="patient_name"
+          class="flex-auto p-2"
+          autocomplete="off"
+          formControlName="patient_name"
+        />
+      </div>
+      <div class="flex align-items-center gap-3 mb-5">
+        <div
+          class="d-flex justify-content-between align-items-center flex-column flex-md-row"
+        >
+          <label for="email" class="font-semibold w-6rem">#ID</label>
+        </div>
+        <input
+          pInputText
+          id="patient_code"
+          class="flex-auto p-2"
+          autocomplete="off"
+          formControlName="patient_code"
+        />
+      </div>
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <p-button
+            class="btn-main"
+            label="Start"
+            (onClick)="onClickShowUserDetailsMessage()"
+          />
+        </div>
+        <div>
+          <p-button
+            [style]="{ marginRight: '1rem' }"
+            [styleClass]="'p-button-outlined p-button-secondary'"
+            label="Skip"
+            (onClick)="skipPatientDetails()"
+          />
+        </div>
+      </div>
+    </form>
+  </p-dialog>
+</div>

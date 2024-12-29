@@ -11,11 +11,18 @@ import {
 } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-
+import { AvatarModule } from 'primeng/avatar';
+import { BadgeModule } from 'primeng/badge';
 @Component({
   selector: 'app-protocols-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, CommonModule],
+  imports: [
+    RouterLink,
+    RouterLinkActive,
+    CommonModule,
+    AvatarModule,
+    BadgeModule,
+  ],
   templateUrl: './protocols-navbar.component.html',
   styleUrl: './protocols-navbar.component.scss',
 })
@@ -34,26 +41,24 @@ export class ProtocolsNavbarComponent {
   }
 
   @ViewChild('navbar') navbar!: ElementRef;
-  @ViewChild('navbarBanner') navbarBanner!: ElementRef;
 
   @HostListener('window:scroll')
   onWindowScroll() {
     if (scrollY > 500) {
       this._Renderer2.addClass(this.navbar.nativeElement, 'active');
-      this._Renderer2.addClass(this.navbarBanner.nativeElement, 'd-none');
     } else {
       this._Renderer2.removeClass(this.navbar.nativeElement, 'active');
-      this._Renderer2.removeClass(this.navbarBanner.nativeElement, 'd-none');
     }
   }
 
   /** Check if user is logged in */
   isLoggedIn() {
     if (isPlatformBrowser(this._PLATFORM_ID)) {
-      if (this._CookieService.check('token')) {
+      if (localStorage.getItem('token')) {
         this.userName = (localStorage.getItem('userName') || '')
+          .replaceAll('"', '')
           .split('')
-          .slice(0, 10)
+          .slice(0, 15)
           .join('');
         this.isLogIn = true;
       } else {
@@ -64,8 +69,9 @@ export class ProtocolsNavbarComponent {
 
   logOut() {
     if (isPlatformBrowser(this._PLATFORM_ID)) {
-      this._CookieService.delete('token');
+      localStorage.removeItem('token');
       localStorage.removeItem('userName');
+      localStorage.clear();
       this._Router.navigate(['/login']);
     }
   }

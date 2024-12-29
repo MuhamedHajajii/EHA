@@ -1,0 +1,13 @@
+::ng-deep .iti {
+  width: 100%;
+}
+
+::ng-deep input:disabled:hover,
+::ng-deep input:disabled:focus {
+  border: 1px solid #f4f6f9 !important;
+  cursor: not-allowed !important;
+}
+::ng-deep input:disabled::selection {
+  background-color: transparent !important;
+  color: inherit !important;
+}

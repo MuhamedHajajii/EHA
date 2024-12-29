@@ -1,0 +1,51 @@
+<section>
+  <header [ngClass]="activeRouteClass" class="text-white shadow">
+    <div class="bg-black bg-opacity-50 h-100">
+      <div
+        class="container-lg container-fluid d-flex justify-content-start align-items-center h-100"
+      >
+        <div>
+          <div>
+            <h2 class="text-uppercase fs-1">
+              BookMarks <i class="fa-regular fa-paper-plane ms-3"></i>
+            </h2>
+          </div>
+          <div>
+            <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item" aria-current="page">
+                  <i class="fa-solid fa-house me-1"></i> Home
+                </li>
+                <li class="breadcrumb-item" aria-current="page">BookMarks</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container-fluid container-lg shadow-lg my-5">
+    <ul class="nav nav-tabs pt-3 pb-0">
+      <li class="nav-item">
+        <a
+          class="nav-link Patients"
+          routerLink="/protocols/bookmark"
+          routerLinkActive="bg-main text-white"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Saved Protocols</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link Protocols"
+          routerLink="/protocols/bookmark/guideline"
+          routerLinkActive="bg-main text-white"
+          aria-current="page"
+          >Saved Guideline</a
+        >
+      </li>
+    </ul>
+    <router-outlet></router-outlet>
+  </div>
+</section>

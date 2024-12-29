@@ -1,19 +1,93 @@
-<div class="container-fluid ProtoCol__Container">
-  <div class="row">
-    <div class="p-4 pe-0 col-8">
-      <div class="p-2 bg-white h-100">
-        <app-protocol-questions-flow-charts
-          #componentA
-          (actionTriggeredB)="handleActionB($event)"
-        ></app-protocol-questions-flow-charts>
+<div class="card d-none d-lg-block">
+  <p-splitter
+    [panelSizes]="[50, 50]"
+    [style]="{ height: '90vh' }"
+    styleClass="mb-5"
+  >
+    <ng-template pTemplate>
+      <div class="col flex align-items-center justify-content-center">
+        <div>
+          <div class="p-2 bg-white h-100 w-100">
+            <app-protocol-questions-flow-charts
+              #componentA
+              (actionTriggeredB)="handleActionB($event)"
+            ></app-protocol-questions-flow-charts>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="p-4 ps-2 col-4">
-      <div class="p-2 bg-white h-100">
+    </ng-template>
+    <ng-template pTemplate>
+      <div class="col flex align-items-center justify-content-center h-100">
+        <div class="h-100">
+          <div
+            class="Questions__Container bg-white h-100 w-100 d-flex flex-column justify-content-end"
+          >
+            <app-protocol-questions-flow-radios
+              (actionTriggeredA)="handleActionA($event)"
+              #componentB
+            ></app-protocol-questions-flow-radios>
+            <div style="background-color: #ededed; height: 56px">
+              <button
+                (click)="
+                  componentB.displayFirstQuestion();
+                  componentB.onChangeMoving();
+                  isDisabled = true
+                "
+                id="start"
+                class="btn btn-main m-2 rounded-0"
+                [disabled]="isDisabled"
+              >
+                Start
+              </button>
+              <button
+                (click)="copy()"
+                id="copy"
+                class="btn btn-main m-2 rounded-0 d-none"
+              >
+                <i class="pi pi-copy"></i> copy Assessment
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-splitter>
+</div>
+
+<div class="card" style="height: 100vh; padding-top: 120px">
+  <div
+    class="col flex align-items-center justify-content-center h-100 d-block d-lg-none"
+  >
+    <div class="h-100">
+      <div
+        class="Questions__Container bg-white h-100 w-100 d-flex flex-column justify-content-end"
+      >
         <app-protocol-questions-flow-radios
           (actionTriggeredA)="handleActionA($event)"
           #componentB
         ></app-protocol-questions-flow-radios>
+        <div style="background-color: #ededed; height: 56px">
+          <button
+            (click)="
+              componentB.displayFirstQuestion();
+              componentB.onChangeMoving();
+              isDisabled = true
+            "
+            id="start"
+            class="btn btn-main m-2 rounded-0"
+            [disabled]="isDisabled"
+          >
+            Start
+          </button>
+          <button
+            #copying
+            (click)="copy()"
+            id="copy"
+            class="btn btn-main m-2 rounded-0 d-none"
+          >
+            <i class="pi pi-copy"></i> copy Assessment
+          </button>
+        </div>
       </div>
     </div>
   </div>

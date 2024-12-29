@@ -55,6 +55,20 @@ export const routes: Routes = [
       },
       /** path: privacy-policy*/
       {
+        path: 'guidelines',
+        loadComponent: () =>
+          import(
+            '../app/pages/blank-layout/guidelines/guidelines.component'
+          ).then((m) => m.GuidelinesComponent),
+      },
+      {
+        path: 'articles/:id',
+        loadComponent: () =>
+          import(
+            '../app/pages/blank-layout/guidelines/read-guideline/read-guideline.component'
+          ).then((m) => m.ReadGuidelineComponent),
+      },
+      {
         path: 'privacy-policy',
         loadComponent: () =>
           import(
@@ -82,6 +96,22 @@ export const routes: Routes = [
           import(
             '../app/auth/auth-layout/account-setting/account-setting.component'
           ).then((m) => m.AccountSettingComponent),
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import(
+                '../app/auth/auth-layout/account-setting/change-account-settings/change-account-settings.component'
+              ).then((m) => m.ChangeAccountSettingsComponent),
+          },
+          {
+            path: 'change-privacy',
+            loadComponent: () =>
+              import(
+                '../app/auth/auth-layout/account-setting/privacy-settings/privacy-settings.component'
+              ).then((m) => m.PrivacySettingsComponent),
+          },
+        ],
       },
     ],
   },
@@ -116,13 +146,82 @@ export const routes: Routes = [
             '../app/pages/protocol-layout/protocol-questions-page/protocol-questions-page.component'
           ).then((m) => m.ProtocolQuestionsPageComponent),
       },
-      // {
-      //   path: 'questions/:id',
-      //   loadComponent: () =>
-      //     import(
-      //       '../app/pages/protocol-layout/protocol-questions/protocol-questions.component'
-      //     ).then((m) => m.ProtocolQuestionsComponent),
-      // },
+      {
+        path: 'history',
+        loadComponent: () =>
+          import('../app/pages/history-layout/history-layout.component').then(
+            (m) => m.HistoryLayoutComponent
+          ),
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import(
+                '../app/pages/history-layout/patients-history/patients-history.component'
+              ).then((m) => m.PatientsHistoryComponent),
+          },
+          {
+            path: 'user',
+            loadComponent: () =>
+              import(
+                '../app/pages/history-layout/user-history/user-history.component'
+              ).then((m) => m.UserHistoryComponent),
+          },
+        ],
+      },
+      {
+        path: 'protocol-history/:id',
+        loadComponent: () =>
+          import(
+            '../app/pages/history-layout/protocol-history-page/protocol-history-page.component'
+          ).then((m) => m.ProtocolHistoryPageComponent),
+      },
+      {
+        path: 'patient-history/:id',
+        loadComponent: () =>
+          import(
+            '../app/pages/history-layout/patient-history-questions/patient-history-questions.component'
+          ).then((m) => m.PatientHistoryQuestionsComponent),
+      },
+      {
+        path: 'bookmark',
+
+        loadComponent: () =>
+          import(
+            '../app/pages/bookmarks-layout/bookmarks-layout.component'
+          ).then((m) => m.BookmarksLayoutComponent),
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import(
+                '../app/pages/bookmarks-layout/book-mark-history/book-mark-history.component'
+              ).then((m) => m.BookMarkHistoryComponent),
+          },
+          {
+            path: 'guideline',
+            loadComponent: () =>
+              import(
+                '../app/pages/bookmarks-layout/guideline-history/guideline-history.component'
+              ).then((m) => m.GuidelineHistoryComponent),
+          },
+          {
+            path: 'guideline',
+            loadComponent: () =>
+              import(
+                './pages/bookmarks-layout/guideline-history/guideline-history.component'
+              ).then((m) => m.GuidelineHistoryComponent),
+          },
+          {
+            path: 'bookmarks',
+
+            loadComponent: () =>
+              import(
+                './pages/bookmarks-layout/book-mark-history/book-mark-history.component'
+              ).then((m) => m.BookMarkHistoryComponent),
+          },
+        ],
+      },
     ],
   },
   /** path: login*/
@@ -132,6 +231,32 @@ export const routes: Routes = [
       import('../app/auth/auth-layout/auth-layout.component').then(
         (m) => m.AuthLayoutComponent
       ),
+    children: [
+      {
+        path: '',
+
+        loadComponent: () =>
+          import(
+            './auth/auth-layout/login/login-form/login-form.component'
+          ).then((m) => m.LoginFormComponent),
+      },
+      {
+        path: 'reset',
+
+        loadComponent: () =>
+          import(
+            './auth/auth-layout/login/email-forget-password/email-forget-password.component'
+          ).then((m) => m.EmailForgetPasswordComponent),
+      },
+      {
+        path: 'otp',
+
+        loadComponent: () =>
+          import(
+            './auth/auth-layout/login/forget-password-otp/forget-password-otp.component'
+          ).then((m) => m.ForgetPasswordOtpComponent),
+      },
+    ],
   },
 
   /** path: ***/

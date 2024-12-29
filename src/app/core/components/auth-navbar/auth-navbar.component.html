@@ -84,12 +84,9 @@
           id="navbarSupportedContent"
         >
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li
-              class="nav-item mx-2 py-3"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-            >
+            <li class="nav-item mx-2 py-3">
               <a
+                (click)="toggleNavBar.click()"
                 class="nav-link title__fonts fw-bold fs-14"
                 aria-current="page"
                 routerLinkActive="active"
@@ -98,48 +95,36 @@
                 >HOME
               </a>
             </li>
-            <li
-              class="nav-item mx-2 py-3"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-            >
+            <li class="nav-item mx-2 py-3">
               <a
+                (click)="toggleNavBar.click()"
                 class="nav-link title__fonts fw-bold fs-14"
                 routerLinkActive="active"
                 routerLink="/about"
                 >ABOUT
               </a>
             </li>
-            <li
-              class="nav-item mx-2 py-3"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-            >
+            <li class="nav-item mx-2 py-3">
               <a
+                (click)="toggleNavBar.click()"
                 class="nav-link title__fonts fw-bold fs-14"
                 routerLinkActive="active"
                 routerLink="/protocols/protocols-categories"
                 >PROTOCOLS
               </a>
             </li>
-            <li
-              class="nav-item mx-2 py-3"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-            >
+            <li class="nav-item mx-2 py-3">
               <a
+                (click)="toggleNavBar.click()"
                 class="nav-link title__fonts fw-bold fs-14"
                 routerLinkActive="active"
                 routerLink="/news-letters"
                 >NEWSLETTERS
               </a>
             </li>
-            <li
-              class="nav-item mx-2 py-3"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-            >
+            <li class="nav-item mx-2 py-3">
               <a
+                (click)="toggleNavBar.click()"
                 class="nav-link title__fonts fw-bold fs-14"
                 routerLinkActive="active"
                 routerLink="/contact-us"
@@ -148,22 +133,8 @@
             </li>
           </ul>
         </div>
-        <!-- <ul
-          class="list-unstyled d-flex justify-content-center align-items-center mb-0"
-        >
-          <li
-            class="nav-item mx-2 d-flex justify-content-center align-items-center me-3"
-          >
-            <i class="fa-solid fa-headset fs-2 text-primary lh-0"></i>
-          </li>
-          <li class="nav-item mx-2">
-            <a class="h5 text-decoration-none fw-bold lh-0" href="#"
-              >+1800-001-658</a
-            >
-            <p class="m-0 lh-0 my-2 text-muted fs-6">Mon-Fri: 6AM - 10PM</p>
-          </li>
-        </ul> -->
         <button
+          #toggleNavBar
           class="navbar-toggler btn-secondary p-2 rounded-1"
           type="button"
           data-bs-toggle="collapse"

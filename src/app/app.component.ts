@@ -19,6 +19,7 @@ import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+  title = 'EHA';
   constructor(
     private _NgxSpinnerService: NgxSpinnerService,
     private _Router: Router,
@@ -35,7 +36,8 @@ export class AppComponent {
       ) {
         setTimeout(() => {
           this._NgxSpinnerService.hide();
-        }, 1000);
+        }, 4000);
+        // }, 300);
       }
     });
   }

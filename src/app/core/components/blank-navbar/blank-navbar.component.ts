@@ -4,18 +4,25 @@ import {
   ElementRef,
   HostListener,
   Inject,
-  inject,
   PLATFORM_ID,
   Renderer2,
   ViewChild,
 } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { AvatarModule } from 'primeng/avatar';
+import { BadgeModule } from 'primeng/badge';
 
 @Component({
   selector: 'app-blank-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, CommonModule],
+  imports: [
+    RouterLink,
+    RouterLinkActive,
+    CommonModule,
+    AvatarModule,
+    BadgeModule,
+  ],
   templateUrl: './blank-navbar.component.html',
   styleUrl: './blank-navbar.component.scss',
 })
@@ -30,7 +37,7 @@ export class BlankNavbarComponent {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.isLoggedIn());
+    this.isLoggedIn();
   }
 
   @ViewChild('navbar') navbar!: ElementRef;
@@ -50,11 +57,13 @@ export class BlankNavbarComponent {
   /** Check if user is logged in */
   isLoggedIn() {
     if (isPlatformBrowser(this._PLATFORM_ID)) {
-      if (this._CookieService.check('token')) {
+      if (localStorage.getItem('token')) {
         this.userName = (localStorage.getItem('userName') || '')
+          .replaceAll('"', '')
           .split('')
-          .slice(0, 10)
+          .slice(0, 15)
           .join('');
+        console.log(this.userName);
         this.isLogIn = true;
       } else {
         this.isLogIn = false;
@@ -64,10 +73,12 @@ export class BlankNavbarComponent {
 
   logOut() {
     if (isPlatformBrowser(this._PLATFORM_ID)) {
-      this._CookieService.delete('token');
-      this._CookieService.deleteAll();
+      localStorage.removeItem('token');
+      localStorage.clear();
       localStorage.removeItem('userName');
-      this._Router.navigate(['/login']);
+      setTimeout(() => {
+        this._Router.navigate(['/login']);
+      }, 100);
     }
   }
 }

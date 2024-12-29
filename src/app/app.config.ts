@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, ApplicationConfig, inject } from '@angular/core';
+import { ApplicationConfig } from '@angular/core';
 import {
   InMemoryScrollingFeature,
   InMemoryScrollingOptions,
@@ -14,10 +14,9 @@ import {
 } from '@angular/common/http';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { provideToastr } from 'ngx-toastr';
 import { routes } from './app.routes';
 import { spinnerLoadingInterceptor } from './core/interceptors/spinner-loading.interceptor';
-import { provideToastr } from 'ngx-toastr';
 const scrollConfig: InMemoryScrollingOptions = {
   scrollPositionRestoration: 'top',
   anchorScrolling: 'enabled',

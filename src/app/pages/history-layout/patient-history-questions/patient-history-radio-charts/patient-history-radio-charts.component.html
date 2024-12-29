@@ -1,0 +1,49 @@
+@if (specificProtocol) {
+<div id="Questions__Container" class="position-relative z-1">
+  <!-- Handle Display All Questions Descriptions -->
+  <div #Questions__Description id="Questions__Description">
+    <div #Question class="card mb-2">
+      <div class="card-body rounded-0">
+        <div class="lastUpdated__text">
+          <i class="pi pi-history"></i> last updated
+          {{ specificProtocol.protocol.updated_at | date }}
+        </div>
+        <div [innerHTML]="specificProtocol.protocol.description"></div>
+      </div>
+    </div>
+
+    @for (question of currentQuestionArr; track currentQuestionArr; let i =
+    $index ) {
+    <div #Question class="card mb-2">
+      <div class="card-body rounded-0">
+        <div [innerHTML]="question.description"></div>
+        <form>
+          @for (Choices of question.choices; track $index) {
+          <div id="Questions__Choices">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                [id]="Choices.id"
+                type="radio"
+                [value]="Choices.next_question_id"
+                [name]="Choices.question_id"
+                (change)="
+                  onCheckPreviousQuestionCheck(question);
+                  onDisplayNextQuestionChange(Choices.next_question_id);
+                  updateChart(Choices.next_question_id);
+                  onChangeMoving()
+                "
+              />
+              <label class="form-check-label" [for]="Choices.id">{{
+                Choices.text
+              }}</label>
+            </div>
+          </div>
+          }
+        </form>
+      </div>
+    </div>
+    }
+  </div>
+</div>
+}

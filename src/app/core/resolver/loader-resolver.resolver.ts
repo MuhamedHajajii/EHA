@@ -9,7 +9,7 @@ export const loaderResolverResolver: ResolveFn<boolean> = (route, state) => {
   // Show spinner
   spinner.show();
   return true;
-  // Simulate a delay and hide the spinner after resolution
+  // // Simulate a delay and hide the spinner after resolution
   // return of(true).pipe(
   //   delay(1000) // Simulate a 1-second delay
   //   // finalize(() => spinner.hide())

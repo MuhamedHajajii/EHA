@@ -1,6 +1,6 @@
 header {
   height: 50vh;
-  background-image: url("../../../../assets/rev/2-61-1.jpg");
+  background-image: url("/assets/rev/2-61-1.jpg");
   background-position: top center;
   background-size: cover;
   transform: translateY(10px);
@@ -41,8 +41,4 @@ header {
 
 .breadcrumb-item + .breadcrumb-item::before {
   color: white;
-}
-
-::ng-deep .iti {
-  width: 100%;
 }

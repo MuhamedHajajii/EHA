@@ -1,0 +1,158 @@
+@import "variables";
+
+.chart-container {
+  width: 100%;
+
+  overflow-y: scroll;
+  overflow: hidden;
+  // border: 1px solid #ccc;
+}
+::ng-deep .svg-chart-container {
+  width: 100%;
+}
+::ng-deep .custom-node {
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: "Arial, sans-serif";
+  fill: #e8f5fc;
+  stroke: #409bd2;
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  justify-content: space-between; /* Ensure that the header, body, and buttons are spaced */
+  align-items: center;
+  padding: 10px;
+  word-wrap: break-word;
+  height: auto;
+  position: relative; /* Allow absolute positioning inside */
+}
+
+::ng-deep .custom-node .node-header {
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+::ng-deep .custom-node .node-header::selection,
+::ng-deep .custom-node .node-header *::selection {
+  background-color: transparent;
+}
+
+::ng-deep .custom-node .node-subtitle {
+  font-size: 12px;
+  color: #555;
+  white-space: normal;
+}
+
+::ng-deep .custom-node .node-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: auto; /* This ensures the buttons stay at the bottom */
+}
+
+::ng-deep .custom-node.active {
+  border: 2px solid #4caf50;
+  background-color: #e8f5e9;
+}
+
+::ng-deep .node-button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+::ng-deep .node-button:hover {
+  background-color: #45a049;
+}
+/* Hide the expand/collapse button */
+::ng-deep .orgchart .node .toggle {
+  display: none;
+}
+
+/* Alternatively, disable pointer events if you don't want to hide the button */
+::ng-deep .orgchart .node .toggle {
+  pointer-events: none;
+  opacity: 0.5; /* Optional: make the button look disabled */
+}
+
+::ng-deep ul {
+  padding-left: 10px;
+}
+::ng-deep .highlight-node {
+  background-color: yellow; /* Highlight the background */
+  border: 2px solid red; /* Border for emphasis */
+  transition: all 0.3s ease; /* Smooth transition */
+}
+
+::ng-deep .highlight-path {
+  stroke: red !important; /* Highlight the path */
+  stroke-width: 4px !important; /* Increased stroke width */
+  transition: stroke 0.3s ease;
+}
+
+// ::ng-deep .nodes-wrapper .node:first-child,
+// ::ng-deep .links-wrapper :first-child,
+::ng-deep .node-button-g {
+  display: none;
+}
+::ng-deep .node-button-g {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+::ng-deep .form-check-input:checked {
+  background-color: $main-color-green !important;
+  box-shadow: none;
+}
+::ng-deep .form-check-input {
+  border-radius: 50% !important;
+}
+
+::ng-deep .org-path {
+  stroke: #ccc;
+  stroke-width: 2;
+  transition: stroke 0.3s ease;
+}
+// ::ng-deep .node-button-g,
+// ::ng-deep .node-button-rect,
+// ::ng-deep .node-button-foreign-object {
+//   background-color: gray;
+//   border: 1px solid black;
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 50px;
+//   height: 50px;
+//   border-radius: 50%;
+//   // transform: translate(-50%, -50%);
+//   z-index: 999;
+// }
+
+::ng-deep path.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 2;
+  position: relative;
+}
+::ng-deep .custom-node {
+  position: relative;
+}
+::ng-deep .custom-node::before {
+  content: "";
+  position: absolute;
+  right: 50px;
+  top: 50%;
+  transform: translateY(50%);
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #cccs;
+}

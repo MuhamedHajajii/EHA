@@ -22,6 +22,16 @@ export interface IProtocol {
   active_status: number;
   created_at: string;
   updated_at: string;
-  bookmark: any[];
+  bookmark: IBookmark[];
   is_end: boolean;
+}
+
+export interface IBookmark {
+  id: number;
+  user_id: number;
+  protocol_id: number;
+  guide_line_bookmark_status: number;
+  bookmark_type: string;
+  created_at: string;
+  updated_at: string;
 }

@@ -8,6 +8,7 @@ import { IQuestion } from '../../interfaces/protocols/ISpecificProtocol';
 export class CurrentQuestionsService {
   private dataSource = new BehaviorSubject<IQuestion[]>([]); // Initial value (null or empty)
   currentData = this.dataSource.asObservable(); // Observable data
+
   private QuestionsSource = new BehaviorSubject<IQuestion[]>([]); // Initial value (null or empty)
   currentQuestions = this.QuestionsSource.asObservable();
 
@@ -17,6 +18,7 @@ export class CurrentQuestionsService {
   updateData(data: IQuestion[]) {
     this.dataSource.next(data); // Emit the new data
   }
+
   updateQuestions(data: IQuestion[]) {
     this.QuestionsSource.next(data); // Emit the new data
   }

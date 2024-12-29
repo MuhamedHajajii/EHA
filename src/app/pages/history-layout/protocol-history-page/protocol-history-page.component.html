@@ -1,0 +1,57 @@
+<div class="card">
+  <p-splitter
+    [panelSizes]="[50, 50]"
+    [style]="{ height: '90vh' }"
+    styleClass="mb-5"
+  >
+    <ng-template pTemplate>
+      <div class="col flex align-items-center justify-content-center">
+        <div>
+          <div class="p-2 bg-white h-100 w-100">
+            <app-protocol-hisotry-flow-charts
+              #componentA
+              (actionTriggeredB)="handleActionB($event)"
+            ></app-protocol-hisotry-flow-charts>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate>
+      <div class="col flex align-items-center justify-content-center h-100">
+        <div class="h-100">
+          <div
+            class="Questions__Container p-2 bg-white h-100 w-100 overflow-hidden d-flex flex-column justify-content-end"
+          >
+            <app-protocol-history-radio-button
+              #componentB
+              [specificProtocol]="specificProtocol"
+              [currentQuestionArr]="currentQuestionArr"
+              (actionTriggeredA)="handleActionA($event)"
+            ></app-protocol-history-radio-button>
+            <div style="background-color: #ededed; height: 56px">
+              <!-- <button
+                (click)="
+                  componentB.displayFirstQuestion();
+                  componentB.onChangeMoving();
+                  isDisabled = true
+                "
+                class="btn btn-main m-2 rounded-0"
+                [disabled]="isDisabled"
+              >
+                Start
+              </button> -->
+              <button
+                (click)="copy()"
+                id="copy"
+                class="btn btn-main m-2 rounded-0 d-none"
+                [disabled]="isDisabled"
+              >
+                <i class="pi pi-copy"></i> copy Assessment
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-splitter>
+</div>

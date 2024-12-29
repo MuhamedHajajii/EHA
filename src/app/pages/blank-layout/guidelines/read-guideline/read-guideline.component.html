@@ -1,0 +1,77 @@
+<section id="guideline">
+  <header class="text-white shadow">
+    <div class="bg-black bg-opacity-50 h-100">
+      <div
+        class="container-lg container-fluid d-flex justify-content-start align-items-center h-100"
+      >
+        <div>
+          <div>
+            <h2 class="text-uppercase fs-1">
+              Articles <i class="fa-regular fa-paper-plane ms-3"></i>
+            </h2>
+          </div>
+          <div>
+            <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item" aria-current="page">
+                  <i class="fa-solid fa-house me-1"></i> Home
+                </li>
+                <li
+                  class="breadcrumb-item text-white text-opacity-50"
+                  aria-current="page"
+                >
+                  Articles
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="my-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          @if (Article) {
+
+          <div class="card border-0 bg-light shadow position-relative">
+            <div class="card-title p-3 pb-0 fs-4">
+              <p class="fw-semibold">{{ Article.article_title }}</p>
+            </div>
+            <div class="card-body">
+              <p class="fw-bold" [innerHTML]="Article.article_text"></p>
+            </div>
+            <div class="d-flex justify-content-between card-footer">
+              <p style="font-size: 12px" class="text-muted fst-italic mb-0">
+                created: {{ Article.created_at | date }}
+              </p>
+              <p style="font-size: 12px" class="text-muted fst-italic mb-0">
+                updated: {{ Article.updated_at | date }}
+              </p>
+              <button
+                (click)="addBookmark(Article.id, $event)"
+                pTooltip="Add Book Mark"
+                tooltipPosition="top"
+                [ngClass]="{ 'd-none': Article.is_end }"
+                class="w-45 position-absolute top-0 end-0 m-3 btn text-secondary"
+              >
+                <i class="fa-regular fa-bookmark fs-4"></i>
+              </button>
+              <button
+                (click)="removeBookmark(Article.bookmark[0].id, $event)"
+                pTooltip="Remove From Mark"
+                tooltipPosition="top"
+                [ngClass]="{ 'd-none': !Article.is_end }"
+                class="w-45 position-absolute top-0 end-0 m-3 btn text-secondary"
+              >
+                <i class="fa-solid fa-bookmark fs-4"></i>
+              </button>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

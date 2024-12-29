@@ -1,0 +1,157 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmitUpdateUserData()" class="p-3">
+  <h3 class="mb-4">
+    <span class="border-4 border-bottom">Account</span>
+  </h3>
+  <div class="row g-3">
+    <!-- input form field: userName -->
+    <div>
+      <div class="mb-3">
+        <div class="d-flex justify-content-between align-items-center">
+          <label class="form-label" for="name">
+            <span>Your Name:</span>
+          </label>
+          @if (userForm.get('name')?.getError("required") && startValidation) {
+          <small class="text-danger fst-italic">Please fill the field*</small>
+          } @if (userForm.get('name')?.getError('minlength') && startValidation)
+          {
+          <small class="text-danger fst-italic">min length 3 characters*</small>
+          }
+        </div>
+        <input
+          [ngClass]="{
+            'is-invalid':
+              startValidation &&
+              (userForm.get('name')?.getError('required') ||
+                userForm.get('name')?.getError('minlength'))
+          }"
+          type="text"
+          class="form-control"
+          id="name"
+          placeholder="Enter Your Name"
+          formControlName="name"
+        />
+      </div>
+    </div>
+    <!-- input form field: userEmail -->
+    <div class="col-12">
+      <div>
+        <div class="mb-3">
+          <label class="form-label" for="email"
+            >Your Email: <i class="pi pi-lock"></i
+          ></label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            formControlName="email"
+            placeholder="Enter Your Email"
+            formControlName="email"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- input field: userPhone  -->
+    <div class="col-12">
+      <div>
+        <label for="phone">Your Phone <i class="pi pi-lock"></i></label>
+        <ngx-intl-tel-input
+          #phone
+          [cssClass]="'form-control h-100 py-3'"
+          [preferredCountries]="[CountryISO.Egypt]"
+          [enableAutoCountrySelect]="false"
+          [enablePlaceholder]="true"
+          [searchCountryFlag]="true"
+          [searchCountryField]="[
+            SearchCountryField.Iso2,
+            SearchCountryField.Name
+          ]"
+          [selectFirstCountry]="false"
+          [selectedCountryISO]="CountryISO.Egypt"
+          [maxLength]="15"
+          [phoneValidation]="true"
+          name="phone"
+          formControlName="phone"
+        ></ngx-intl-tel-input>
+      </div>
+    </div>
+    <!-- input field: address  -->
+    <div class="col-md-12">
+      <div>
+        <div class="d-flex justify-content-between alignitemc">
+          <label for="address">Address:</label>
+          @if (userForm.get('address')?.getError("required") && startValidation)
+          {
+          <small class="text-danger fst-italic">Please fill the field*</small>
+          } @if (userForm.get('address')?.getError('minlength') &&
+          startValidation) {
+          <small class="text-danger fst-italic">min length 3 characters*</small>
+          }
+        </div>
+        <div>
+          <div class="mb-3">
+            <input
+              [ngClass]="{
+                'is-invalid':
+                  startValidation &&
+                  (userForm.get('address')?.getError('required') ||
+                    userForm.get('address')?.getError('minlength'))
+              }"
+              class="form-control"
+              placeholder="Leave a comment here"
+              id="address"
+              formControlName="address"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- input field: user_full_work_address  -->
+    <div class="col-md-12">
+      <div>
+        <div class="d-flex justify-content-between alignitemc">
+          <label for="user_full_work_address">Work Address:</label>
+          @if (userForm.get('user_full_work_address')?.getError("required") &&
+          startValidation) {
+          <small class="text-danger fst-italic">Please fill the field*</small>
+          } @if (userForm.get('user_full_work_address')?.getError('minlength')
+          && startValidation) {
+          <small class="text-danger fst-italic">min length 3 characters*</small>
+          }
+        </div>
+        <div>
+          <div class="mb-3">
+            <input
+              [ngClass]="{
+                'is-invalid':
+                  (startValidation &&
+                    userForm
+                      .get('user_full_work_address')
+                      ?.getError('required')) ||
+                  userForm.get('user_full_work_address')?.getError('minlength')
+              }"
+              class="form-control"
+              placeholder="work address"
+              id="user_full_work_address"
+              formControlName="user_full_work_address"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- submit button  -->
+    <div
+      class="col-md-12 d-flex justify-content-between align-items-center flex-column flex-md-row gap-2"
+    >
+      <button
+        class="btn-main btn px-4 title__fonts fw-bold rounded-1 py-3 px-5 text-uppercase fs-14"
+      >
+        Update
+      </button>
+      <div>
+        <a class="text-decoration-none" routerLink="/settings/change-privacy"
+          ><i class="pi pi-lock"></i> privacy settings</a
+        >
+      </div>
+    </div>
+  </div>
+</form>

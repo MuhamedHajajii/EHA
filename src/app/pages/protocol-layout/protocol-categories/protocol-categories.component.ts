@@ -1,28 +1,38 @@
-import { Component } from '@angular/core';
-import { FooterComponent } from '../../../core/components/footer/footer.component';
-import { ProtocolsNavbarComponent } from '../../../core/components/protocols-navbar/protocols-navbar.component';
-import { IProtocolsCategories } from '../../../core/interfaces/protocols/IProtocolsCategories';
-import { ProtocolsCategoriesService } from '../../../core/services/protocols/protocols-categories.service';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
-import { SearchProtocolsPipe } from '../../../core/pipes/search-protocols.pipe';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { IProtocolsCategories } from '../../../core/interfaces/protocols/IProtocolsCategories';
+import { SearchProtocolsPipe } from '../../../core/pipes/search-protocols.pipe';
+import { ProtocolsCategoriesService } from '../../../core/services/protocols/protocols-categories.service';
+import { PaginatorModule } from 'primeng/paginator';
+
 @Component({
   selector: 'app-protocol-categories',
   standalone: true,
-  imports: [CommonModule, RouterLink, SearchProtocolsPipe, FormsModule],
+  imports: [
+    CommonModule,
+    PaginatorModule,
+    RouterLink,
+    SearchProtocolsPipe,
+    FormsModule,
+  ],
   templateUrl: './protocol-categories.component.html',
   styleUrl: './protocol-categories.component.scss',
 })
 export class ProtocolCategoriesComponent {
   protocolsCategories!: IProtocolsCategories;
   inputSearch: string = '';
+  first: number = 0;
+  rows: number = 10;
+  next: number = 10;
   constructor(
     private _ProtocolsCategoriesService: ProtocolsCategoriesService
   ) {}
 
   ngOnInit(): void {
     this.getAllProtocols();
+    console.log('2-Protocol Categories Component');
   }
 
   getAllProtocols() {
@@ -35,5 +45,21 @@ export class ProtocolCategoriesComponent {
         console.log(error);
       },
     });
+  }
+  onPageChange(event: any): void {
+    this.first = event.first;
+    this.rows = event.rows;
+    if (
+      event.first + event.rows <
+      this.protocolsCategories.category.subcategories.length
+    ) {
+      {
+        this.first = event.first;
+        this.rows = event.rows;
+        this.next = this.first + event.rows;
+      }
+    } else {
+      this.next = this.protocolsCategories.category.subcategories.length;
+    }
   }
 }

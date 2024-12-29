@@ -56,8 +56,8 @@
       </div>
     </div>
   </div>
-  <div class="navbar">
-    <div class="container position-relative py-1">
+  <div class="navbar position-relative">
+    <div class="container py-1">
       <a class="navbar-brand" href="#">
         <img
           width="70px"
@@ -80,16 +80,13 @@
       </a>
       <div class="d-flex align-items-center gap-2">
         <div
-          class="collapse navbar-collapse px-3 px-lg-0"
+          class="collapse navbar-collapse px-0 px-lg-3 px-lg-0"
           id="navbarSupportedContent"
         >
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li
-              class="nav-item mx-2 py-3"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-            >
+          <ul class="navbar-nav ms-auto mb-0">
+            <li class="nav-item px-2 py-3">
               <a
+                (click)="toggleNavBar.click()"
                 class="nav-link title__fonts fw-bold fs-14"
                 aria-current="page"
                 routerLinkActive="active"
@@ -98,85 +95,101 @@
                 >HOME
               </a>
             </li>
-            <li
-              class="nav-item mx-2 py-3"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-            >
+            <li class="nav-item px-2 py-3">
               <a
+                (click)="toggleNavBar.click()"
                 class="nav-link title__fonts fw-bold fs-14"
                 routerLinkActive="active"
                 routerLink="/about"
                 >ABOUT
               </a>
             </li>
-            <li
-              class="nav-item mx-2 py-3"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-            >
+            <li class="nav-item px-2 py-3">
               <a
+                (click)="toggleNavBar.click()"
                 class="nav-link title__fonts fw-bold fs-14"
                 routerLinkActive="active"
                 routerLink="/protocols/protocols-categories"
                 >PROTOCOLS
               </a>
             </li>
-            <li
-              class="nav-item mx-2 py-3"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-            >
+            <li class="nav-item px-2 py-3">
               <a
+                (click)="toggleNavBar.click()"
                 class="nav-link title__fonts fw-bold fs-14"
                 routerLinkActive="active"
                 routerLink="/news-letters"
                 >NEWSLETTERS
               </a>
             </li>
-            <li
-              class="nav-item mx-2 py-3"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-            >
+            <li class="nav-item px-2 py-3">
               <a
+                (click)="toggleNavBar.click()"
                 class="nav-link title__fonts fw-bold fs-14"
                 routerLinkActive="active"
                 routerLink="/contact-us"
                 >CONTACT US
               </a>
             </li>
-            <li
-              [ngClass]="{ 'd-none': isLogIn }"
-              class="nav-item mx-2 py-3"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-            >
+            <li class="nav-item px-2 py-3" [ngClass]="{ 'd-none': isLogIn }">
               <a
+                (click)="toggleNavBar.click()"
                 class="nav-link title__fonts fw-bold fs-14"
                 routerLinkActive="active"
                 routerLink="/login"
                 >LOGIN</a
               >
             </li>
-            @if (userName.length > 0) {
+            @if (isLogIn) {
             <li
-              class="position-relative nav-item mx-2 user__name py-3"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
+              class="nav-item position-relative px-2 user__name py-3 d-flex justify-content-start align-items-center"
             >
               <span class="nav-link title__fonts fw-bold fs-14 text-uppercase"
-                >{{ userName }}...</span
-              >
+                >{{ userName }}
+              </span>
+              <p-avatar
+                class="ms-2"
+                icon="pi pi-user"
+                styleClass="mr-2"
+                size="normal"
+                shape="circle"
+              />
               <div
-                class="pt-3 user__name__dropdown position-absolute top-100 start-0 w-100"
+                class="user__name__dropdown position-absolute top-100 start-0 w-100"
               >
                 <ul class="list-unstyled bg-body-tertiary p-0">
                   <li class="nav-item w-100 px-1">
                     <a
+                      (click)="toggleNavBar.click()"
+                      class="text-uppercase nav-link title__fonts fw-bold fs-14 w-100 px-2 py-3 d-flex justify-content-between align-items-center"
+                      routerLink="/guidelines"
+                      >Articles <i class="fa-solid fa-chevron-right"></i
+                    ></a>
+                  </li>
+                  <li class="nav-item w-100 px-1">
+                    <a
+                      (click)="toggleNavBar.click()"
+                      class="text-uppercase nav-link title__fonts fw-bold fs-14 w-100 px-2 py-3 d-flex justify-content-between align-items-center"
+                      routerLink="/protocols/bookmark"
+                      >BookMarks <i class="fa-solid fa-chevron-right"></i
+                    ></a>
+                  </li>
+                  <li class="nav-item w-100 px-1">
+                    <a
+                      (click)="toggleNavBar.click()"
+                      class="text-uppercase nav-link title__fonts fw-bold fs-14 w-100 px-2 py-3 d-flex justify-content-between align-items-center"
+                      routerLink="/protocols/history"
+                      ><span><i class="pi pi-history me-1"></i> History</span>
+                      <i class="fa-solid fa-chevron-right"></i
+                    ></a>
+                  </li>
+                  <li class="nav-item w-100 px-1">
+                    <a
+                      (click)="toggleNavBar.click()"
                       class="text-uppercase nav-link title__fonts fw-bold fs-14 w-100 px-2 py-3 d-flex justify-content-between align-items-center"
                       routerLink="/settings"
-                      >Settings <i class="fa-solid fa-chevron-right"></i
+                      ><span><i class="pi-cog pi me-1"></i> Settings</span>
+                      <i class="fa-solid fa-chevron-right"></i
                     ></a>
                   </li>
                   <li
@@ -186,10 +199,10 @@
                     data-bs-target="#navbarSupportedContent"
                   >
                     <a
-                      (click)="logOut()"
+                      (click)="logOut(); toggleNavBar.click()"
                       class="nav-link title__fonts fw-bold fs-14 w-100 px-2 py-3"
                       routerLink="/login"
-                      >LOGOUT</a
+                      ><i class="pi pi-sign-out me-1"></i> LOGOUT</a
                     >
                   </li>
                 </ul>
@@ -198,22 +211,8 @@
             }
           </ul>
         </div>
-        <!-- <ul
-          class="list-unstyled d-flex justify-content-center align-items-center mb-0"
-        >
-          <li
-            class="nav-item mx-2 d-flex justify-content-center align-items-center me-3"
-          >
-            <i class="fa-solid fa-headset fs-2 text-primary lh-0"></i>
-          </li>
-          <li class="nav-item mx-2">
-            <a class="h5 text-decoration-none fw-bold lh-0" href="#"
-              >+1800-001-658</a
-            >
-            <p class="m-0 lh-0 my-2 text-muted fs-6">Mon-Fri: 6AM - 10PM</p>
-          </li>
-        </ul> -->
         <button
+          #toggleNavBar
           class="navbar-toggler btn-secondary p-2 rounded-1"
           type="button"
           data-bs-toggle="collapse"

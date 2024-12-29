@@ -1,0 +1,80 @@
+<div class="container-lg container-fluid">
+  <section class="py-5">
+    <div class="row g-0">
+      <!-- Search -->
+      <div class="col-12 mb-4 shadow w-100 bg-secondary p-5">
+        <div class="form-floating mb-3">
+          <input
+            [(ngModel)]="inputSearch"
+            type="search"
+            class="form-control"
+            id="floatingInput"
+            placeholder="search patients..."
+          />
+          <label for="floatingInput">Search Patients</label>
+        </div>
+      </div>
+      <!-- Validate that the array response is back -->
+      @if (IPatientHistory) {
+      <!-- Handle if the return of the search is empty -->
+      @if((IPatientHistory.Historys | searchPatients :inputSearch).length == 0)
+      {
+      <div
+        class="card border-0 bg-light shadow-sm position-relative card__animation"
+      >
+        <div class="card-title p-3 pb-0 fs-4">
+          <p class="fw-semibold">No Patients Found</p>
+        </div>
+      </div>
+      }
+      <!-- Display All Categories -->
+      <div
+        class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 min-h-50vh align-items-start"
+      >
+        @for (Patient of IPatientHistory.Historys |
+        searchPatients:inputSearch|slice:first:next; track $index) {
+
+        <!-- [routerLink]="['/protocols/questions', protocol.id]" -->
+        <div
+          (click)="onClickGetSpecificHistory(Patient)"
+          class="text-center bg-light p-5 Protocol__Card position-relative card__animation"
+          [ngClass]="{
+            'border-bottom': $index < 4,
+            'border-end': $index !== 3 && $index !== 7
+          }"
+        >
+          <img
+            class="w-85 mx-auto mb-3"
+            src="./assets/app_logo.png"
+            [alt]="Patient.protocol_name"
+          />
+          <p class="fs-6 text-secondary fw-bold">
+            {{ Patient.patient_name }} {{ Patient.patient_case }}
+          </p>
+          <p class="text-dark text-opacity-50 text-center mb-0">
+            {{ Patient.protocol_name }}
+          </p>
+        </div>
+        }
+      </div>
+      <div class="flex justify-content-center">
+        <p-paginator
+          (onPageChange)="onPageChange($event)"
+          [first]="first"
+          [rows]="rows"
+          [totalRecords]="IPatientHistory.Historys.length"
+          [rowsPerPageOptions]="[8, 16, 32]"
+        />
+      </div>
+      }@else {
+      <div
+        class="card border-0 bg-light shadow-sm position-relative card__animation"
+      >
+        <div class="card-title p-3 pb-0 fs-4">
+          <p class="fw-semibold">No Patients Found</p>
+        </div>
+      </div>
+      }
+    </div>
+  </section>
+</div>

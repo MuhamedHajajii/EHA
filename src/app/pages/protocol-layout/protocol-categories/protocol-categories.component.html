@@ -1,4 +1,4 @@
-<main id="PROTOCOLS">
+<main class="protocol" id="PROTOCOLS">
   <header class="text-white shadow">
     <div class="bg-black bg-opacity-50 h-100">
       <div
@@ -32,29 +32,42 @@
   <div class="container-lg container-fluid">
     <section class="my-5">
       <div class="row g-0">
-        <div class="col-12 p-0 w-100">
+        <div class="col-12 shadow w-100 mb-4 bg-secondary p-5">
           <div class="form-floating mb-3">
             <input
               [(ngModel)]="inputSearch"
               type="search"
               class="form-control"
               id="floatingInput"
-              placeholder="search protocols..."
+              placeholder="search categories..."
             />
             <label for="floatingInput">Search Protocols</label>
           </div>
         </div>
       </div>
+
       @if (protocolsCategories) {
       <!-- Display All Categories -->
-      <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4">
+      <div
+        class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 min-h-50vh align-items-start"
+      >
+        @if((protocolsCategories.category.subcategories | searchProtocols
+        :inputSearch|slice:first:next).length == 0) {
+        <div
+          class="card border-0 bg-light shadow-sm position-relative card__animation"
+        >
+          <div class="card-title p-3 pb-0 fs-4">
+            <p class="fw-semibold">No Protocols Found</p>
+          </div>
+        </div>
+        }
         <div>
           @for (protocol of protocolsCategories.category.subcategories |
           searchProtocols :inputSearch; track $index) {
 
           <div
             [routerLink]="['/protocols/sub-protocols-categories', protocol.id]"
-            class="text-center bg-light p-5 Protocol__Card position-relative"
+            class="text-center bg-light p-5 Protocol__Card position-relative card__animation"
             [ngClass]="{
               'border-bottom': $index < 4,
               'border-end': $index !== 3 && $index !== 7
@@ -68,6 +81,23 @@
             <p class="fs-6 text-secondary fw-bold">{{ protocol.title }}</p>
           </div>
           }
+        </div>
+      </div>
+      <div class="flex justify-content-center">
+        <p-paginator
+          (onPageChange)="onPageChange($event)"
+          [first]="first"
+          [rows]="rows"
+          [totalRecords]="protocolsCategories.category.subcategories.length"
+          [rowsPerPageOptions]="[8, 16, 32]"
+        />
+      </div>
+      }@else {
+      <div
+        class="card border-0 bg-light shadow-sm position-relative card__animation"
+      >
+        <div class="card-title p-3 pb-0 fs-4">
+          <p class="fw-semibold">No Categories Found</p>
         </div>
       </div>
       }

@@ -1,0 +1,78 @@
+<form [formGroup]="userForm" (ngSubmit)="loginUser()" class="p-3">
+  <h3 class="mb-4">
+    <span class="border-4 border-bottom">Login</span>
+  </h3>
+  <div class="row g-3">
+    <!-- input form field: userEmail -->
+    <div class="col-12">
+      <div>
+        <div class="d-flex justify-content-between">
+          <label
+            class="form-label fw-semibold text-dark text-opacity-75 mb-1"
+            for="userEmail"
+            >Email:<span class="text-danger">*</span></label
+          >
+          <small class="text-danger fst-italic d-none fw-bold">required*</small>
+          <small class="text-danger fst-italic d-none fw-bold"
+            >not valid email*</small
+          >
+        </div>
+        <input
+          [ngClass]="{
+            'is-invalid': userForm.invalid && errorMessage.length > 0
+          }"
+          class="form-control"
+          type="email"
+          placeholder="name@example.com"
+          name="userEmail"
+          id="userEmail"
+          autocomplete="email"
+          formControlName="email"
+        />
+      </div>
+    </div>
+    <!-- input form field: userPassword -->
+    <div class="col-12">
+      <div>
+        <div class="d-flex justify-content-between">
+          <label
+            class="form-label fw-semibold text-dark text-opacity-75 mb-1"
+            for="userPassword"
+            >Password:<span class="text-danger">*</span></label
+          >
+        </div>
+        <input
+          [ngClass]="{
+            'is-invalid': userForm.invalid && errorMessage.length > 0
+          }"
+          class="form-control"
+          type="password"
+          name="userPassword"
+          id="userPassword"
+          placeholder="***********"
+          autocomplete="off"
+          formControlName="password"
+        />
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="text-center">
+        <button class="btn btn-secondary px-5 py-2">LogIn</button>
+        @if (userForm.invalid && errorMessage.length > 0 ) {
+        <p class="py-3 text-center">
+          <small class="text-danger fw-bold fst-italic">{{
+            errorMessage
+          }}</small>
+        </p>
+        }
+      </div>
+    </div>
+  </div>
+</form>
+<div>
+  <p>
+    <button routerLink="/login/reset" class="btn text-primary">
+      forget password?
+    </button>
+  </p>
+</div>

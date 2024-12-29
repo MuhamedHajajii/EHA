@@ -1,8 +1,3 @@
-import { OrgChart } from 'd3-org-chart';
-import {
-  IChoice,
-  IQuestion,
-} from '../../../../core/interfaces/protocols/ISpecificProtocol';
 import {
   Component,
   ElementRef,
@@ -10,8 +5,17 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { OrgChart } from 'd3-org-chart';
+import {
+  IChoice,
+  IQuestion,
+} from '../../../../core/interfaces/protocols/ISpecificProtocol';
 import { CurrentQuestionsService } from '../../../../core/services/protocols/current-questions.service';
-import * as d3 from 'd3';
+import { HistoryProtocolsService } from '../../../../core/services/protocols/history-protocols.service';
+import {
+  IHistory,
+  Question,
+} from '../../../../core/interfaces/history/IHistory';
 
 interface INode {
   id: string | number; // Support both strings and numbers
@@ -41,8 +45,12 @@ export class ProtocolQuestionsFlowChartsComponent {
   currentChoiceId!: number;
   clickedChoiceId!: string;
   AllQuestions!: IQuestion[];
-  History: Set<string> = new Set();
-  constructor(private _CurrentQuestionsService: CurrentQuestionsService) {}
+  isRendered = true;
+  currentChartsIdPrev: any[] = [];
+  constructor(
+    private _CurrentQuestionsService: CurrentQuestionsService,
+    private _HistoryProtocolsService: HistoryProtocolsService
+  ) {}
 
   ngOnInit(): void {
     this._CurrentQuestionsService.currentQuestions.subscribe({
@@ -52,12 +60,17 @@ export class ProtocolQuestionsFlowChartsComponent {
     });
     this._CurrentQuestionsService.currentData.subscribe((data) => {
       this.currentQuestionArr = data;
-      if (this.currentQuestionArr.length > 0) {
+      if (this.currentQuestionArr.length > 0 && this.isRendered) {
         setTimeout(() => {
           this.renderChart();
-        }, 300);
+          this.isRendered = false;
+        }, 200);
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this._CurrentQuestionsService.updateData([]);
   }
 
   startNode(): void {
@@ -70,15 +83,13 @@ export class ProtocolQuestionsFlowChartsComponent {
       isNewNode: false, // Root is not a new node
     });
     this.currentQuestionArr[0].choices.forEach((CHOICE) => {
-      let newNodeId = `${CHOICE.id}-${CHOICE.next_question_id}`;
       this.data.push({
-        id: newNodeId,
+        id: CHOICE.next_question_id.toString(),
         name: CHOICE.text,
         parentId: 'root',
         collapsed: false,
         isNewNode: false, // Root is not a new node
       });
-      this.History.add(newNodeId);
     });
   }
 
@@ -95,24 +106,23 @@ export class ProtocolQuestionsFlowChartsComponent {
       .data(this.data)
       .nodeWidth((node: any) => 250) // Ensure enough width for long text
       .nodeHeight((node: any) => 150) // Set fixed node height
-      .childrenMargin((node: any) => 20) // Space between parent and children
-      .siblingsMargin((node: any) => 20) // Space between sibling nodes
+      .childrenMargin((node: any) => 80) // Space between parent and children
+      .siblingsMargin((node: any) => 80) // Space between sibling nodes
       .nodeContent((d: any) => this.getCustomNodeHTML(d))
       .nodeButtonY((node: any) => 10)
       .onNodeClick((d: any) => this.onNodeClick(d))
-      .linkYOffset(10)
+      .linkYOffset(1)
       .compact(false)
       .layout('top')
-
       .render();
+    this.isChartRendered = true;
   }
 
   onNodeClick(d: any): void {
     console.log('Node clicked:', d);
-
     this.appendChildNode(d);
     let currentChoice = +this.currentChoiceId;
-    this.currentChoiceId = +d.id.split('-')[1];
+    this.currentChoiceId = +d.id;
     const element = document.querySelector(
       `[value="${currentChoice}"]`
     ) as HTMLInputElement | null;
@@ -122,65 +132,63 @@ export class ProtocolQuestionsFlowChartsComponent {
   }
   getCustomNodeHTML(d: any): string {
     return `
-        <div class="custom-node h-100 d-flex justify-content-center align-items-center w-auto bg-main text-white" style="word-wrap: break-word;">
+        <div data-attr="${d.data.id}" class="title__fonts__normal custom-node h-100 position-relative  d-flex justify-content-center align-items-center w-auto text-dark" 
+        style="word-wrap: break-word;background-color:#e8f5fc;border-color:#409bd2;">
           <div>
-            <label class="node-header">${d.data.name}</label>
+            <label  class="node-header" style="font-weight:300;font-family: "Montserrat", sans-serif; ">${d.data.name}</label>
           </div>
         </div>
       `;
   }
-  appendChildNode(ClickedNodeID: any): void {
-    this.History = new Set();
-    this.currentChoiceId = ClickedNodeID.id.split('-')[1];
-    const currentQuestion = this.AllQuestions.find(
-      (Question) => Question.id.toString() == ClickedNodeID.id.split('-')[1]
-    );
 
-    if (
-      this.currentQuestionArrAppended.includes(currentQuestion as IQuestion)
-    ) {
-      return; // Avoid duplicates
+  appendChildNode(ClickedNodeID: any): void {
+    this.currentChoiceId = ClickedNodeID.id; // next question id
+
+    const currentQuestion = this.currentQuestionArr.find(
+      (Question) => Question.id.toString() == ClickedNodeID.id
+    );
+    console.log(ClickedNodeID);
+    if (!this.currentQuestionArr.includes(currentQuestion as IQuestion)) {
+      return;
     }
 
     if (currentQuestion && currentQuestion.choices) {
-      this.currentQuestionArrAppended.push(currentQuestion);
-
+      document.getElementById('copy')?.classList.add('d-none');
       if (currentQuestion.choices.length > 0) {
-        const newChoiceId = `${ClickedNodeID.id}-${
-          ClickedNodeID.id.split('-')[1]
-        }`;
-
-        this.History.add(newChoiceId);
-        // Update chart for the main node
+        let currentParent = currentQuestion.charts[0].id.toString();
         this.updateChart(
-          newChoiceId,
+          currentParent,
           currentQuestion.charts[0].title,
-          ClickedNodeID.id,
+          ClickedNodeID.id.toString(),
           true
         );
 
-        // Update chart for child choices
-        currentQuestion.choices.forEach((Choice) => {
-          const childChoiceId = `${
-            currentQuestion.id.toString().split('-')[0]
-          }-${Choice.next_question_id}`;
-          this.History.add(childChoiceId);
-          this.updateChart(childChoiceId, Choice.text, newChoiceId, false);
+        currentQuestion.choices.forEach((Choice: IChoice) => {
+          console.log(currentQuestion.id.toString());
+          const childChoiceId = ClickedNodeID.id;
+          this.updateChart(
+            Choice.next_question_id.toString(),
+            Choice.text,
+            currentParent,
+            false
+          );
         });
       } else {
-        currentQuestion.charts.forEach((chart) => {
-          const chartNodeId = `${ClickedNodeID.id}-${
-            ClickedNodeID.id.split('-')[1]
-          }-${chart.id}`;
-          this.History.add(chartNodeId);
-
-          this.updateChart(chartNodeId, chart.title, ClickedNodeID.id, true);
+        currentQuestion.charts.forEach((chart, i) => {
+          const totalCharts = currentQuestion.charts.length;
+          let isCenter = Math.floor(totalCharts / 2) == i + 1;
+          this.updateChart(
+            chart.id.toString(),
+            chart.title,
+            ClickedNodeID.id,
+            isCenter
+          );
         });
+        document.getElementById('copy')?.classList.remove('d-none');
       }
-
-      this.chart.expandAll();
-      console.log(this.History);
     }
+    this.chart.expandAll();
+    this.collapse(ClickedNodeID);
   }
 
   updateChart(
@@ -201,28 +209,21 @@ export class ProtocolQuestionsFlowChartsComponent {
     if (setCentered) {
       this.chart.setCentered(nodeId);
     }
-    this.History.add(nodeId);
-    this.History.forEach((old) => {
-      console.log(old, 'Old');
+  }
+  collapse(ClickedNodeID: any): void {
+    let currentChartsId: any[] = [];
+    this.currentQuestionArr.forEach((Question) => {
+      Question.charts.forEach((chart) => {
+        currentChartsId.push(chart.id);
+        this.currentChartsIdPrev.push(chart.id);
+      });
+    });
 
-      console.log(!this.History.has(old), 'New');
-      if (!this.History.has(old)) {
-        this.chart.removeNode(+old);
+    this.currentChartsIdPrev.forEach((chartId) => {
+      if (!currentChartsId.includes(chartId)) {
+        this.chart.removeNode(chartId);
+        this.currentChartsIdPrev = currentChartsId;
       }
     });
-  }
-
-  onClickPrint() {
-    this.chart.exportImg({
-      full: true, // Export the full chart
-      scale: 3,
-      onLoad: (d) => d,
-      save: true,
-      backgroundColor: '#FFFFFF', // Set a clear background
-    });
-    this.chart.fullscreen();
-  }
-  onClickFullScreen() {
-    this.chart.fullscreen();
   }
 }

@@ -1,0 +1,85 @@
+<div class="container-fluid">
+  <section class="py-5">
+    <div class="row g-0"></div>
+    <div class="col-12 shadow w-100 mb-4 bg-secondary p-5">
+      <div class="form-floating mb-3">
+        <input
+          [(ngModel)]="inputSearch"
+          type="search"
+          class="form-control"
+          id="floatingInput"
+          placeholder="search protocols..."
+        />
+        <label for="floatingInput">Search Protocols</label>
+      </div>
+    </div>
+    @if (IBookMarks) { @if((IBookMarks.bookmarks |
+    searchProtocolsHistoryBookMark:inputSearch).length == 0) {
+    <div
+      class="card border-0 bg-light shadow-sm position-relative card__animation"
+    >
+      <div class="card-title p-3 pb-0 fs-4">
+        <p class="fw-semibold">No Protocols Found</p>
+      </div>
+    </div>
+    }
+    <!-- Display All Categories -->
+    <div
+      class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 min-h-50vh align-items-start"
+    >
+      @for (BookMark of IBookMarks.bookmarks |
+      searchProtocolsHistoryBookMark:inputSearch | slice:first:next; track
+      $index) {
+
+      <!-- [routerLink]="['/protocols/questions', protocol.id]" -->
+      <div
+        [routerLink]="['/protocols/questions', BookMark.protocol_id]"
+        class="text-center bg-light p-5 Protocol__Card position-relative card__animation"
+        [ngClass]="{
+          'border-bottom': $index < 4,
+          'border-end': $index !== 3 && $index !== 7
+        }"
+      >
+        <img
+          class="w-85 mx-auto mb-3"
+          src="./assets/app_logo.png"
+          [alt]="BookMark.protocolscopes.title"
+        />
+        <p class="fs-6 text-secondary fw-bold">
+          {{ BookMark.protocolscopes.title }}
+        </p>
+        <p class="text-dark text-opacity-50 text-center mb-0">created at:</p>
+        <p class="text-dark text-opacity-50 text-center">
+          {{ BookMark.created_at | date }}
+        </p>
+        <button
+          (click)="removeBookmark(BookMark.id, $event)"
+          pTooltip="remove book mark"
+          tooltipPosition="top"
+          class="w-45 position-absolute top-0 start-0 m-3 btn text-secondary"
+        >
+          <i class="fa-solid fa-bookmark fs-4"></i>
+        </button>
+      </div>
+      }
+    </div>
+    <div class="flex justify-content-center">
+      <p-paginator
+        (onPageChange)="onPageChange($event)"
+        [first]="first"
+        [rows]="rows"
+        [totalRecords]="IBookMarks.bookmarks.length"
+        [rowsPerPageOptions]="[8, 16, 32]"
+      />
+    </div>
+    }@else {
+    <div
+      class="card border-0 bg-light shadow-sm position-relative card__animation"
+    >
+      <div class="card-title p-3 pb-0 fs-4">
+        <p class="fw-semibold">No Categories Found</p>
+      </div>
+    </div>
+    }
+  </section>
+</div>

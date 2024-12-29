@@ -8,7 +8,7 @@ import { IProtocol } from '../interfaces/protocols/IProtocolsSubCategories';
 export class SearchSupProtocolsPipe implements PipeTransform {
   transform(transactions: IProtocol[], inputText: string): IProtocol[] {
     return transactions.filter((protocol) =>
-      protocol.title.includes(inputText)
+      protocol.title.toLocaleLowerCase().includes(inputText.toLocaleLowerCase())
     );
   }
 }
