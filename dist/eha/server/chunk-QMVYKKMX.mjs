@@ -1,0 +1,2 @@
+import './polyfills.server.mjs';
+import{a}from"./chunk-3E4TOBEZ.mjs";import{E as r}from"./chunk-ALSAN5KH.mjs";import{S as e,X as i}from"./chunk-QYIFABBK.mjs";var c="https://digitalbondmena.com/ehanative/about/";var l=(()=>{class t{constructor(o){this._HttpClient=o}getAboutUsData(){return this._HttpClient.get(`${a}getAboutData`)}static{this.\u0275fac=function(n){return new(n||t)(i(r))}}static{this.\u0275prov=e({token:t,factory:t.\u0275fac,providedIn:"root"})}}return t})();export{c as a,l as b};

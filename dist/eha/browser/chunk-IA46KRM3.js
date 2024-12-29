@@ -1,0 +1,1 @@
+import{ea as i}from"./chunk-IYQR6SBG.js";var s=(()=>{class t{transform(r,e=100){return r?r.length<=e?r:r.slice(0,e)+"...":""}static{this.\u0275fac=function(e){return new(e||t)}}static{this.\u0275pipe=i({name:"stringTrim",type:t,pure:!0,standalone:!0})}}return t})();export{s as a};

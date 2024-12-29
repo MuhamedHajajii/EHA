@@ -3,10 +3,21 @@
     "/",
     "/about",
     "/contact-us",
+    "/contact-us-success",
+    "/guidelines",
     "/login",
+    "/login/otp",
+    "/login/reset",
     "/news-letters",
     "/privacy-policy",
     "/protocols",
-    "/protocols/protocols-categories"
+    "/protocols/bookmark",
+    "/protocols/bookmark/bookmarks",
+    "/protocols/bookmark/guideline",
+    "/protocols/history",
+    "/protocols/history/user",
+    "/protocols/protocols-categories",
+    "/settings",
+    "/settings/change-privacy"
   ]
 }

@@ -51,6 +51,7 @@ export class UserHistoryComponent {
       .subscribe({
         next: (response) => {
           this.IProtocolHisory = response;
+          console.log(response);
         },
         error: (error) => {
           console.log(error);

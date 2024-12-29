@@ -29,16 +29,21 @@ export class AppComponent {
     this._Router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
         this._NgxSpinnerService.show();
-      } else if (
+      }
+      {
+        setTimeout(() => {
+          this._NgxSpinnerService.hide();
+        }, 3000);
+        // }, 300);
+      }
+      /**
+       * 
+       * else if (
         event instanceof NavigationEnd ||
         event instanceof NavigationCancel ||
         event instanceof NavigationError
-      ) {
-        setTimeout(() => {
-          this._NgxSpinnerService.hide();
-        }, 4000);
-        // }, 300);
-      }
+      )
+       */
     });
   }
   ngOnInit() {
