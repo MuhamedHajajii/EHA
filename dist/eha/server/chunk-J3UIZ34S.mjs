@@ -1,2 +1,0 @@
-import './polyfills.server.mjs';
-import{E as a}from"./chunk-ALSAN5KH.mjs";import{S as i,X as r}from"./chunk-QYIFABBK.mjs";var s=(()=>{class t{constructor(e){this._HttpClient=e}getNewsLetterData(){return this._HttpClient.get("https://digitalbondmena.com/healthcareapi/api/newsLettersData")}static{this.\u0275fac=function(n){return new(n||t)(r(a))}}static{this.\u0275prov=i({token:t,factory:t.\u0275fac,providedIn:"root"})}}return t})();export{s as a};
